@@ -6,9 +6,9 @@
 - Hacer primer commit y push.
 
 ## Hosting
-- Crear proyecto en Netlify o Vercel.
-- Conectar el repositorio de GitHub.
-- Verificar que el sitio publique correctamente en una URL temporal.
+- GitHub Pages ya esta configurado en el repo.
+- Verificar en `Settings > Pages` que el dominio custom quede asociado.
+- Esperar a que GitHub emita SSL para el dominio una vez propaguen los DNS.
 
 ## Dominio en GoDaddy
 - Entrar al panel DNS de `erosdigitalteam.com`.
@@ -23,7 +23,6 @@
 - Comprobar SSL activo.
 
 ## Lo que todavia falta en este proyecto
-- URL final del repo remoto
-- Correo comercial confirmado
-- Formulario real con destino definido
+- Configuracion DNS final en GoDaddy
+- Dominio custom confirmado en GitHub Pages
 - Casos de estudio y pruebas sociales reales

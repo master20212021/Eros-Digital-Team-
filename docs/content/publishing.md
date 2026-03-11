@@ -5,12 +5,11 @@
 - El hosting publica ese codigo en internet.
 - El dominio de GoDaddy apunta al hosting, no al repo directamente.
 
-## Flujo recomendado
-1. Crear o conectar el repositorio de GitHub para Eros Digital Team.
-2. Subir este proyecto al repo.
-3. Elegir plataforma de despliegue.
-4. Publicar la web desde esa plataforma.
-5. Entrar a GoDaddy y apuntar el dominio al hosting con registros DNS.
+## Flujo actual de este proyecto
+1. El repositorio ya esta conectado a GitHub.
+2. La web ya esta publicada en GitHub Pages.
+3. El siguiente paso es conectar `erosdigitalteam.com` desde GoDaddy a GitHub Pages.
+4. El archivo `CNAME` ya fue agregado al proyecto para usar el dominio raiz.
 
 ## Opciones simples de despliegue
 ### Opcion 1. Netlify
@@ -32,6 +31,12 @@
 - Registro `CNAME` para `www`.
 
 ## Recomendacion para este proyecto
-- Usar GitHub + Netlify o GitHub + Vercel.
+- Mantener GitHub Pages para esta primera version estatica.
 - Mantener GoDaddy solo como proveedor del dominio.
 - Centralizar cambios del sitio en el repo.
+- Si luego la web crece a una app o necesita funciones mas avanzadas, migrar a Netlify o Vercel.
+
+## DNS sugerido en GoDaddy para GitHub Pages
+- Cuatro registros `A` para el dominio raiz apuntando a GitHub Pages.
+- Un registro `CNAME` para `www` apuntando al host de Pages indicado por GitHub.
+- Confirmar despues el dominio custom dentro de `Settings > Pages` del repo.
