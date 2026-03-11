@@ -45,3 +45,4 @@ Luego abrir:
 - Base estatica funcional creada
 - Documentacion de identidad y servicios creada
 - Estructura lista para versionar en un repo independiente
+- Workflow de GitHub Pages agregado para despliegue automatico desde `main`
