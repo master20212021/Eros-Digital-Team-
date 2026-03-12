@@ -177,16 +177,16 @@ const INTENT_PATTERNS = {
 
 const KNOWLEDGE = {
   services: [
-    'Webs y landing pages enfocadas en conversion',
-    'Automatizacion con IA para ventas, atencion y seguimiento',
-    'Publicidad y growth para captar demanda',
-    'Branding, comunicacion e identidad',
-    'Apps, paneles y herramientas internas',
+    'Paginas para vender mejor',
+    'Respuestas automaticas para ahorrar tiempo',
+    'Publicidad para atraer clientes',
+    'Imagen de marca y comunicacion',
+    'Herramientas simples para ordenar el negocio',
   ],
   packages: [
-    'Presencia clara: web y mensaje comercial base',
-    'Mas clientes y seguimiento: web, anuncios y seguimiento',
-    'Orden y ahorro de tiempo: automatizacion e integraciones',
+    'Presencia clara: pagina y mensaje base',
+    'Mas clientes y seguimiento: pagina, anuncios y seguimiento',
+    'Orden y ahorro de tiempo: automatizaciones y conexiones utiles',
   ],
   scope: [
     'Negocios locales, ecommerce, clinicas, restaurantes, servicios profesionales y otros negocios que quieran ordenar ventas o atencion',
@@ -194,9 +194,11 @@ const KNOWLEDGE = {
   rules: [
     'No inventar precios exactos ni casos de estudio no confirmados',
     'No prometer integraciones o tiempos si no estan claros',
-    'Responder corto y directo, 2 a 4 frases maximo',
+    'Responder corto y directo, 2 o 3 frases casi siempre',
     'Cuando haya intencion alta, empujar a WhatsApp o formulario',
-    'No responder como soporte tecnico general; responder como asesor comercial estrategico',
+    'Usar palabras simples, cercanas y faciles de entender',
+    'No sonar tecnico, corporativo ni robotico',
+    'No responder como soporte tecnico general; responder como alguien del equipo comercial',
     'Cuando falte contexto, hacer solo una pregunta corta y util',
   ],
 };
@@ -273,6 +275,7 @@ const buildSystemPrompt = (language, context = {}) => {
   const isEnglish = language === 'en';
   const playbook = getPlaybook(language, context);
   const intent = detectIntent(context.lastMessage || '', context);
+  const replyLanguage = isEnglish ? 'English' : 'Spanish';
   const contextLines = [
     context.niche ? `${isEnglish ? 'Detected niche' : 'Nicho detectado'}: ${context.niche}` : '',
     context.goals?.length ? `${isEnglish ? 'Detected goals' : 'Metas detectadas'}: ${context.goals.join(', ')}` : '',
@@ -304,8 +307,10 @@ ${isEnglish ? 'Contact options' : 'Opciones de contacto'}:
 - WhatsApp: ${CONTACT.whatsapp}
 - Website: ${CONTACT.website}
 
+${isEnglish ? 'Reply language' : 'Idioma de respuesta'}: ${replyLanguage}
+
 ${contextLines ? `${isEnglish ? 'Current lead context' : 'Contexto actual del lead'}:\n${contextLines}\n` : ''}
-${isEnglish ? 'Reply like a sharp sales strategist. First answer directly. Then connect the answer to the most relevant service or package for this niche. Close with one concrete next step. If pricing is requested, explain that the exact proposal depends on scope and push WhatsApp or the form. If buying intent is high, move decisively toward WhatsApp or ask for details in the chat. Mention business impact, not generic features. Keep the answer in the same language as the user, stay at 2 to 4 short sentences, and do not use bullets unless the user explicitly asks for a list.' : 'Responde como un asesor comercial estrategico y directo. Primero responde de forma clara. Luego conecta la respuesta con el servicio o paquete mas relevante para ese nicho. Cierra con un siguiente paso concreto. Si preguntan por precios, explica que la propuesta exacta depende del alcance y empuja a WhatsApp o al formulario. Si la intencion de compra es alta, mueve la conversacion hacia WhatsApp o a dejar datos en el chat. Habla de impacto comercial, no de funciones genericas. Mantén la respuesta en el mismo idioma del usuario, en 2 a 4 frases cortas, y no uses listas salvo que el usuario pida una.'}`;
+${isEnglish ? 'Reply like a helpful person from the team, not like a consultant or a robot. Use plain words, short sentences, and a friendly tone. Always answer in English when reply language is English, even if some context fields contain Spanish words. First answer the question. Then mention the most useful service or package in simple terms. End with one easy next step. If pricing is requested, say the price depends on what is needed and invite them to WhatsApp or the form. If intent is high, move them clearly toward WhatsApp or leaving their details. Avoid jargon, avoid buzzwords, avoid long explanations, and keep it brief.' : 'Responde como alguien amable del equipo, no como consultor ni robot. Usa palabras simples, frases cortas y un tono cercano para publico latino. Siempre responde en espanol cuando el idioma de respuesta sea Spanish, aunque algun dato interno venga en ingles. Primero contesta la duda. Luego menciona el servicio o paquete mas util con palabras simples. Cierra con un siguiente paso facil. Si preguntan por precio, di que depende de lo que necesiten y llevalos a WhatsApp o al formulario. Si la intencion es alta, muevelos claro hacia WhatsApp o a dejar sus datos. Evita tecnicismos, evita palabras rebuscadas, evita rodeos y mantenlo breve.'}`;
 };
 
 const buildMessages = ({ message, history = [], language, context }) => {
