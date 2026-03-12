@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -27,6 +28,7 @@ body {
   min-height: 100vh;
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(255, 79, 216, 0.22), transparent 26%),
     radial-gradient(circle at 85% 20%, rgba(117, 244, 255, 0.18), transparent 22%),
@@ -1708,7 +1710,12 @@ h3 {
 
 @media (max-width: 960px) {
   body {
-    padding-bottom: 164px;
+    padding-bottom: 156px;
+  }
+
+  .site-shell {
+    width: min(calc(100% - 20px), var(--max-width));
+    margin: 14px auto 28px;
   }
 
   .hero,
@@ -1785,8 +1792,8 @@ h3 {
 
   h1 {
     max-width: none;
-    font-size: clamp(1.9rem, 9vw, 2.7rem);
-    line-height: 0.92;
+    font-size: clamp(1.8rem, 8.6vw, 2.5rem);
+    line-height: 0.96;
   }
 
   h2 {
@@ -1823,6 +1830,7 @@ h3 {
 
   .app-carousel-track {
     gap: 12px;
+    width: 100%;
   }
 
   .app-carousel-topbar,
@@ -1832,8 +1840,9 @@ h3 {
   }
 
   .app-carousel-track > * {
-    flex-basis: calc(100vw - 32px);
-    max-width: calc(100vw - 32px);
+    flex-basis: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .wizard-shell {
@@ -1888,14 +1897,15 @@ h3 {
   }
 
   #processCarousel > * {
-    flex-basis: calc(100% - 8px);
-    max-width: calc(100% - 8px);
+    flex-basis: 100%;
+    max-width: 100%;
   }
 
   .app-carousel-track.results-grid > *,
   .app-carousel-track.cases-grid > *,
   .app-carousel-track.packages-grid > * {
-    flex-basis: calc(100vw - 32px);
+    flex-basis: 100%;
+    max-width: 100%;
   }
 
   .process-list[data-sequence] > article {
@@ -1965,17 +1975,14 @@ h3 {
     border-color: rgba(117, 244, 255, 0.24);
   }
 
-  .section.stack-section,
-  .section.launch-section,
-  .cta-ribbon,
-  .site-footer {
+  .cta-ribbon {
     display: none;
   }
 }
 
 @media (max-width: 640px) {
   .site-shell {
-    width: min(calc(100% - 12px), var(--max-width));
+    width: min(calc(100% - 16px), var(--max-width));
   }
 
   .topbar {
@@ -2006,7 +2013,7 @@ h3 {
   }
 
   h1 {
-    font-size: clamp(1.55rem, 9.5vw, 2.15rem);
+    font-size: clamp(1.68rem, 8.8vw, 2.08rem);
     letter-spacing: -0.05em;
   }
 
@@ -2101,7 +2108,7 @@ h3 {
   }
 
   .section {
-    padding: 22px 0;
+    padding: 24px 0;
   }
 
   .section-heading {
@@ -2172,9 +2179,7 @@ h3 {
     border-radius: 18px;
   }
 
-  #proceso > div:first-child,
-  #resultados .proof-strip,
-  #faq .faq-item:nth-of-type(n+3) {
+  #resultados .proof-strip {
     display: none;
   }
 
@@ -2200,6 +2205,38 @@ h3 {
   .contact-form textarea {
     padding: 12px 14px;
     border-radius: 14px;
+  }
+
+  .wizard-result-actions,
+  .hero-actions,
+  .contact-actions {
+    flex-direction: column;
+  }
+
+  .app-carousel-track > *,
+  #processCarousel > *,
+  .app-carousel-track.results-grid > *,
+  .app-carousel-track.cases-grid > *,
+  .app-carousel-track.packages-grid > * {
+    width: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .form-success-card {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .form-success-card strong {
+    font-size: 0.88rem;
+  }
+
+  .form-success-card span,
+  .form-status,
+  .form-note {
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 
   .bottom-app-nav {

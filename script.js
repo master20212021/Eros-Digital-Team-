@@ -434,7 +434,7 @@ const translations = {
       placeholders: ['Ej. Maria Lopez', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opcion', 'Cuéntanos que quieres mejorar, que te esta frenando y que te gustaria resolver primero.'],
       options: ['Pagina o landing', 'Publicidad para atraer clientes', 'Respuestas automaticas', 'Imagen y comunicacion', 'Herramienta o solucion interna'],
       submit: 'Enviar briefing',
-      note: 'El primer envio activara la recepcion en FormSubmit y enviara el correo de confirmacion a erosdigitalteam@gmail.com.',
+      note: 'Te responderemos normalmente dentro de un dia habil con una primera orientacion para tu caso.',
       subject: 'Nuevo lead desde Eros Digital Team',
     },
     cta: {
@@ -887,7 +887,7 @@ const translations = {
       placeholders: ['Ex. Maria Lopez', 'you@company.com', 'Business name', 'Select an option', 'Tell us what you want to improve, what is slowing you down, and what you would like to solve first.'],
       options: ['Page or landing', 'Advertising to bring clients', 'Automatic replies', 'Image and communication', 'Internal tool or solution'],
       submit: 'Send brief',
-      note: 'The first submission will activate FormSubmit delivery and send the confirmation email to erosdigitalteam@gmail.com.',
+      note: 'We usually reply within one business day with an initial recommendation for your case.',
       subject: 'New lead from Eros Digital Team',
     },
     cta: {
@@ -1308,12 +1308,12 @@ const setFormSuccessCardVisibility = (isVisible, language = currentLanguage) => 
   const heading = elements.formSuccessCard.querySelector('strong');
   const text = elements.formSuccessCard.querySelector('span');
   if (heading) {
-    heading.textContent = language === 'en' ? 'Message sent' : 'Mensaje enviado';
+    heading.textContent = language === 'en' ? 'Request sent successfully' : 'Solicitud enviada correctamente';
   }
   if (text) {
     text.textContent = language === 'en'
-      ? 'We received your request. We will contact you soon to review your case.'
-      : 'Recibimos tu solicitud. Te contactaremos pronto para revisar tu caso.';
+      ? 'Thank you. We received your information and will review your case to reply with an initial proposal as soon as possible.'
+      : 'Gracias. Recibimos tu informacion y revisaremos tu caso para responderte con una propuesta inicial lo antes posible.';
   }
 
   elements.formSuccessCard.classList.toggle('is-hidden', !isVisible);
