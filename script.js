@@ -1052,6 +1052,53 @@ const CHAT_QUICK_ACTIONS = {
   },
 };
 
+const CHAT_WELCOME_BY_NICHE = {
+  other: {
+    es: 'Hola. Estoy aqui para ayudarte con tu pagina, mensajes, anuncios o automatizaciones, sin vueltas.',
+    en: 'Hi. I am here to help with your website, messages, ads, or automations in a simple way.',
+  },
+  restaurant: {
+    es: 'Hola. Si quieres mas pedidos o reservas, te ayudo a ver la ruta mas clara y rapida.',
+    en: 'Hi. If you want more orders or bookings, I can help you find the clearest and fastest next step.',
+  },
+  tax: {
+    es: 'Hola. Si quieres una pagina mas clara, mas citas o mejor seguimiento, te guio rapido.',
+    en: 'Hi. If you want a clearer website, more appointments, or better follow-up, I can guide you quickly.',
+  },
+  retail: {
+    es: 'Hola. Si quieres mover promos, vender mas y responder mejor, te ayudo a verlo rapido.',
+    en: 'Hi. If you want to push promos, sell more, and reply better, I can help you sort it out quickly.',
+  },
+  beauty: {
+    es: 'Hola. Si quieres llenar agenda y que te escriban facil por WhatsApp, te ayudo rapido.',
+    en: 'Hi. If you want to fill your calendar and get more WhatsApp bookings, I can help quickly.',
+  },
+  clinic: {
+    es: 'Hola. Si quieres dar mas confianza, agendar facil y dar mejor seguimiento, te guio al punto.',
+    en: 'Hi. If you want to build trust, make booking easier, and improve follow-up, I can guide you clearly.',
+  },
+  ecommerce: {
+    es: 'Hola. Si quieres vender mas y recuperar gente interesada, te digo por donde empezar.',
+    en: 'Hi. If you want more sales and better follow-up for interested shoppers, I can show you where to start.',
+  },
+  'real-estate': {
+    es: 'Hola. Si quieres mas leads, visitas y mejor seguimiento, te ayudo a aterrizarlo rapido.',
+    en: 'Hi. If you want more leads, visits, and better follow-up, I can help you map it out quickly.',
+  },
+  education: {
+    es: 'Hola. Si quieres mas interesados e inscripciones, te ayudo a verlo claro.',
+    en: 'Hi. If you want more leads and enrollments, I can help you see the clearest next step.',
+  },
+  professional: {
+    es: 'Hola. Si quieres mas consultas y un seguimiento mas ordenado, te ayudo al grano.',
+    en: 'Hi. If you want more consultations and a cleaner follow-up process, I can help directly.',
+  },
+  'local-service': {
+    es: 'Hola. Si quieres mas llamadas, mensajes o reservas, te ayudo rapido.',
+    en: 'Hi. If you want more calls, messages, or bookings, I can help quickly.',
+  },
+};
+
 const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
 const chatLeadFormEndpoint = 'https://formsubmit.co/erosdigitalteam@gmail.com';
 
@@ -1521,7 +1568,7 @@ const renderChatMessages = () => {
 
 const ensureChatWelcome = (copy) => {
   if (!chatState.messages.length) {
-    appendChatMessage('assistant', copy.chat.welcome);
+    appendChatMessage('assistant', getChatWelcomeMessage());
     renderChatMessages();
   }
 };
@@ -1569,6 +1616,7 @@ const getChatContext = (copy) => ({
   language: currentLanguage,
   niche: getOptionById(copy, 'niche', wizardState.niche)?.title || '',
   nicheKey: wizardState.niche || chatState.detectedNiche,
+  goalKeys: [...wizardState.goals],
   goals: wizardState.goals
     .map((goalId) => getOptionById(copy, 'goals', goalId)?.title)
     .filter(Boolean),
@@ -1579,6 +1627,12 @@ const getChatQuickActions = () => {
   const locale = currentLanguage === 'en' ? 'en' : 'es';
   const nicheKey = wizardState.niche || chatState.detectedNiche || 'other';
   return CHAT_QUICK_ACTIONS[nicheKey]?.[locale] || CHAT_QUICK_ACTIONS.other[locale];
+};
+
+const getChatWelcomeMessage = () => {
+  const locale = currentLanguage === 'en' ? 'en' : 'es';
+  const nicheKey = wizardState.niche || chatState.detectedNiche || 'other';
+  return CHAT_WELCOME_BY_NICHE[nicheKey]?.[locale] || CHAT_WELCOME_BY_NICHE.other[locale];
 };
 
 async function sendChatMessage(rawMessage, copy = translations[currentLanguage]) {
@@ -1622,6 +1676,9 @@ async function sendChatMessage(rawMessage, copy = translations[currentLanguage])
     if (typeof payload.detectedNiche === 'string' && payload.detectedNiche) {
       chatState.detectedNiche = payload.detectedNiche;
       renderChatQuickActions(copy);
+      if (chatState.messages.length === 2 && chatState.messages[0]?.role === 'assistant') {
+        chatState.messages[0].text = getChatWelcomeMessage();
+      }
     }
 
     chatState.messages.pop();
@@ -2018,6 +2075,10 @@ const renderWizard = (copy) => {
           chatState.detectedNiche = option.id;
           wizardState.goals = [];
           wizardState.step = 1;
+          if (chatState.messages.length === 1 && chatState.messages[0].role === 'assistant') {
+            chatState.messages[0].text = getChatWelcomeMessage();
+            renderChatMessages();
+          }
           renderChatQuickActions(copy);
           renderWizard(copy);
           return;
@@ -2245,7 +2306,7 @@ const applyLanguage = (language) => {
   ));
   renderChatQuickActions(copy);
   if (chatState.messages.length === 1 && chatState.messages[0].role === 'assistant') {
-    chatState.messages[0].text = copy.chat.welcome;
+    chatState.messages[0].text = getChatWelcomeMessage();
     renderChatMessages();
   }
   setFormSuccessCardVisibility(!elements.formSuccessCard?.classList.contains('is-hidden'), language);

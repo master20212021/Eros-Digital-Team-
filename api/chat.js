@@ -284,6 +284,23 @@ const INTENT_PATTERNS = {
   ],
 };
 
+const CHANNEL_PATTERNS = {
+  whatsapp: [
+    /whatsapp|wsp|wa\b|hablar por whatsapp|escribeme por whatsapp|talk on whatsapp|chat on whatsapp/i,
+  ],
+  form: [
+    /formulario|form\b|contact form|contacto|llenar formulario|send form/i,
+  ],
+};
+
+const GOAL_PATTERNS = [
+  { key: 'website', patterns: [/website|web|pagina|página|landing|sitio/i] },
+  { key: 'automation', patterns: [/automatiz|automation|whatsapp|messages|mensajes|seguimiento automatico/i] },
+  { key: 'leads', patterns: [/clientes|leads|calls|llamadas|appointments|citas|bookings|reservas/i] },
+  { key: 'retention', patterns: [/recompra|retention|repeat|reactivar|recover customers/i] },
+  { key: 'operations', patterns: [/procesos|operations|orden|interno|internal tool|reportes/i] },
+];
+
 const NICHE_PATTERNS = [
   { key: 'restaurant', patterns: [/restaurante|restaurant|comida|food|menu|menú|delivery|reserva/i] },
   { key: 'tax', patterns: [/tax|taxes|impuestos|contable|accounting|bookkeeping|fiscal/i] },
@@ -394,41 +411,94 @@ const detectIntent = (message, context = {}) => {
   return 'low';
 };
 
-const buildCtaOptions = (language, intent, playbook) => {
+const detectRequestedChannels = (message, context = {}) => {
+  const source = [message, ...(Array.isArray(context.tickets) ? context.tickets : [])].join(' ');
+  const requested = [];
+
+  if (CHANNEL_PATTERNS.whatsapp.some((pattern) => pattern.test(source))) {
+    requested.push('whatsapp');
+  }
+
+  if (CHANNEL_PATTERNS.form.some((pattern) => pattern.test(source))) {
+    requested.push('form');
+  }
+
+  return requested;
+};
+
+const detectPrimaryGoal = (message, context = {}) => {
+  if (Array.isArray(context.goalKeys) && context.goalKeys.length) {
+    return context.goalKeys[0];
+  }
+
+  const source = [
+    message,
+    ...(Array.isArray(context.goals) ? context.goals : []),
+    ...(Array.isArray(context.tickets) ? context.tickets : []),
+  ].join(' ');
+
+  const match = GOAL_PATTERNS.find((entry) => entry.patterns.some((pattern) => pattern.test(source)));
+  return match?.key || 'website';
+};
+
+const getGoalPreferredChannels = (goalKey, intent) => {
+  if (goalKey === 'automation' || goalKey === 'operations') {
+    return intent === 'high' ? ['whatsapp', 'lead'] : ['whatsapp', 'form'];
+  }
+
+  if (goalKey === 'website') {
+    return intent === 'high' ? ['form', 'whatsapp'] : ['form', 'lead'];
+  }
+
+  if (goalKey === 'leads' || goalKey === 'retention') {
+    return intent === 'high' ? ['whatsapp', 'lead'] : ['form', 'whatsapp'];
+  }
+
+  return intent === 'high' ? ['whatsapp', 'lead'] : ['form', 'whatsapp'];
+};
+
+const buildChannelAction = (channel, language, playbook) => {
   const isEnglish = language === 'en';
 
-  if (intent === 'high') {
-    return [
-      {
-        type: 'whatsapp',
-        label: isEnglish ? 'Open WhatsApp' : 'Abrir WhatsApp',
-        message: isEnglish
-          ? `Hi Eros Digital Team, I want to move forward with ${playbook.packageName}.`
-          : `Hola Eros Digital Team, quiero avanzar con ${playbook.packageName}.`,
-      },
-      {
-        type: 'lead',
-        label: isEnglish ? 'Leave my details' : 'Dejar mis datos',
-      },
-    ];
-  }
-
-  const options = [{
-    type: 'form',
-    label: isEnglish ? 'Open form' : 'Abrir formulario',
-  }];
-
-  if (intent === 'medium') {
-    options.push({
+  if (channel === 'whatsapp') {
+    return {
       type: 'whatsapp',
-      label: isEnglish ? 'Talk on WhatsApp' : 'Hablar por WhatsApp',
+      label: isEnglish ? 'Open WhatsApp' : 'Abrir WhatsApp',
       message: isEnglish
-        ? `Hi Eros Digital Team, I want guidance on ${playbook.service}.`
-        : `Hola Eros Digital Team, quiero orientacion sobre ${playbook.service}.`,
-    });
+        ? `Hi Eros Digital Team, I want to move forward with ${playbook.packageName}.`
+        : `Hola Eros Digital Team, quiero avanzar con ${playbook.packageName}.`,
+    };
   }
 
-  return options;
+  if (channel === 'form') {
+    return {
+      type: 'form',
+      label: isEnglish ? 'Open form' : 'Abrir formulario',
+    };
+  }
+
+  if (channel === 'lead') {
+    return {
+      type: 'lead',
+      label: isEnglish ? 'Leave my details' : 'Dejar mis datos',
+    };
+  }
+
+  return null;
+};
+
+const buildCtaOptions = (language, intent, playbook, message, context = {}) => {
+  const requestedChannels = detectRequestedChannels(message, context);
+  const primaryGoal = detectPrimaryGoal(message, context);
+  const desiredChannels = requestedChannels.length
+    ? [...requestedChannels, ...(intent === 'high' && !requestedChannels.includes('lead') ? ['lead'] : [])]
+    : getGoalPreferredChannels(primaryGoal, intent);
+
+  const uniqueChannels = [...new Set(desiredChannels)].slice(0, 2);
+
+  return uniqueChannels
+    .map((channel) => buildChannelAction(channel, language, playbook))
+    .filter(Boolean);
 };
 
 const buildSystemPrompt = (language, context = {}) => {
@@ -556,7 +626,7 @@ export default async function handler(req, res) {
       intent,
       playbook,
       detectedNiche,
-      ctaOptions: buildCtaOptions(language, intent, playbook),
+      ctaOptions: buildCtaOptions(language, intent, playbook, message, payload.context),
       reply: reply || (language === 'en'
         ? 'I can help you choose the best next step. Tell me your business type and what you want to improve first.'
         : 'Puedo ayudarte a elegir el mejor siguiente paso. Dime tu tipo de negocio y que quieres mejorar primero.'),
