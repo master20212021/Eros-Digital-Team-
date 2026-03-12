@@ -999,7 +999,7 @@ const elements = {
   formHeadingTitle: document.querySelector('.form-heading h3'),
   formHeadingText: document.querySelector('.form-heading p:last-child'),
   formLabels: [...document.querySelectorAll('.contact-form label span')],
-  formInputs: [...document.querySelectorAll('.contact-form input:not([type="hidden"]), .contact-form select, .contact-form textarea')],
+  formInputs: [...document.querySelectorAll('.contact-form input:not([type="hidden"]):not(.form-honeypot), .contact-form select, .contact-form textarea')],
   formSelectOptions: [...document.querySelectorAll('.contact-form select option')],
   formSubmit: document.querySelector('.contact-form button[type="submit"]'),
   formNote: document.querySelector('.form-note'),
