@@ -44,8 +44,8 @@ const translations = {
     },
     hero: {
       eyebrow: 'Páginas, ayuda automática y ventas más claras.',
-      title: 'Haz que tu negocio se vea mejor, venda mejor y trabaje con menos carga manual.',
-      text: 'Creamos páginas, respuestas automáticas y formas de trabajo más claras para negocios que quieren crecer sin enredos, con una propuesta aterrizada y pensada para el mercado latino.',
+      title: 'Haz que tu negocio se vea claro, premium y listo para vender.',
+      text: 'Ordenamos tu presencia digital, tus respuestas y tu embudo para que se vea serio y convierta mejor en web, Instagram y WhatsApp.',
       primary: 'Empezar diagnostico',
       secondary: 'Hablar con nosotros',
       brandTagline: 'Soluciones para negocios',
@@ -86,17 +86,17 @@ const translations = {
           label: 'Paso 1',
           question: '¿Qué tipo de negocio quieres automatizar o vender mejor?',
           options: [
-            { id: 'restaurant', title: 'Restaurante o comida', text: 'Pedidos, reservas, delivery, recompra y operación.' },
-            { id: 'tax', title: 'Taxes, fiscal o contable', text: 'Llegada de clientes, citas, documentos y seguimiento.' },
-            { id: 'retail', title: 'Tienda o retail', text: 'Promociones, catalogo, visitas y recompra.' },
-            { id: 'beauty', title: 'Peluquería, barbería o spa', text: 'Reservas, recordatorios, promociones y recurrencia.' },
-            { id: 'clinic', title: 'Clínica o salud', text: 'Llegada de pacientes, agenda, seguimiento y confianza.' },
-            { id: 'ecommerce', title: 'Ecommerce', text: 'Ventas, seguimiento, ticket promedio y mensajes despues de la compra.' },
-            { id: 'real-estate', title: 'Inmobiliaria', text: 'Personas interesadas, seguimiento y filtro de consultas.' },
-            { id: 'education', title: 'Academia, curso o formación', text: 'Personas interesadas, inscripciones, alumnos y seguimiento.' },
-            { id: 'professional', title: 'Despacho, agencia o servicio profesional', text: 'Consultas, propuestas, cierres y referidos.' },
-            { id: 'local-service', title: 'Servicio local', text: 'WhatsApp, visitas, reservas y reputación digital.' },
-            { id: 'other', title: 'Otro negocio', text: 'Si no encaja en un nicho concreto, lo perfilamos por objetivo.' },
+            { id: 'restaurant', title: 'Restaurante o comida', text: 'Pedidos y reservas.' },
+            { id: 'tax', title: 'Taxes, fiscal o contable', text: 'Clientes y citas.' },
+            { id: 'retail', title: 'Tienda o retail', text: 'Catalogo y recompra.' },
+            { id: 'beauty', title: 'Peluquería, barbería o spa', text: 'Reservas y recurrencia.' },
+            { id: 'clinic', title: 'Clínica o salud', text: 'Pacientes y agenda.' },
+            { id: 'ecommerce', title: 'Ecommerce', text: 'Ventas y seguimiento.' },
+            { id: 'real-estate', title: 'Inmobiliaria', text: 'Leads y filtro.' },
+            { id: 'education', title: 'Academia, curso o formación', text: 'Inscripciones y seguimiento.' },
+            { id: 'professional', title: 'Despacho, agencia o servicio profesional', text: 'Consultas y cierres.' },
+            { id: 'local-service', title: 'Servicio local', text: 'WhatsApp y reservas.' },
+            { id: 'other', title: 'Otro negocio', text: 'Lo ajustamos a tu caso.' },
           ],
         },
         {
@@ -104,11 +104,11 @@ const translations = {
           label: 'Paso 2',
           question: '¿Qué te gustaría lograr primero? Puedes elegir varias.',
           options: [
-            { id: 'leads', title: 'Conseguir mas clientes', text: 'Mas mensajes, mas citas y mas oportunidades de venta.' },
-            { id: 'automation', title: 'Automatizar atención', text: 'Responder más rápido y ahorrar trabajo manual.' },
-            { id: 'retention', title: 'Hacer que vuelvan', text: 'Recompra, seguimiento y más movimiento con clientes actuales.' },
-            { id: 'operations', title: 'Ordenar la operación', text: 'Procesos, lista de clientes, reportes y herramientas más claras.' },
-            { id: 'website', title: 'Tener mejor presencia digital', text: 'Una página más seria, clara y lista para vender.' },
+            { id: 'leads', title: 'Conseguir mas clientes', text: 'Mas oportunidades.' },
+            { id: 'automation', title: 'Automatizar atención', text: 'Menos trabajo manual.' },
+            { id: 'retention', title: 'Hacer que vuelvan', text: 'Mas recompra.' },
+            { id: 'operations', title: 'Ordenar la operación', text: 'Menos caos interno.' },
+            { id: 'website', title: 'Tener mejor presencia digital', text: 'Imagen mas fuerte.' },
           ],
         },
       ],
@@ -476,8 +476,8 @@ const translations = {
     },
     hero: {
       eyebrow: 'Pages, automatic help and clearer sales.',
-      title: 'Help your business look better, sell better and run with less manual work.',
-      text: 'We build pages, automatic replies and clearer ways of working for businesses that want growth without confusion, with a practical proposal that feels close and useful.',
+      title: 'Make your business look premium, clear, and ready to sell.',
+      text: 'We tighten your digital presence, response flow, and funnel so the brand feels serious and converts better across web, Instagram, and WhatsApp.',
       primary: 'Start diagnosis',
       secondary: 'Talk to us',
       brandTagline: 'Business solutions',
@@ -532,17 +532,17 @@ const translations = {
           label: 'Step 1',
           question: 'What type of business do you want to automate or help sell better?',
           options: [
-            { id: 'restaurant', title: 'Restaurant or food business', text: 'Orders, bookings, delivery, repeat sales and operations.' },
-            { id: 'tax', title: 'Tax or accounting firm', text: 'Acquisition, appointments, documents and client follow-up.' },
-            { id: 'retail', title: 'Store or retail', text: 'Promotions, catalog, traffic and repeat purchase.' },
-            { id: 'beauty', title: 'Hair salon, barbershop or spa', text: 'Bookings, reminders, promos and recurrence.' },
-            { id: 'clinic', title: 'Clinic or healthcare', text: 'Acquisition, bookings, follow-up and professional authority.' },
-            { id: 'ecommerce', title: 'Ecommerce', text: 'Sales, follow-up, average order size and post-purchase messages.' },
-            { id: 'real-estate', title: 'Real estate', text: 'Interested people, sales follow-up and inquiry filtering.' },
-            { id: 'education', title: 'Academy, course or training', text: 'Interested people, enrollments, students and follow-up.' },
-            { id: 'professional', title: 'Agency, firm or professional service', text: 'Consultations, proposals, closes and referrals.' },
-            { id: 'local-service', title: 'Local service business', text: 'WhatsApp, visits, bookings and digital reputation.' },
-            { id: 'other', title: 'Other business', text: 'If it does not fit a specific niche, we profile it by objective.' },
+            { id: 'restaurant', title: 'Restaurant or food business', text: 'Orders and bookings.' },
+            { id: 'tax', title: 'Tax or accounting firm', text: 'Clients and appointments.' },
+            { id: 'retail', title: 'Store or retail', text: 'Catalog and repeat sales.' },
+            { id: 'beauty', title: 'Hair salon, barbershop or spa', text: 'Bookings and recurrence.' },
+            { id: 'clinic', title: 'Clinic or healthcare', text: 'Patients and bookings.' },
+            { id: 'ecommerce', title: 'Ecommerce', text: 'Sales and follow-up.' },
+            { id: 'real-estate', title: 'Real estate', text: 'Leads and filtering.' },
+            { id: 'education', title: 'Academy, course or training', text: 'Enrollment and follow-up.' },
+            { id: 'professional', title: 'Agency, firm or professional service', text: 'Consultations and closes.' },
+            { id: 'local-service', title: 'Local service business', text: 'WhatsApp and bookings.' },
+            { id: 'other', title: 'Other business', text: 'Adjusted to your case.' },
           ],
         },
         {
@@ -550,11 +550,11 @@ const translations = {
           label: 'Step 2',
           question: 'What would you like to improve first? You can choose several.',
           options: [
-            { id: 'leads', title: 'Get more clients', text: 'More messages, more bookings and more sales opportunities.' },
-            { id: 'automation', title: 'Automate attention', text: 'Reply faster and reduce manual work.' },
-            { id: 'retention', title: 'Bring clients back', text: 'Repeat business, follow-up and more movement with current customers.' },
-            { id: 'operations', title: 'Organize operations', text: 'Clearer processes, client list, reports and connected tools.' },
-            { id: 'website', title: 'Improve digital presence', text: 'A website or landing page that looks stronger and sells better.' },
+            { id: 'leads', title: 'Get more clients', text: 'More opportunities.' },
+            { id: 'automation', title: 'Automate attention', text: 'Less manual work.' },
+            { id: 'retention', title: 'Bring clients back', text: 'More repeat business.' },
+            { id: 'operations', title: 'Organize operations', text: 'Cleaner internal flow.' },
+            { id: 'website', title: 'Improve digital presence', text: 'Stronger brand image.' },
           ],
         },
       ],
@@ -1167,7 +1167,6 @@ const buildRecommendation = (copy) => {
   const routeKeys = getRouteKeys();
   const primaryRouteKey = getPrimaryRouteKey();
   const route = copy.wizard.routeOverrides?.[wizardState.niche]?.[primaryRouteKey] || copy.wizard.routes[primaryRouteKey];
-  const nicheContext = copy.wizard.routeContext[wizardState.niche] || copy.wizard.routeContext.other;
   const goalTitles = routeKeys
     .map((goalId) => getOptionById(copy, 'goals', goalId)?.title)
     .filter(Boolean);
@@ -1179,8 +1178,8 @@ const buildRecommendation = (copy) => {
   const closeText = copy.wizard.closeMap[primaryRouteKey] || '';
   const nicheLabel = getOptionById(copy, 'niche', wizardState.niche)?.title || copy.wizard.selections.pending;
   const recommendationText = isEnglishCopy()
-    ? `${nicheContext} Right now, the best move is to focus on ${goalSentence.toLowerCase()}. ${closeText}`
-    : `${nicheContext} Ahora mismo tiene mas sentido enfocarnos en ${goalSentence.toLowerCase()}. ${closeText}`;
+    ? `Best first step: ${route.title}. Priority: ${goalSentence.toLowerCase()}. ${closeText}`
+    : `Primer paso: ${route.title}. Prioridad: ${goalSentence.toLowerCase()}. ${closeText}`;
 
   return {
     title: route.title,
@@ -1348,12 +1347,33 @@ const initInteractiveCarousels = () => {
 
     const scrollToCard = (index) => {
       setCurrentCard(index);
-      if (track.id === 'processCarousel') {
-        return;
-      }
       const maxScrollLeft = Math.max(0, track.scrollWidth - track.clientWidth);
       const targetLeft = Math.min(cards[currentIndex].offsetLeft, maxScrollLeft);
       track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    };
+
+    let scrollFrame = null;
+
+    const syncCurrentCardFromScroll = () => {
+      if (cards.length < 2) {
+        return;
+      }
+
+      const referencePoint = track.scrollLeft + (track.clientWidth * 0.35);
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cards.forEach((card, cardIndex) => {
+        const distance = Math.abs(card.offsetLeft - referencePoint);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = cardIndex;
+        }
+      });
+
+      if (closestIndex !== currentIndex) {
+        setCurrentCard(closestIndex);
+      }
     };
 
     const stepScroll = (direction = 1) => {
@@ -1377,6 +1397,17 @@ const initInteractiveCarousels = () => {
         stepScroll(1);
       }
     });
+
+    track.addEventListener('scroll', () => {
+      if (scrollFrame) {
+        window.cancelAnimationFrame(scrollFrame);
+      }
+
+      scrollFrame = window.requestAnimationFrame(() => {
+        syncCurrentCardFromScroll();
+        scrollFrame = null;
+      });
+    }, { passive: true });
 
     scrollToCard(0);
   });

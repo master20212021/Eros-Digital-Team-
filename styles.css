@@ -317,7 +317,7 @@ body.menu-open .menu-toggle span:last-child {
 
 .hero-copy {
   padding-top: 4px;
-  max-width: 560px;
+  max-width: 520px;
 }
 
 .hero-copy .eyebrow {
@@ -373,7 +373,7 @@ h3 {
   max-width: 40ch;
   margin: 22px 0 0;
   font-size: 0.95rem;
-  line-height: 1.75;
+  line-height: 1.62;
 }
 
 .hero-actions,
@@ -462,9 +462,9 @@ h3 {
 }
 
 .wizard-header h2 {
-  max-width: 11ch;
+  max-width: 13ch;
   font-size: clamp(1.8rem, 2.3vw, 2.6rem);
-  line-height: 1;
+  line-height: 1.06;
 }
 
 .wizard-intro {
@@ -576,6 +576,11 @@ h3 {
 .wizard-option small {
   color: var(--muted);
   line-height: 1.55;
+}
+
+.section-heading {
+  display: grid;
+  gap: 10px;
 }
 
 .wizard-step-actions {
@@ -907,19 +912,20 @@ h3 {
 .app-carousel-track {
   display: flex;
   gap: 20px;
-  overflow-x: hidden;
+  overflow-x: auto;
   padding-bottom: 8px;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  touch-action: none;
+  touch-action: pan-x pinch-zoom;
 }
 
 .app-carousel-track > * {
   flex: 0 0 min(360px, calc(100% - 8px));
   max-width: 100%;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   opacity: 0.68;
   transform: scale(0.97);
   filter: saturate(0.9);
@@ -1772,8 +1778,8 @@ h3 {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 18px;
-    padding-top: 28px;
+    gap: 16px;
+    padding-top: 20px;
     padding-bottom: 18px;
   }
 
@@ -1792,8 +1798,8 @@ h3 {
 
   h1 {
     max-width: none;
-    font-size: clamp(1.8rem, 8.6vw, 2.5rem);
-    line-height: 0.96;
+    font-size: clamp(1.72rem, 7.8vw, 2.28rem);
+    line-height: 1;
   }
 
   h2 {
@@ -1807,9 +1813,17 @@ h3 {
 
   .hero-text {
     max-width: none;
-    margin-top: 14px;
-    font-size: 0.9rem;
-    line-height: 1.55;
+    margin-top: 12px;
+    font-size: 0.88rem;
+    line-height: 1.48;
+  }
+
+  .section-heading h2,
+  .results-section .section-heading h2,
+  .why-section .section-heading h2,
+  .packages-section .section-heading h2,
+  .cases-section .section-heading h2 {
+    max-width: 16ch;
   }
 
   .cards-grid,
@@ -1831,6 +1845,7 @@ h3 {
   .app-carousel-track {
     gap: 12px;
     width: 100%;
+    padding-right: 2px;
   }
 
   .app-carousel-topbar,
@@ -1867,9 +1882,34 @@ h3 {
     line-height: 1.4;
   }
 
+  .wizard-options {
+    max-height: 46vh;
+    overflow-y: auto;
+    padding-right: 4px;
+    align-content: start;
+    overscroll-behavior: contain;
+  }
+
+  .wizard-options::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .wizard-options::-webkit-scrollbar-thumb {
+    background: rgba(117, 244, 255, 0.2);
+    border-radius: 999px;
+  }
+
   .wizard-option {
     min-height: auto;
     padding: 14px;
+  }
+
+  .wizard-option small {
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .wizard-result-actions,
@@ -1893,14 +1933,27 @@ h3 {
   }
 
   #processCarousel {
-    min-height: 180px;
+    display: flex;
+    min-height: 0;
+    overflow-x: auto;
+    align-items: stretch;
   }
 
   #processCarousel > * {
     flex-basis: 100%;
     max-width: 100%;
+    grid-area: auto;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
   }
 
+  #processCarousel > *.is-current {
+    transform: none;
+  }
+
+  .app-carousel-track.why-grid > *,
+  .app-carousel-track.process-list > *,
   .app-carousel-track.results-grid > *,
   .app-carousel-track.cases-grid > *,
   .app-carousel-track.packages-grid > * {
@@ -1946,9 +1999,10 @@ h3 {
   .floating-whatsapp {
     right: 12px;
     bottom: 90px;
-    min-height: 50px;
-    padding: 0 16px;
-    font-size: 0.76rem;
+    min-height: 46px;
+    min-width: 46px;
+    padding: 0 14px;
+    font-size: 0.7rem;
     gap: 8px;
   }
 
@@ -2027,6 +2081,10 @@ h3 {
     padding-bottom: 12px;
   }
 
+  .hero-copy {
+    max-width: none;
+  }
+
   .hero-copy .eyebrow,
   .section-heading .eyebrow,
   .wizard-header .eyebrow {
@@ -2039,8 +2097,7 @@ h3 {
   }
 
   .signal-grid {
-    gap: 10px;
-    margin-top: 18px;
+    display: none;
   }
 
   .signal-grid li {
@@ -2081,6 +2138,11 @@ h3 {
     border-radius: 16px;
   }
 
+  .wizard-option strong {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
   .wizard-option small,
   .wizard-intro,
   .wizard-result-text,
@@ -2116,7 +2178,7 @@ h3 {
   }
 
   .section-heading h2 {
-    max-width: 15ch;
+    max-width: 13ch;
   }
 
   .site-footer,
@@ -2251,14 +2313,20 @@ h3 {
   .floating-whatsapp {
     right: 8px;
     bottom: 78px;
-    min-height: 46px;
-    padding: 0 14px;
-    font-size: 0.72rem;
+    width: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 0;
+    border-radius: 999px;
   }
 
   .floating-whatsapp-icon {
     width: 18px;
     height: 18px;
+  }
+
+  .floating-whatsapp span {
+    display: none;
   }
 
   .bottom-app-link {
