@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260312-1">
+  <link rel="stylesheet" href="styles.css?v=20260312-2">
 </head>
 <body>
   <div class="site-shell">
@@ -359,20 +359,21 @@
         <div class="section-heading">
           <p class="eyebrow">Oferta expandida</p>
           <h2>Lo que tambien podemos ofrecer para crecer el ticket y ampliar la propuesta de valor.</h2>
+          <p class="chip-cloud-note">Toca una o varias opciones y las agregamos al formulario como tickets.</p>
         </div>
         <div class="chip-cloud">
-          <span>Embudos de ventas</span>
-          <span>Chatbots y agentes IA</span>
-          <span>Email marketing</span>
-          <span>CRM pipelines</span>
-          <span>Dashboards</span>
-          <span>Contenido short-form</span>
-          <span>Automatización de prospectos</span>
-          <span>SEO on-page</span>
-          <span>Brand systems</span>
-          <span>Produccion audiovisual</span>
-          <span>Remarketing</span>
-          <span>Integraciones API</span>
+          <button type="button" data-ticket-index="0">Embudos de ventas</button>
+          <button type="button" data-ticket-index="1">Chatbots y agentes IA</button>
+          <button type="button" data-ticket-index="2">Email marketing</button>
+          <button type="button" data-ticket-index="3">CRM pipelines</button>
+          <button type="button" data-ticket-index="4">Dashboards</button>
+          <button type="button" data-ticket-index="5">Contenido short-form</button>
+          <button type="button" data-ticket-index="6">Automatización de prospectos</button>
+          <button type="button" data-ticket-index="7">SEO on-page</button>
+          <button type="button" data-ticket-index="8">Brand systems</button>
+          <button type="button" data-ticket-index="9">Produccion audiovisual</button>
+          <button type="button" data-ticket-index="10">Remarketing</button>
+          <button type="button" data-ticket-index="11">Integraciones API</button>
         </div>
       </section>
 
@@ -554,12 +555,22 @@
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="https://erosdigitalteam.com/?sent=1#contacto" id="formNextField">
             <input type="hidden" name="_replyto" value="" id="formReplyToField">
+            <input type="hidden" name="tickets" value="" id="quickTicketsField">
             <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
             <div class="form-heading">
               <p class="eyebrow">Formulario</p>
               <h3>Cuéntanos qué necesitas</h3>
               <p>Este formulario está preparado para sitio estático. Cuando el correo comercial quede confirmado, puede quedar operativo sin backend propio.</p>
+            </div>
+
+            <div class="quick-request-panel">
+              <div class="quick-request-copy">
+                <strong class="quick-request-title">Solicitud rápida</strong>
+                <p class="quick-request-text">Selecciona lo que necesitas y lo adjuntamos como tickets a tu solicitud.</p>
+              </div>
+              <div class="chip-cloud quick-ticket-cloud" id="quickTicketCloud" aria-label="Solicitud rápida"></div>
+              <p class="quick-ticket-summary is-empty" id="quickTicketSummary">Sin tickets seleccionados.</p>
             </div>
 
             <label>
@@ -576,7 +587,7 @@
             </label>
             <label>
               <span>Servicio principal</span>
-              <select name="servicio" required>
+              <select name="servicio">
                 <option value="">Selecciona una opción</option>
                 <option value="web">Web o landing</option>
                 <option value="growth">Publicidad y growth</option>
@@ -587,7 +598,7 @@
             </label>
             <label>
               <span>Proyecto</span>
-              <textarea name="mensaje" rows="5" placeholder="Cuéntanos objetivo, problema actual y que quieres automatizar o vender mejor." required></textarea>
+              <textarea name="mensaje" rows="5" placeholder="Cuéntanos objetivo, problema actual y que quieres automatizar o vender mejor."></textarea>
             </label>
 
             <button class="button" type="submit">Enviar briefing</button>
@@ -630,6 +641,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=20260312-1"></script>
+  <script src="script.js?v=20260312-2"></script>
 </body>
 </html>

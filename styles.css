@@ -113,7 +113,8 @@ body.menu-scrolled .topbar {
 .nav a,
 .button,
 .process-list span,
-.chip-cloud span {
+.chip-cloud span,
+.chip-cloud button {
   letter-spacing: 0.08em;
 }
 
@@ -833,11 +834,33 @@ h3 {
 }
 
 .panel-badges span,
-.chip-cloud span {
+.chip-cloud span,
+.chip-cloud button {
   padding: 10px 14px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chip-cloud button {
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  appearance: none;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.chip-cloud button:hover,
+.chip-cloud button:focus-visible {
+  border-color: rgba(117, 244, 255, 0.24);
+  background: rgba(117, 244, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.chip-cloud button.is-selected {
+  border-color: rgba(117, 244, 255, 0.38);
+  background: rgba(117, 244, 255, 0.16);
+  box-shadow: 0 0 0 3px rgba(117, 244, 255, 0.08);
 }
 
 .section {
@@ -1109,6 +1132,12 @@ h3 {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
+}
+
+.chip-cloud-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .results-section {
@@ -1541,6 +1570,49 @@ h3 {
   box-shadow: var(--shadow);
   display: grid;
   gap: 14px;
+}
+
+.quick-request-panel {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 4px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(117, 244, 255, 0.1);
+}
+
+.quick-request-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.quick-request-title {
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.quick-request-text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.quick-ticket-cloud {
+  margin-top: 0;
+  gap: 10px;
+}
+
+.quick-ticket-summary {
+  margin: 0;
+  color: #cce8ff;
+  line-height: 1.6;
+}
+
+.quick-ticket-summary.is-empty {
+  color: var(--muted);
 }
 
 .form-heading p,
@@ -2136,6 +2208,19 @@ h3 {
   .wizard-option {
     padding: 12px;
     border-radius: 16px;
+  }
+
+  .quick-request-panel {
+    padding: 16px;
+  }
+
+  .quick-ticket-cloud {
+    gap: 8px;
+  }
+
+  .chip-cloud button {
+    min-height: 42px;
+    padding: 10px 12px;
   }
 
   .wizard-option strong {

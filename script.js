@@ -377,6 +377,7 @@ const translations = {
     stack: {
       eyebrow: 'Otras cosas que tambien hacemos',
       title: 'Si tu negocio lo necesita, tambien podemos ayudarte con esto.',
+      helper: 'Toca una o varias opciones y las agregamos al formulario como tickets.',
       chips: ['Paginas de venta', 'Chat para atender clientes', 'Correos para seguimiento', 'Orden de clientes y mensajes', 'Reportes simples', 'Videos cortos', 'Seguimiento automatico', 'Mejor presencia en Google', 'Imagen de marca', 'Produccion de video', 'Campanas para recordar tu negocio', 'Conexion entre herramientas'],
     },
     cases: {
@@ -429,12 +430,19 @@ const translations = {
       openDomain: 'Abrir dominio',
       formEyebrow: 'Formulario',
       formTitle: 'Cuentanos que necesitas',
-      formText: 'Completa estos datos y te responderemos con una idea clara de lo que te conviene hacer primero.',
-      labels: ['Nombre', 'Email', 'Empresa', 'Servicio principal', 'Proyecto'],
-      placeholders: ['Ej. Maria Lopez', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opcion', 'Cuéntanos que quieres mejorar, que te esta frenando y que te gustaria resolver primero.'],
+      formText: 'Puedes enviar una solicitud rapida con tickets o agregar contexto extra si ya sabes lo que quieres resolver.',
+      labels: ['Nombre', 'Email', 'Empresa', 'Servicio principal (opcional)', 'Proyecto o detalle (opcional)'],
+      placeholders: ['Ej. Maria Lopez', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opcion', 'Opcional: agrega contexto extra si quieres.'],
       options: ['Pagina o landing', 'Publicidad para atraer clientes', 'Respuestas automaticas', 'Imagen y comunicacion', 'Herramienta o solucion interna'],
       submit: 'Enviar briefing',
-      note: 'Te responderemos normalmente dentro de un dia habil con una primera orientacion para tu caso.',
+      note: 'Puedes enviar solo nombre, email y tickets seleccionados. Si quieres, agrega mas contexto.',
+      quickRequest: {
+        title: 'Solicitud rapida',
+        text: 'Selecciona lo que necesitas y lo adjuntamos como tickets a tu solicitud.',
+        empty: 'Sin tickets seleccionados.',
+        selected: 'Tickets elegidos',
+        validation: 'Selecciona al menos un ticket o agrega un detalle breve del proyecto.',
+      },
       subject: 'Nuevo lead desde Eros Digital Team',
     },
     cta: {
@@ -830,6 +838,7 @@ const translations = {
     stack: {
       eyebrow: 'Other things we can also do',
       title: 'If your business needs it, we can also help with this.',
+      helper: 'Tap one or more options and we will attach them to the form as tickets.',
       chips: ['Sales pages', 'Chat to help customers', 'Follow-up emails', 'Order for clients and messages', 'Simple reports', 'Short videos', 'Automatic follow-up', 'Better Google presence', 'Brand image', 'Video production', 'Reminder campaigns', 'Connections between tools'],
     },
     cases: {
@@ -882,12 +891,19 @@ const translations = {
       openDomain: 'Open domain',
       formEyebrow: 'Form',
       formTitle: 'Tell us what you need',
-      formText: 'Fill this out and we will reply with a clear idea of what makes the most sense to do first.',
-      labels: ['Name', 'Email', 'Company', 'Primary service', 'Project'],
-      placeholders: ['Ex. Maria Lopez', 'you@company.com', 'Business name', 'Select an option', 'Tell us what you want to improve, what is slowing you down, and what you would like to solve first.'],
+      formText: 'You can send a quick request with tickets or add extra context if you already know what you need.',
+      labels: ['Name', 'Email', 'Company', 'Primary service (optional)', 'Project or details (optional)'],
+      placeholders: ['Ex. Maria Lopez', 'you@company.com', 'Business name', 'Select an option', 'Optional: add extra context if you want.'],
       options: ['Page or landing', 'Advertising to bring clients', 'Automatic replies', 'Image and communication', 'Internal tool or solution'],
       submit: 'Send brief',
-      note: 'We usually reply within one business day with an initial recommendation for your case.',
+      note: 'You can submit only name, email, and selected tickets. Add more context only if you want.',
+      quickRequest: {
+        title: 'Quick request',
+        text: 'Select what you need and we will attach it as tickets to your request.',
+        empty: 'No tickets selected yet.',
+        selected: 'Selected tickets',
+        validation: 'Select at least one ticket or add a short project detail.',
+      },
       subject: 'New lead from Eros Digital Team',
     },
     cta: {
@@ -906,6 +922,23 @@ const wizardState = {
   niche: null,
   goals: [],
   step: 0,
+};
+
+const selectedTickets = new Set();
+
+const ticketServiceMap = {
+  0: 'web',
+  1: 'automation',
+  2: 'growth',
+  3: 'apps',
+  4: 'apps',
+  5: 'branding',
+  6: 'automation',
+  7: 'growth',
+  8: 'branding',
+  9: 'branding',
+  10: 'growth',
+  11: 'apps',
 };
 
 const elements = {
@@ -941,7 +974,8 @@ const elements = {
   proofStrip: document.querySelector('#resultados .proof-strip'),
   stackEyebrow: document.querySelector('#stack .eyebrow'),
   stackHeading: document.querySelector('#stack .section-heading h2'),
-  stackChips: [...document.querySelectorAll('#stack .chip-cloud span')],
+  stackHelper: document.querySelector('#stack .chip-cloud-note'),
+  stackChips: [...document.querySelectorAll('#stack .chip-cloud button')],
   casesEyebrow: document.querySelector('#casos .eyebrow'),
   casesHeading: document.querySelector('#casos .section-heading h2'),
   caseCards: [...document.querySelectorAll('#casos .case-card')],
@@ -974,6 +1008,11 @@ const elements = {
   formSubject: document.querySelector('.contact-form input[name="_subject"]'),
   formNextField: document.getElementById('formNextField'),
   formReplyToField: document.getElementById('formReplyToField'),
+  quickTicketTitle: document.querySelector('.quick-request-title'),
+  quickTicketText: document.querySelector('.quick-request-text'),
+  quickTicketCloud: document.getElementById('quickTicketCloud'),
+  quickTicketSummary: document.getElementById('quickTicketSummary'),
+  quickTicketField: document.getElementById('quickTicketsField'),
   formStatus: document.querySelector('.form-status'),
   formSuccessCard: document.querySelector('.form-success-card'),
   ctaTitle: document.querySelector('.cta-ribbon strong'),
@@ -1147,6 +1186,77 @@ const getOptionById = (copy, key, id) => {
 const buildWhatsAppUrl = (message) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 const isEnglishCopy = () => currentLanguage === 'en';
+
+const getSelectedTicketLabels = (copy = translations[currentLanguage]) => [...selectedTickets]
+  .sort((left, right) => left - right)
+  .map((index) => copy.stack.chips[index])
+  .filter(Boolean);
+
+const inferServiceFromTickets = () => {
+  const match = [...selectedTickets]
+    .sort((left, right) => left - right)
+    .map((index) => ticketServiceMap[index])
+    .find(Boolean);
+
+  return match || '';
+};
+
+const getQuickTicketButtons = () => elements.quickTicketCloud
+  ? [...elements.quickTicketCloud.querySelectorAll('button[data-ticket-index]')]
+  : [];
+
+const syncSelectedTickets = (copy = translations[currentLanguage]) => {
+  const labels = getSelectedTicketLabels(copy);
+  const selectedText = labels.length
+    ? `${copy.contact.quickRequest.selected}: ${labels.join(' • ')}`
+    : copy.contact.quickRequest.empty;
+
+  if (elements.quickTicketField) {
+    elements.quickTicketField.value = labels.join(' | ');
+  }
+
+  if (elements.quickTicketSummary) {
+    elements.quickTicketSummary.textContent = selectedText;
+    elements.quickTicketSummary.classList.toggle('is-empty', !labels.length);
+  }
+
+  [...elements.stackChips, ...getQuickTicketButtons()].forEach((button) => {
+    const ticketIndex = Number(button.dataset.ticketIndex);
+    const isSelected = selectedTickets.has(ticketIndex);
+    button.classList.toggle('is-selected', isSelected);
+    button.setAttribute('aria-pressed', String(isSelected));
+  });
+
+  const serviceSelect = elements.formInputs[3];
+  if (serviceSelect instanceof HTMLSelectElement && !serviceSelect.value && labels.length) {
+    serviceSelect.value = inferServiceFromTickets();
+  }
+};
+
+const renderQuickTicketCloud = (copy) => {
+  if (!elements.quickTicketCloud) {
+    return;
+  }
+
+  elements.quickTicketCloud.innerHTML = '';
+  copy.stack.chips.forEach((label, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.ticketIndex = String(index);
+    button.textContent = label;
+    button.addEventListener('click', () => {
+      if (selectedTickets.has(index)) {
+        selectedTickets.delete(index);
+      } else {
+        selectedTickets.add(index);
+      }
+      syncSelectedTickets(copy);
+    });
+    elements.quickTicketCloud.append(button);
+  });
+
+  syncSelectedTickets(copy);
+};
 
 const getRouteKeys = () => (wizardState.goals.length ? wizardState.goals : ['website']);
 
@@ -1577,9 +1687,13 @@ const applyLanguage = (language) => {
 
   elements.stackEyebrow.textContent = copy.stack.eyebrow;
   elements.stackHeading.textContent = copy.stack.title;
+  elements.stackHelper.textContent = copy.stack.helper;
   elements.stackChips.forEach((chip, index) => {
     chip.textContent = copy.stack.chips[index];
   });
+  elements.quickTicketTitle.textContent = copy.contact.quickRequest.title;
+  elements.quickTicketText.textContent = copy.contact.quickRequest.text;
+  renderQuickTicketCloud(copy);
 
   elements.casesEyebrow.textContent = copy.cases.eyebrow;
   elements.casesHeading.textContent = copy.cases.title;
@@ -1691,6 +1805,18 @@ elements.bottomNavLinks.forEach((link) => {
   });
 });
 
+elements.stackChips.forEach((button) => {
+  button.addEventListener('click', () => {
+    const ticketIndex = Number(button.dataset.ticketIndex);
+    if (selectedTickets.has(ticketIndex)) {
+      selectedTickets.delete(ticketIndex);
+    } else {
+      selectedTickets.add(ticketIndex);
+    }
+    syncSelectedTickets(translations[currentLanguage]);
+  });
+});
+
 elements.wizardReset?.addEventListener('click', () => {
   wizardState.niche = null;
   wizardState.goals = [];
@@ -1718,11 +1844,36 @@ elements.wizardPrimaryCta?.addEventListener('click', (event) => {
   document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-elements.form?.addEventListener('submit', () => {
+elements.form?.addEventListener('submit', (event) => {
   const emailField = elements.form?.querySelector('input[name="email"]');
+  const serviceSelect = elements.formInputs[3];
+  const textarea = elements.formInputs[4];
+  const copy = translations[currentLanguage];
+  const selectedLabels = getSelectedTicketLabels(copy);
+
   if (elements.formReplyToField && emailField instanceof HTMLInputElement) {
     elements.formReplyToField.value = emailField.value.trim();
   }
+
+  if (serviceSelect instanceof HTMLSelectElement && !serviceSelect.value && selectedLabels.length) {
+    serviceSelect.value = inferServiceFromTickets();
+  }
+
+  if (textarea instanceof HTMLTextAreaElement && !textarea.value.trim() && selectedLabels.length) {
+    textarea.value = isEnglishCopy()
+      ? `Quick request: ${selectedLabels.join(' | ')}.`
+      : `Solicitud rapida: ${selectedLabels.join(' | ')}.`;
+  }
+
+  const hasMessage = textarea instanceof HTMLTextAreaElement && Boolean(textarea.value.trim());
+  if (!hasMessage && !selectedLabels.length) {
+    event.preventDefault();
+    setFormSuccessCardVisibility(false, currentLanguage);
+    setFormStatus('error', copy.contact.quickRequest.validation);
+    elements.quickTicketCloud?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   setFormSuccessCardVisibility(false, currentLanguage);
   setFormStatus('', currentLanguage === 'en' ? 'Sending form...' : 'Enviando formulario...');
 });
