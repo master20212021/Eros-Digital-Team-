@@ -164,6 +164,68 @@ const PLAYBOOKS = {
   },
 };
 
+const NICHE_TONE_GUIDES = {
+  restaurant: {
+    es: 'Habla como alguien que entiende de pedidos, reservas, mesas y clientes que escriben por WhatsApp. Sonido agil, cercano y practico.',
+    en: 'Talk like someone who understands orders, bookings, busy hours, and customers messaging on WhatsApp. Keep it quick and practical.',
+  },
+  tax: {
+    es: 'Habla claro y serio, pero humano. Evita palabras legales o tecnicas si no hacen falta. Enfatiza confianza, orden y seguimiento.',
+    en: 'Be clear and trustworthy, but still human. Avoid legal or technical terms unless needed. Emphasize trust, order, and follow-up.',
+  },
+  retail: {
+    es: 'Habla de promos, clientes que regresan, mensajes rapidos y ventas sin complicar la explicacion.',
+    en: 'Talk about promos, repeat customers, fast replies, and sales without overexplaining.',
+  },
+  beauty: {
+    es: 'Suena cercano, fresco y directo, como hablando con una barberia, salon o spa. Habla de agenda, citas y clientes que vuelven.',
+    en: 'Sound friendly, fresh, and direct, like talking to a barbershop, salon, or spa. Mention bookings, appointments, and repeat clients.',
+  },
+  clinic: {
+    es: 'Habla con calma y confianza. Usa un tono humano y respetuoso. Prioriza claridad, seguimiento y confianza del paciente.',
+    en: 'Speak with calm and trust. Keep it human and respectful. Prioritize clarity, follow-up, and patient trust.',
+  },
+  ecommerce: {
+    es: 'Habla de vender mas, recuperar gente interesada y hacer seguimiento sin meter palabras tecnicas de marketing.',
+    en: 'Talk about selling more, bringing back interested people, and following up without heavy marketing jargon.',
+  },
+  'real-estate': {
+    es: 'Habla como alguien que quiere mover leads, visitas y cierres con mas orden. Sonido directo y seguro.',
+    en: 'Talk like someone focused on moving leads, visits, and closes with more order. Keep it direct and confident.',
+  },
+  education: {
+    es: 'Habla de interesados, inscripciones y seguimiento de una forma simple y cercana.',
+    en: 'Talk about leads, enrollments, and follow-up in a simple and friendly way.',
+  },
+  professional: {
+    es: 'Habla profesional pero sencillo, como alguien que quiere mas consultas y mejor seguimiento, sin adornos.',
+    en: 'Sound professional but simple, like someone who wants more consultations and better follow-up, without fluff.',
+  },
+  'local-service': {
+    es: 'Habla como alguien que quiere mas llamadas, mas mensajes y mas reservas. Muy simple, directo y util.',
+    en: 'Talk like someone who wants more calls, more messages, and more bookings. Very simple, direct, and useful.',
+  },
+  other: {
+    es: 'Mantente cercano, claro y latino. Nada de palabras rebuscadas ni tono frio.',
+    en: 'Stay friendly, clear, and natural. No cold or overly polished tone.',
+  },
+};
+
+const INTENT_STYLE_GUIDES = {
+  low: {
+    es: 'Modo orientacion: responde tranquilo, ayuda a entender, no presiones demasiado y cierra con una invitacion suave o una sola pregunta corta.',
+    en: 'Guidance mode: answer calmly, help them understand, do not push too hard, and end with a soft invitation or one short question.',
+  },
+  medium: {
+    es: 'Modo avance: responde claro, aterriza una recomendacion util y cierra con un siguiente paso facil.',
+    en: 'Progress mode: answer clearly, give a useful recommendation, and close with one easy next step.',
+  },
+  high: {
+    es: 'Modo cierre: ve directo al punto, recomienda algo concreto y lleva la conversacion a WhatsApp o a dejar datos. No des rodeos.',
+    en: 'Closing mode: get to the point, recommend something concrete, and move the conversation to WhatsApp or lead capture. Do not ramble.',
+  },
+};
+
 const INTENT_PATTERNS = {
   high: [
     /precio|precios|coste|costo|cotizacion|presupuesto|contratar|empezar|agendar|llam(a|o)|whatsapp|propuesta|paquete/i,
@@ -214,6 +276,18 @@ const getPlaybook = (language, context = {}) => {
     packageName: playbook.package[locale],
     angle: playbook.angle[locale],
   };
+};
+
+const getNicheToneGuide = (language, context = {}) => {
+  const locale = language === 'en' ? 'en' : 'es';
+  const key = context.niche && NICHE_TONE_GUIDES[context.niche] ? context.niche : 'other';
+
+  return NICHE_TONE_GUIDES[key][locale];
+};
+
+const getIntentStyleGuide = (language, intent) => {
+  const locale = language === 'en' ? 'en' : 'es';
+  return INTENT_STYLE_GUIDES[intent]?.[locale] || INTENT_STYLE_GUIDES.low[locale];
 };
 
 const detectIntent = (message, context = {}) => {
@@ -276,6 +350,8 @@ const buildSystemPrompt = (language, context = {}) => {
   const playbook = getPlaybook(language, context);
   const intent = detectIntent(context.lastMessage || '', context);
   const replyLanguage = isEnglish ? 'English' : 'Spanish';
+  const nicheTone = getNicheToneGuide(language, context);
+  const intentStyle = getIntentStyleGuide(language, intent);
   const contextLines = [
     context.niche ? `${isEnglish ? 'Detected niche' : 'Nicho detectado'}: ${context.niche}` : '',
     context.goals?.length ? `${isEnglish ? 'Detected goals' : 'Metas detectadas'}: ${context.goals.join(', ')}` : '',
@@ -284,6 +360,8 @@ const buildSystemPrompt = (language, context = {}) => {
     `${isEnglish ? 'Recommended package' : 'Paquete sugerido'}: ${playbook.packageName}`,
     `${isEnglish ? 'Likely commercial angle' : 'Angulo comercial probable'}: ${playbook.angle}`,
     `${isEnglish ? 'Detected purchase intent' : 'Intencion de compra detectada'}: ${intent}`,
+    `${isEnglish ? 'Niche voice guide' : 'Guia de voz por nicho'}: ${nicheTone}`,
+    `${isEnglish ? 'Intent response style' : 'Estilo segun intencion'}: ${intentStyle}`,
   ].filter(Boolean).join('\n');
 
   return `${isEnglish ? 'You are' : 'Eres'} the sales assistant for Eros Digital Team.
@@ -310,7 +388,7 @@ ${isEnglish ? 'Contact options' : 'Opciones de contacto'}:
 ${isEnglish ? 'Reply language' : 'Idioma de respuesta'}: ${replyLanguage}
 
 ${contextLines ? `${isEnglish ? 'Current lead context' : 'Contexto actual del lead'}:\n${contextLines}\n` : ''}
-${isEnglish ? 'Reply like a helpful person from the team, not like a consultant or a robot. Use plain words, short sentences, and a friendly tone. Always answer in English when reply language is English, even if some context fields contain Spanish words. First answer the question. Then mention the most useful service or package in simple terms. End with one easy next step. If pricing is requested, say the price depends on what is needed and invite them to WhatsApp or the form. If intent is high, move them clearly toward WhatsApp or leaving their details. Avoid jargon, avoid buzzwords, avoid long explanations, and keep it brief.' : 'Responde como alguien amable del equipo, no como consultor ni robot. Usa palabras simples, frases cortas y un tono cercano para publico latino. Siempre responde en espanol cuando el idioma de respuesta sea Spanish, aunque algun dato interno venga en ingles. Primero contesta la duda. Luego menciona el servicio o paquete mas util con palabras simples. Cierra con un siguiente paso facil. Si preguntan por precio, di que depende de lo que necesiten y llevalos a WhatsApp o al formulario. Si la intencion es alta, muevelos claro hacia WhatsApp o a dejar sus datos. Evita tecnicismos, evita palabras rebuscadas, evita rodeos y mantenlo breve.'}`;
+${isEnglish ? 'Reply like a helpful person from the team, not like a consultant or a robot. Use plain words, short sentences, and a friendly tone. Always answer in English when reply language is English, even if some context fields contain Spanish words. Match the niche voice guide and the intent response style. First answer the question. Then mention the most useful service or package in simple terms. End with one easy next step. If pricing is requested, say the price depends on what is needed and invite them to WhatsApp or the form. If intent is high, move them clearly toward WhatsApp or leaving their details. Avoid jargon, avoid buzzwords, avoid long explanations, and keep it brief.' : 'Responde como alguien amable del equipo, no como consultor ni robot. Usa palabras simples, frases cortas y un tono cercano para publico latino. Siempre responde en espanol cuando el idioma de respuesta sea Spanish, aunque algun dato interno venga en ingles. Ajusta la voz al nicho y al nivel de intencion detectado. Primero contesta la duda. Luego menciona el servicio o paquete mas util con palabras simples. Cierra con un siguiente paso facil. Si preguntan por precio, di que depende de lo que necesiten y llevalos a WhatsApp o al formulario. Si la intencion es alta, muevelos claro hacia WhatsApp o a dejar sus datos. Evita tecnicismos, evita palabras rebuscadas, evita rodeos y mantenlo breve.'}`;
 };
 
 const buildMessages = ({ message, history = [], language, context }) => {
