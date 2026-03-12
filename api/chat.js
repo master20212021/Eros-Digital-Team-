@@ -1,4 +1,4 @@
-const DEFAULT_MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
+const DEFAULT_MODEL = process.env.OPENAI_MODEL?.trim() || 'gpt-4.1-mini';
 
 const CONTACT = {
   email: 'erosdigitalteam@gmail.com',
