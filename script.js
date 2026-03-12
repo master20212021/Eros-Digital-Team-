@@ -1003,7 +1003,7 @@ const chatState = {
 };
 
 const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
-const chatLeadEndpoint = window.EDT_CHAT_LEAD_ENDPOINT || '/api/chat-lead';
+const chatLeadFormEndpoint = 'https://formsubmit.co/erosdigitalteam@gmail.com';
 
 const elements = {
   brandHome: document.querySelector('.brand'),
@@ -1477,6 +1477,52 @@ async function sendChatMessage(rawMessage, copy = translations[currentLanguage])
   }
 }
 
+const submitChatLeadThroughForm = ({ name, email, company, copy }) => {
+  const iframeName = 'chatLeadTransport';
+  let iframe = document.querySelector(`iframe[name="${iframeName}"]`);
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.append(iframe);
+  }
+
+  const form = document.createElement('form');
+  form.method = 'POST';
+  form.action = chatLeadFormEndpoint;
+  form.target = iframeName;
+  form.style.display = 'none';
+
+  const fields = {
+    _subject: isEnglishCopy() ? 'New lead from AI chat' : 'Nuevo lead desde chat IA',
+    _captcha: 'false',
+    _template: 'table',
+    _replyto: email,
+    nombre: name,
+    email,
+    empresa: company,
+    servicio: inferServiceFromTickets() || 'automation',
+    tickets: getSelectedTicketLabels(copy).join(' | '),
+    mensaje: isEnglishCopy()
+      ? `Lead from AI chat. Goals: ${(getChatContext(copy).goals || []).join(', ') || 'Not provided'}. Tickets: ${(getChatContext(copy).tickets || []).join(', ') || 'Not provided'}. Conversation summary: ${chatState.messages.map((item) => `${item.role}: ${item.text}`).slice(-8).join(' | ')}`
+      : `Lead desde chat IA. Metas: ${(getChatContext(copy).goals || []).join(', ') || 'No indicadas'}. Tickets: ${(getChatContext(copy).tickets || []).join(', ') || 'No indicados'}. Resumen de conversacion: ${chatState.messages.map((item) => `${item.role}: ${item.text}`).slice(-8).join(' | ')}`,
+  };
+
+  Object.entries(fields).forEach(([nameField, value]) => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = nameField;
+    input.value = value;
+    form.append(input);
+  });
+
+  document.body.append(form);
+  form.submit();
+  window.setTimeout(() => {
+    form.remove();
+  }, 1500);
+};
+
 async function submitChatLead(copy = translations[currentLanguage]) {
   if (chatState.leadPending) {
     return;
@@ -1496,25 +1542,7 @@ async function submitChatLead(copy = translations[currentLanguage]) {
   setChatLeadStatus('', copy.chat.lead.sending);
 
   try {
-    const response = await fetch(chatLeadEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        language: currentLanguage,
-        name,
-        email,
-        company,
-        history: chatState.messages,
-        context: getChatContext(copy),
-      }),
-    });
-
-    const payload = await response.json();
-    if (!response.ok || !payload.ok) {
-      throw new Error('lead_submit_failed');
-    }
+    submitChatLeadThroughForm({ name, email, company, copy });
 
     setChatLeadStatus('success', copy.chat.lead.success);
     appendChatMessage('system', copy.chat.lead.success);
