@@ -448,7 +448,7 @@ const translations = {
     chat: {
       launcher: 'Asistente 24/7',
       title: 'Asistente 24/7',
-      status: 'Responde dudas, recomienda y deriva a humano.',
+      status: 'Responde, recomienda y empuja al siguiente paso.',
       inputLabel: 'Escribe tu mensaje',
       placeholder: 'Escribe tu duda o lo que quieres resolver.',
       submit: 'Enviar',
@@ -479,6 +479,7 @@ const translations = {
     },
     footer: {
       text: 'Paginas, respuestas automaticas, publicidad e imagen para negocios.',
+        prompt: 'Si ya quieres avanzar, deja tu nombre y correo aqui y te escribimos con el siguiente paso mas claro.',
       links: ['Inicio', 'Servicios', 'Casos', 'Contacto'],
     },
   },
@@ -936,7 +937,7 @@ const translations = {
     chat: {
       launcher: '24/7 Assistant',
       title: '24/7 Assistant',
-      status: 'Answers questions, recommends the next step, and hands off to a human.',
+      status: 'Answers, recommends, and pushes the next step.',
       inputLabel: 'Write your message',
       placeholder: 'Write your question or what you want to solve.',
       submit: 'Send',
@@ -955,6 +956,7 @@ const translations = {
         email: 'you@company.com',
         company: 'Company (optional)',
         submit: 'Contact me',
+        prompt: 'If you are ready to move forward, leave your name and email here and we will reply with the clearest next step.',
         sending: 'Sending details...',
         success: 'Done. We received your details and will contact you soon.',
         error: 'We could not send your details right now. Try again or continue through WhatsApp.',
@@ -1000,6 +1002,7 @@ const chatState = {
   pending: false,
   messages: [],
   leadPending: false,
+  suggestedLead: false,
 };
 
 const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
@@ -1343,8 +1346,72 @@ const renderQuickTicketCloud = (copy) => {
   syncSelectedTickets(copy);
 };
 
-const appendChatMessage = (role, text) => {
-  chatState.messages.push({ role, text });
+const appendChatMessage = (role, text, options = {}) => {
+  chatState.messages.push({ role, text, ...options });
+};
+
+const setChatLeadSuggestion = (copy, isSuggested) => {
+  chatState.suggestedLead = isSuggested;
+  elements.chatLeadForm?.classList.toggle('is-suggested', isSuggested);
+
+  if (!isSuggested || !elements.chatLeadStatus) {
+    return;
+  }
+
+  if (!elements.chatLeadName?.value.trim() && !elements.chatLeadEmail?.value.trim()) {
+    setChatLeadStatus('', copy.chat.lead.prompt);
+  }
+};
+
+const buildChatActionUrl = (action) => {
+  if (action.type === 'whatsapp') {
+    return buildWhatsAppUrl(action.message || (isEnglishCopy()
+      ? 'Hi Eros Digital Team, I want to talk about my project.'
+      : 'Hola Eros Digital Team, quiero hablar sobre mi proyecto.'));
+  }
+
+  if (action.type === 'form') {
+    return '#contacto';
+  }
+
+  return '';
+};
+
+const runChatAction = (action, copy) => {
+  if (action.type === 'lead') {
+    setChatLeadSuggestion(copy, true);
+    elements.chatLeadName?.focus();
+    return;
+  }
+
+  if (action.type === 'whatsapp') {
+    window.open(buildChatActionUrl(action), '_blank', 'noopener');
+    return;
+  }
+
+  if (action.type === 'form') {
+    setChatOpen(false);
+    window.location.hash = 'contacto';
+    window.setTimeout(() => {
+      elements.formInputs[0]?.focus();
+    }, 150);
+  }
+};
+
+const buildChatActions = (payload) => {
+  if (!Array.isArray(payload?.ctaOptions)) {
+    return [];
+  }
+
+  return payload.ctaOptions
+    .filter((action) => action && typeof action.label === 'string' && typeof action.type === 'string')
+    .slice(0, 2)
+    .map((action) => ({
+      type: action.type,
+      label: action.label.trim(),
+      href: buildChatActionUrl(action),
+      message: action.message || '',
+    }));
 };
 
 const renderChatMessages = () => {
@@ -1365,9 +1432,40 @@ const renderChatMessages = () => {
         : (isEnglishCopy() ? 'Notice' : 'Aviso');
 
     const body = document.createElement('div');
+    body.className = 'chat-message-body';
     body.textContent = message.text;
 
     item.append(label, body);
+
+    if (Array.isArray(message.actions) && message.actions.length) {
+      const actions = document.createElement('div');
+      actions.className = 'chat-message-actions';
+
+      message.actions.forEach((action) => {
+        const control = document.createElement(action.type === 'lead' ? 'button' : 'a');
+        control.className = 'chat-message-action';
+        control.textContent = action.label;
+
+        if (control instanceof HTMLAnchorElement) {
+          control.href = action.href || '#contacto';
+          if (action.type === 'whatsapp') {
+            control.target = '_blank';
+            control.rel = 'noopener';
+          }
+        } else {
+          control.type = 'button';
+        }
+
+        control.addEventListener('click', (event) => {
+          event.preventDefault();
+          runChatAction(action, translations[currentLanguage]);
+        });
+        actions.append(control);
+      });
+
+      item.append(actions);
+    }
+
     elements.chatMessages.append(item);
   });
 
@@ -1465,12 +1563,15 @@ async function sendChatMessage(rawMessage, copy = translations[currentLanguage])
     const reply = typeof payload.reply === 'string' && payload.reply.trim()
       ? payload.reply.trim()
       : copy.chat.error;
+    const actions = buildChatActions(payload);
 
     chatState.messages.pop();
-    appendChatMessage(payload.mode === 'unavailable' ? 'system' : 'assistant', reply);
+    appendChatMessage(payload.mode === 'unavailable' ? 'system' : 'assistant', reply, { actions });
+    setChatLeadSuggestion(copy, payload.intent === 'high');
   } catch (error) {
     chatState.messages.pop();
     appendChatMessage('system', copy.chat.unavailable);
+    setChatLeadSuggestion(copy, false);
   } finally {
     chatState.pending = false;
     renderChatMessages();
@@ -1545,6 +1646,7 @@ async function submitChatLead(copy = translations[currentLanguage]) {
     submitChatLeadThroughForm({ name, email, company, copy });
 
     setChatLeadStatus('success', copy.chat.lead.success);
+    setChatLeadSuggestion(copy, false);
     appendChatMessage('system', copy.chat.lead.success);
     renderChatMessages();
   } catch (error) {

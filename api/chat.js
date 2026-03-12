@@ -7,6 +7,174 @@ const CONTACT = {
   website: 'https://erosdigitalteam.com',
 };
 
+const PLAYBOOKS = {
+  restaurant: {
+    service: {
+      es: 'web de pedidos y automatizacion por WhatsApp',
+      en: 'order-focused website and WhatsApp automation',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'llenar pedidos, reservas y recompra sin depender de responder todo a mano',
+      en: 'fill orders, bookings, and repeat sales without relying on manual replies',
+    },
+  },
+  tax: {
+    service: {
+      es: 'captacion con web clara y seguimiento automatizado',
+      en: 'lead capture with a clear website and automated follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'captar consultas, ordenar citas y no perder clientes en temporada',
+      en: 'capture consultations, organize appointments, and stop losing seasonal leads',
+    },
+  },
+  retail: {
+    service: {
+      es: 'catalogo o web comercial con campañas y seguimiento',
+      en: 'sales catalog or website with campaigns and follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'mover promociones, responder rapido y empujar recompra',
+      en: 'move promotions, reply fast, and drive repeat purchase',
+    },
+  },
+  beauty: {
+    service: {
+      es: 'reservas con automatizacion y seguimiento',
+      en: 'bookings with automation and follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'llenar agenda y mantener recurrencia',
+      en: 'fill the calendar and keep recurrence high',
+    },
+  },
+  clinic: {
+    service: {
+      es: 'pagina de confianza con agenda y precalificacion',
+      en: 'trust-focused website with booking and pre-qualification',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'captar pacientes con confianza y reducir perdida de citas',
+      en: 'bring in patients with trust and reduce appointment leakage',
+    },
+  },
+  ecommerce: {
+    service: {
+      es: 'optimizacion de conversion con seguimiento y automatizacion',
+      en: 'conversion optimization with follow-up and automation',
+    },
+    package: {
+      es: 'Orden y ahorro de tiempo',
+      en: 'Order and saved time',
+    },
+    angle: {
+      es: 'subir conversion, recuperar interes y activar recompra',
+      en: 'increase conversion, recover intent, and trigger repeat purchase',
+    },
+  },
+  'real-estate': {
+    service: {
+      es: 'captacion con filtro de leads y seguimiento comercial',
+      en: 'acquisition with lead qualification and sales follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'calificar mejor interesados y avanzar visitas con mas control',
+      en: 'qualify prospects better and move visits forward with more control',
+    },
+  },
+  education: {
+    service: {
+      es: 'captacion para inscripciones con automatizacion y seguimiento',
+      en: 'enrollment capture with automation and follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'captar interesados, filtrarlos y llevarlos al cierre',
+      en: 'capture prospects, qualify them, and move them to close',
+    },
+  },
+  professional: {
+    service: {
+      es: 'web comercial con proceso de consultas y seguimiento',
+      en: 'sales website with consultation flow and follow-up',
+    },
+    package: {
+      es: 'Presencia clara',
+      en: 'Clear presence',
+    },
+    angle: {
+      es: 'ordenar consultas, propuestas y cierres',
+      en: 'organize consultations, proposals, and closes',
+    },
+  },
+  'local-service': {
+    service: {
+      es: 'captacion rapida por web y WhatsApp',
+      en: 'fast lead capture through website and WhatsApp',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'responder rapido, tomar reservas y cerrar mejor',
+      en: 'reply fast, take bookings, and close more consistently',
+    },
+  },
+  other: {
+    service: {
+      es: 'web, automatizacion y seguimiento comercial',
+      en: 'website, automation, and sales follow-up',
+    },
+    package: {
+      es: 'Mas clientes y seguimiento',
+      en: 'More clients and follow-up',
+    },
+    angle: {
+      es: 'aclarar la oferta, ordenar el embudo y acelerar respuesta',
+      en: 'clarify the offer, organize the funnel, and speed up response',
+    },
+  },
+};
+
+const INTENT_PATTERNS = {
+  high: [
+    /precio|precios|coste|costo|cotizacion|presupuesto|contratar|empezar|agendar|llam(a|o)|whatsapp|propuesta|paquete/i,
+    /price|pricing|quote|budget|proposal|start|book|call|whatsapp|hire|package/i,
+  ],
+  medium: [
+    /quiero|necesito|me interesa|busco|ayuda|automatizar|pagina|web|landing|clientes|ventas|anuncios/i,
+    /i want|i need|interested|looking for|help|automation|website|landing|clients|sales|ads/i,
+  ],
+};
+
 const KNOWLEDGE = {
   services: [
     'Webs y landing pages enfocadas en conversion',
@@ -33,12 +201,86 @@ const KNOWLEDGE = {
   ],
 };
 
+const getPlaybook = (language, context = {}) => {
+  const locale = language === 'en' ? 'en' : 'es';
+  const key = context.niche && PLAYBOOKS[context.niche] ? context.niche : 'other';
+  const playbook = PLAYBOOKS[key];
+
+  return {
+    key,
+    service: playbook.service[locale],
+    packageName: playbook.package[locale],
+    angle: playbook.angle[locale],
+  };
+};
+
+const detectIntent = (message, context = {}) => {
+  const source = [
+    message,
+    ...(Array.isArray(context.goals) ? context.goals : []),
+    ...(Array.isArray(context.tickets) ? context.tickets : []),
+  ].join(' ');
+
+  if (INTENT_PATTERNS.high.some((pattern) => pattern.test(source))) {
+    return 'high';
+  }
+
+  if (INTENT_PATTERNS.medium.some((pattern) => pattern.test(source))) {
+    return 'medium';
+  }
+
+  return 'low';
+};
+
+const buildCtaOptions = (language, intent, playbook) => {
+  const isEnglish = language === 'en';
+
+  if (intent === 'high') {
+    return [
+      {
+        type: 'whatsapp',
+        label: isEnglish ? 'Open WhatsApp' : 'Abrir WhatsApp',
+        message: isEnglish
+          ? `Hi Eros Digital Team, I want to move forward with ${playbook.packageName}.`
+          : `Hola Eros Digital Team, quiero avanzar con ${playbook.packageName}.`,
+      },
+      {
+        type: 'lead',
+        label: isEnglish ? 'Leave my details' : 'Dejar mis datos',
+      },
+    ];
+  }
+
+  const options = [{
+    type: 'form',
+    label: isEnglish ? 'Open form' : 'Abrir formulario',
+  }];
+
+  if (intent === 'medium') {
+    options.push({
+      type: 'whatsapp',
+      label: isEnglish ? 'Talk on WhatsApp' : 'Hablar por WhatsApp',
+      message: isEnglish
+        ? `Hi Eros Digital Team, I want guidance on ${playbook.service}.`
+        : `Hola Eros Digital Team, quiero orientacion sobre ${playbook.service}.`,
+    });
+  }
+
+  return options;
+};
+
 const buildSystemPrompt = (language, context = {}) => {
   const isEnglish = language === 'en';
+  const playbook = getPlaybook(language, context);
+  const intent = detectIntent(context.lastMessage || '', context);
   const contextLines = [
     context.niche ? `${isEnglish ? 'Detected niche' : 'Nicho detectado'}: ${context.niche}` : '',
     context.goals?.length ? `${isEnglish ? 'Detected goals' : 'Metas detectadas'}: ${context.goals.join(', ')}` : '',
     context.tickets?.length ? `${isEnglish ? 'Selected tickets' : 'Tickets seleccionados'}: ${context.tickets.join(', ')}` : '',
+    `${isEnglish ? 'Recommended commercial focus' : 'Enfoque comercial sugerido'}: ${playbook.service}`,
+    `${isEnglish ? 'Recommended package' : 'Paquete sugerido'}: ${playbook.packageName}`,
+    `${isEnglish ? 'Likely commercial angle' : 'Angulo comercial probable'}: ${playbook.angle}`,
+    `${isEnglish ? 'Detected purchase intent' : 'Intencion de compra detectada'}: ${intent}`,
   ].filter(Boolean).join('\n');
 
   return `${isEnglish ? 'You are' : 'Eres'} the sales assistant for Eros Digital Team.
@@ -63,7 +305,7 @@ ${isEnglish ? 'Contact options' : 'Opciones de contacto'}:
 - Website: ${CONTACT.website}
 
 ${contextLines ? `${isEnglish ? 'Current lead context' : 'Contexto actual del lead'}:\n${contextLines}\n` : ''}
-${isEnglish ? 'Reply like a sharp sales strategist. First answer directly. Then suggest the most relevant service or package. Close with one concrete next step. If the user asks about pricing, explain that the exact proposal depends on scope and recommend WhatsApp or the form. If the user shows buying intent, ask only one short qualifying question or tell them to leave their details in the chat. Keep the answer in the same language as the user.' : 'Responde como un asesor comercial estrategico y directo. Primero responde de forma clara. Luego sugiere el servicio o paquete mas relevante. Cierra con un siguiente paso concreto. Si el usuario pregunta por precios, explica que la propuesta exacta depende del alcance y recomiendale WhatsApp o el formulario. Si el usuario muestra intencion de compra, haz solo una pregunta corta de calificacion o dile que deje sus datos en el chat. Mantén la respuesta en el mismo idioma del usuario.'}`;
+${isEnglish ? 'Reply like a sharp sales strategist. First answer directly. Then connect the answer to the most relevant service or package for this niche. Close with one concrete next step. If pricing is requested, explain that the exact proposal depends on scope and push WhatsApp or the form. If buying intent is high, move decisively toward WhatsApp or ask for details in the chat. Mention business impact, not generic features. Keep the answer in the same language as the user, stay at 2 to 4 short sentences, and do not use bullets unless the user explicitly asks for a list.' : 'Responde como un asesor comercial estrategico y directo. Primero responde de forma clara. Luego conecta la respuesta con el servicio o paquete mas relevante para ese nicho. Cierra con un siguiente paso concreto. Si preguntan por precios, explica que la propuesta exacta depende del alcance y empuja a WhatsApp o al formulario. Si la intencion de compra es alta, mueve la conversacion hacia WhatsApp o a dejar datos en el chat. Habla de impacto comercial, no de funciones genericas. Mantén la respuesta en el mismo idioma del usuario, en 2 a 4 frases cortas, y no uses listas salvo que el usuario pida una.'}`;
 };
 
 const buildMessages = ({ message, history = [], language, context }) => {
@@ -75,7 +317,7 @@ const buildMessages = ({ message, history = [], language, context }) => {
     : [];
 
   return [
-    { role: 'system', content: buildSystemPrompt(language, context) },
+    { role: 'system', content: buildSystemPrompt(language, { ...context, lastMessage: message }) },
     ...safeHistory,
     { role: 'user', content: String(message || '').slice(0, 1200) },
   ];
@@ -96,6 +338,8 @@ export default async function handler(req, res) {
   const payload = typeof req.body === 'object' && req.body !== null ? req.body : {};
   const language = payload.language === 'en' ? 'en' : 'es';
   const message = typeof payload.message === 'string' ? payload.message.trim() : '';
+  const intent = detectIntent(message, payload.context);
+  const playbook = getPlaybook(language, payload.context);
 
   if (!message) {
     return res.status(400).json({ error: 'Message is required' });
@@ -136,6 +380,9 @@ export default async function handler(req, res) {
     const reply = data?.choices?.[0]?.message?.content?.trim();
 
     return res.status(200).json({
+      intent,
+      playbook,
+      ctaOptions: buildCtaOptions(language, intent, playbook),
       reply: reply || (language === 'en'
         ? 'I can help you choose the best next step. Tell me your business type and what you want to improve first.'
         : 'Puedo ayudarte a elegir el mejor siguiente paso. Dime tu tipo de negocio y que quieres mejorar primero.'),
