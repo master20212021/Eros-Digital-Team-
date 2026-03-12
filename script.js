@@ -1282,12 +1282,11 @@ const buildRecommendation = (copy) => {
   const bullets = [...new Set(routeKeys.flatMap((goalId) => {
     const selectedRoute = copy.wizard.routeOverrides?.[wizardState.niche]?.[goalId] || copy.wizard.routes[goalId];
     return selectedRoute?.bullets || [];
-  }))].slice(0, 4);
-  const closeText = copy.wizard.closeMap[primaryRouteKey] || '';
+  }))].slice(0, 3);
   const nicheLabel = getOptionById(copy, 'niche', wizardState.niche)?.title || copy.wizard.selections.pending;
   const recommendationText = isEnglishCopy()
-    ? `Best first step: ${route.title}. Priority: ${goalSentence.toLowerCase()}. ${closeText}`
-    : `Primer paso: ${route.title}. Prioridad: ${goalSentence.toLowerCase()}. ${closeText}`;
+    ? `Recommended focus: ${goalSentence || route.title}.`
+    : `Enfoque recomendado: ${goalSentence || route.title}.`;
 
   return {
     title: route.title,
