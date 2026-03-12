@@ -434,7 +434,7 @@ const translations = {
       placeholders: ['Tu nombre', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opcion', 'Cuéntanos que quieres mejorar, que te esta frenando y que te gustaria resolver primero.'],
       options: ['Pagina o landing', 'Publicidad para atraer clientes', 'Respuestas automaticas', 'Imagen y comunicacion', 'Herramienta o solucion interna'],
       submit: 'Enviar briefing',
-      note: 'Si prefieres, tambien puedes escribirnos directo a erosdigitalteam@gmail.com.',
+      note: 'El primer envio activara la recepcion en FormSubmit y enviara el correo de confirmacion a erosdigitalteam@gmail.com.',
       subject: 'Nuevo lead desde Eros Digital Team',
     },
     cta: {
@@ -887,7 +887,7 @@ const translations = {
       placeholders: ['Your name', 'you@company.com', 'Business name', 'Select an option', 'Tell us what you want to improve, what is slowing you down, and what you would like to solve first.'],
       options: ['Page or landing', 'Advertising to bring clients', 'Automatic replies', 'Image and communication', 'Internal tool or solution'],
       submit: 'Send brief',
-      note: 'If you prefer, you can also email us directly at erosdigitalteam@gmail.com.',
+      note: 'The first submission will activate FormSubmit delivery and send the confirmation email to erosdigitalteam@gmail.com.',
       subject: 'New lead from Eros Digital Team',
     },
     cta: {
@@ -970,7 +970,6 @@ const elements = {
   formInputs: [...document.querySelectorAll('.contact-form input:not([type="hidden"]), .contact-form select, .contact-form textarea')],
   formSelectOptions: [...document.querySelectorAll('.contact-form select option')],
   formSubmit: document.querySelector('.contact-form button[type="submit"]'),
-  formActivationTrigger: document.getElementById('formActivationTrigger'),
   formNote: document.querySelector('.form-note'),
   formSubject: document.querySelector('.contact-form input[name="_subject"]'),
   formNextField: document.getElementById('formNextField'),
@@ -1320,104 +1319,6 @@ const setFormSuccessCardVisibility = (isVisible, language = currentLanguage) => 
   elements.formSuccessCard.classList.toggle('is-hidden', !isVisible);
 };
 
-const submitContactForm = async (event) => {
-  event.preventDefault();
-
-  if (!elements.form) {
-    return;
-  }
-
-  if (!elements.form.reportValidity()) {
-    return;
-  }
-
-  const honeyField = elements.form.querySelector('input[name="_honey"]');
-  if (honeyField instanceof HTMLInputElement && honeyField.value.trim()) {
-    return;
-  }
-
-  const emailField = elements.form.querySelector('input[name="email"]');
-  if (elements.formReplyToField && emailField instanceof HTMLInputElement) {
-    elements.formReplyToField.value = emailField.value.trim();
-  }
-
-  const submitButton = elements.formSubmit;
-  const idleLabel = submitButton?.textContent || '';
-  submitButton?.setAttribute('disabled', 'true');
-  setFormSuccessCardVisibility(false, currentLanguage);
-  setFormStatus('', currentLanguage === 'en' ? 'Sending form...' : 'Enviando formulario...');
-
-  try {
-    const formData = new FormData(elements.form);
-    const response = await fetch('https://formsubmit.co/ajax/erosdigitalteam@gmail.com', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: formData,
-    });
-
-    const result = await response.json().catch(() => null);
-    if (!response.ok || result?.success === 'false') {
-      throw new Error(result?.message || 'formsubmit-error');
-    }
-
-    elements.form.reset();
-    if (elements.formReplyToField) {
-      elements.formReplyToField.value = '';
-    }
-    setFormStatus(
-      'success',
-      currentLanguage === 'en'
-        ? 'Form sent successfully. We will contact you soon.'
-        : 'Formulario enviado correctamente. Te contactaremos pronto.'
-    );
-    setFormSuccessCardVisibility(true, currentLanguage);
-    window.history.replaceState?.({}, document.title, `${window.location.pathname}#contacto`);
-  } catch (error) {
-    setFormSuccessCardVisibility(false, currentLanguage);
-    setFormStatus(
-      'error',
-      currentLanguage === 'en'
-        ? 'The form could not be sent right now. Try again or write to us on WhatsApp.'
-        : 'No se pudo enviar el formulario ahora mismo. Intenta otra vez o escríbenos por WhatsApp.'
-    );
-  } finally {
-    if (submitButton) {
-      submitButton.removeAttribute('disabled');
-      submitButton.textContent = idleLabel;
-    }
-  }
-};
-
-const triggerFormActivation = () => {
-  if (!elements.form) {
-    return;
-  }
-
-  if (!elements.form.reportValidity()) {
-    return;
-  }
-
-  const emailField = elements.form.querySelector('input[name="email"]');
-  if (elements.formReplyToField && emailField instanceof HTMLInputElement) {
-    elements.formReplyToField.value = emailField.value.trim();
-  }
-
-  setFormSuccessCardVisibility(false, currentLanguage);
-  setFormStatus(
-    '',
-    currentLanguage === 'en'
-      ? 'Opening the standard FormSubmit flow to activate delivery...'
-      : 'Abriendo el flujo estandar de FormSubmit para activar la recepcion...'
-  );
-
-  const originalNoValidate = elements.form.noValidate;
-  elements.form.noValidate = false;
-  elements.form.submit();
-  elements.form.noValidate = originalNoValidate;
-};
-
 const initInteractiveCarousels = () => {
   const carouselRoots = [...document.querySelectorAll('[data-carousel]')];
 
@@ -1714,11 +1615,6 @@ const applyLanguage = (language) => {
     elements.formSelectOptions[index + 1].textContent = option;
   });
   elements.formSubmit.textContent = copy.contact.submit;
-  if (elements.formActivationTrigger) {
-    elements.formActivationTrigger.textContent = language === 'en'
-      ? 'Activate form delivery'
-      : 'Activar recepcion de formularios';
-  }
   elements.formNote.textContent = copy.contact.note;
   elements.formSubject.value = copy.contact.subject;
   elements.floatingWhatsApp?.setAttribute('href', buildWhatsAppUrl(
@@ -1791,8 +1687,14 @@ elements.wizardPrimaryCta?.addEventListener('click', (event) => {
   document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-elements.form?.addEventListener('submit', submitContactForm);
-elements.formActivationTrigger?.addEventListener('click', triggerFormActivation);
+elements.form?.addEventListener('submit', () => {
+  const emailField = elements.form?.querySelector('input[name="email"]');
+  if (elements.formReplyToField && emailField instanceof HTMLInputElement) {
+    elements.formReplyToField.value = emailField.value.trim();
+  }
+  setFormSuccessCardVisibility(false, currentLanguage);
+  setFormStatus('', currentLanguage === 'en' ? 'Sending form...' : 'Enviando formulario...');
+});
 
 window.addEventListener('scroll', syncTopbarState, { passive: true });
 window.addEventListener('scroll', syncBottomNavState, { passive: true });
