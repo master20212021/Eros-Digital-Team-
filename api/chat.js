@@ -1,4 +1,5 @@
 const DEFAULT_MODEL = process.env.OPENAI_MODEL?.trim() || 'gpt-4.1-mini';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim() || '';
 
 const CONTACT = {
   email: 'erosdigitalteam@gmail.com',
@@ -98,7 +99,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Message is required' });
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!OPENAI_API_KEY) {
     return res.status(503).json({
       mode: 'unavailable',
       reply: language === 'en'
@@ -112,7 +113,7 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: DEFAULT_MODEL,
