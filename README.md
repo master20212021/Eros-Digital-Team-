@@ -15,7 +15,8 @@ Crear una presencia digital premium para una agencia enfocada en:
 ## Estructura
 - `index.html`: landing inicial de presentacion
 - `styles.css`: identidad visual ciberpunk premium
-- `script.js`: efectos de revelado y comportamiento del header
+- `script.js`: comportamiento tipo app, diagnostico guiado, carruseles y respuestas locales por segmento
+- `terms.html`, `privacy.html`, `data-deletion.html`: capa legal minima para privacidad, terminos y borrado de datos
 - `assets/images/branding/`: logos y recursos visuales base de la marca
 - `docs/brand/identity.md`: direccion de marca
 - `docs/content/services.md`: oferta comercial ampliada
@@ -34,6 +35,11 @@ python -m http.server 5600
 Luego abrir:
 - `http://localhost:5600`
 
+## Diagnostico guiado actual
+- El wizard funciona 100% en frontend con respuestas predefinidas por nicho, objetivo y cuello de botella.
+- Cada paso solo muestra la siguiente decision y al final entrega una ruta concreta con CTA a formulario y WhatsApp.
+- El briefing del formulario se rellena automaticamente con el diagnostico seleccionado.
+
 ## Siguiente fase recomendada
 1. Definir logo final y sistema visual.
 2. Añadir formulario real de contacto y CRM.
@@ -46,3 +52,5 @@ Luego abrir:
 - Documentacion de identidad y servicios creada
 - Estructura lista para versionar en un repo independiente
 - Workflow de GitHub Pages agregado para despliegue automatico desde `main`
+- Experiencia tipo app con diagnostico guiado, carruseles y rutas predefinidas por segmento preparada
+- Capa legal minima agregada para privacidad, terminos y eliminacion de datos

@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eros Digital Team | Automatizaciones IA, Web, Apps y Growth</title>
-  <meta name="description" content="Agencia premium de automatizaciones con IA, desarrollo web, apps, publicidad, contenido creativo y sistemas de crecimiento digital.">
+  <title id="pageTitle">Eros Digital Team | Páginas, ayuda automática y publicidad para negocios</title>
+  <meta id="metaDescription" name="description" content="Creamos páginas, respuestas automáticas, publicidad y herramientas útiles para que tu negocio se vea mejor, responda mejor y venda mejor.">
   <meta name="theme-color" content="#07111f">
-  <link rel="canonical" href="https://erosdigitalteam.com/">
-  <meta property="og:title" content="Eros Digital Team | Web, IA, Growth y Automatizacion">
-  <meta property="og:description" content="Agencia premium de automatizaciones con IA, desarrollo web, apps, publicidad y sistemas de crecimiento digital.">
+  <link id="canonicalLink" rel="canonical" href="https://erosdigitalteam.com/">
+  <meta id="ogTitle" property="og:title" content="Eros Digital Team | Páginas, ayuda automática y publicidad">
+  <meta id="ogDescription" property="og:description" content="Creamos páginas, respuestas automáticas, publicidad y herramientas útiles para negocios que quieren crecer con más orden.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://erosdigitalteam.com/">
-  <meta property="og:image" content="https://erosdigitalteam.com/assets/images/branding/solo_logo-removebg-preview.png">
+  <meta id="ogUrl" property="og:url" content="https://erosdigitalteam.com/">
+  <meta id="ogImage" property="og:image" content="https://erosdigitalteam.com/assets/images/branding/solo_logo-removebg-preview.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Eros Digital Team | Web, IA, Growth y Automatizacion">
-  <meta name="twitter:description" content="Creamos marcas, sitios y automatizaciones con IA para negocios que quieren crecer con sistema.">
-  <meta name="twitter:image" content="https://erosdigitalteam.com/assets/images/branding/solo_logo-removebg-preview.png">
+  <meta id="twitterTitle" name="twitter:title" content="Eros Digital Team | Páginas, ayuda automática y publicidad">
+  <meta id="twitterDescription" name="twitter:description" content="Ayudamos a negocios a verse mejor, responder mejor y vender mejor con páginas, publicidad y procesos más claros.">
+  <meta id="twitterImage" name="twitter:image" content="https://erosdigitalteam.com/assets/images/branding/solo_logo-removebg-preview.png">
   <link rel="icon" type="image/png" href="assets/images/branding/solo_logo-removebg-preview.png">
   <link rel="apple-touch-icon" href="assets/images/branding/solo_logo-removebg-preview.png">
   <script type="application/ld+json">
@@ -29,7 +29,7 @@
       "sameAs": [
         "https://master20212021.github.io/Eros-Digital-Team-/"
       ],
-      "description": "Agencia premium de automatizaciones con IA, desarrollo web, apps, publicidad, contenido creativo y sistemas de crecimiento digital."
+      "description": "Creamos páginas, respuestas automáticas, publicidad y herramientas útiles para negocios que quieren crecer con más orden."
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +53,10 @@
         <span></span>
         <span></span>
       </button>
+      <div class="lang-switch" aria-label="Selector de idioma">
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
       <nav class="nav">
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
@@ -65,7 +69,11 @@
       <a class="button button-ghost" href="https://erosdigitalteam.com/" target="_blank" rel="noreferrer">Dominio activo</a>
     </header>
 
-    <nav class="mobile-nav" id="mobileNav" aria-label="Navegacion movil">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
+      <div class="lang-switch mobile-lang-switch" aria-label="Selector de idioma movil">
+        <button class="lang-btn" type="button" data-lang="es">ES</button>
+        <button class="lang-btn" type="button" data-lang="en">EN</button>
+      </div>
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Proceso</a>
       <a href="#resultados">Resultados</a>
@@ -76,18 +84,43 @@
       <a class="button button-ghost" href="https://erosdigitalteam.com/" target="_blank" rel="noreferrer">Ver dominio</a>
     </nav>
 
+    <nav class="bottom-app-nav" aria-label="Navegación rápida móvil">
+      <a class="bottom-app-link is-active" href="#inicio" data-bottom-nav>
+        <span>Inicio</span>
+      </a>
+      <a class="bottom-app-link" href="#diagnostico" data-bottom-nav>
+        <span>Diagnóstico</span>
+      </a>
+      <a class="bottom-app-link" href="#servicios" data-bottom-nav>
+        <span>Servicios</span>
+      </a>
+      <a class="bottom-app-link" href="#casos" data-bottom-nav>
+        <span>Casos</span>
+      </a>
+      <a class="bottom-app-link" href="#contacto" data-bottom-nav>
+        <span>Contacto</span>
+      </a>
+    </nav>
+
+    <a class="floating-whatsapp" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20proyecto" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp">
+      <svg class="floating-whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M20.52 3.48A11.78 11.78 0 0 0 12.09 0C5.57 0 .26 5.3.26 11.82c0 2.08.54 4.11 1.57 5.91L0 24l6.46-1.69a11.78 11.78 0 0 0 5.63 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.12-3.41-8.44Zm-8.43 18.27h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.21-3.83 1 1.02-3.74-.24-.38a9.82 9.82 0 0 1-1.5-5.24c0-5.42 4.42-9.84 9.86-9.84 2.63 0 5.09 1.02 6.94 2.88a9.77 9.77 0 0 1 2.89 6.95c0 5.42-4.43 9.84-9.78 9.84Zm5.39-7.36c-.29-.14-1.71-.84-1.98-.93-.26-.1-.45-.14-.64.14-.19.29-.74.93-.91 1.12-.17.19-.33.22-.62.07-.29-.14-1.2-.44-2.29-1.42-.85-.75-1.42-1.68-1.58-1.96-.17-.29-.02-.44.12-.58.12-.12.29-.33.43-.5.14-.17.19-.29.29-.48.09-.19.05-.36-.03-.5-.07-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43 0 1.43 1.04 2.81 1.19 3 .14.19 2.04 3.12 4.94 4.37.69.29 1.23.46 1.65.59.69.22 1.31.19 1.8.11.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33Z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+
     <main>
       <section class="hero" id="inicio">
         <div class="hero-copy">
-          <p class="eyebrow">Ciberpunk premium. Estrategia real. Sistemas que venden.</p>
-          <h1>Disenamos marcas, sitios y automatizaciones con IA para empresas que quieren crecer sin friccion.</h1>
+          <p class="eyebrow">Páginas, ayuda automática y ventas más claras.</p>
+          <h1>Haz que tu negocio se vea mejor, venda mejor y trabaje con menos carga manual.</h1>
           <p class="hero-text">
-            Construimos experiencias digitales de alto impacto: paginas web, apps, publicidad, contenido creativo,
-            automatizacion de redes sociales y flujos operativos con IA pensados para generar resultados medibles.
+            Creamos páginas, respuestas automáticas y procesos comerciales claros para negocios que quieren crecer sin enredos,
+            con una propuesta aterrizada y pensada para el mercado latino.
           </p>
           <div class="hero-actions">
-            <a class="button" href="#contacto">Quiero una propuesta</a>
-            <a class="button button-secondary" href="#servicios">Ver servicios</a>
+            <a class="button" href="#diagnostico">Empezar diagnóstico</a>
+            <a class="button button-secondary" href="#contacto">Hablar con nosotros</a>
           </div>
           <ul class="signal-grid" aria-label="Indicadores principales">
             <li>
@@ -104,30 +137,63 @@
             </li>
           </ul>
         </div>
-        <div class="hero-panel" aria-hidden="true">
-          <div class="panel-frame">
-            <div class="panel-topline">
-              <span>LIVE SYSTEM MAP</span>
-              <span>EROSDIGITALTEAM.COM</span>
+        <div class="hero-panel" id="diagnostico">
+          <div class="wizard-shell">
+            <div class="wizard-header">
+              <p class="eyebrow">Diagnóstico guiado</p>
+              <div class="wizard-progress" aria-label="Progreso del diagnóstico">
+                <span class="wizard-progress-current">01</span>
+                <div class="wizard-progress-bar"><span class="wizard-progress-fill"></span></div>
+                <span class="wizard-progress-total">02</span>
+              </div>
+              <h2>Cuéntanos tu nicho y qué quieres lograr para decirte por dónde arrancar.</h2>
+              <p class="wizard-intro">Primero elegimos el tipo de negocio. Luego marcas una o varias metas y te damos una recomendación clara.</p>
             </div>
-            <div class="flow-card flow-primary">
-              <span>Captacion</span>
-              <strong>Ads + Landing + CRM</strong>
+
+            <div class="wizard-step-meta">
+              <span class="wizard-step-label">Paso 1</span>
+              <strong class="wizard-question">¿Qué tipo de negocio tienes?</strong>
             </div>
-            <div class="flow-line"></div>
-            <div class="flow-card">
-              <span>Contenido</span>
-              <strong>Creatividades + Social automation</strong>
+
+            <div class="wizard-options" role="list"></div>
+            <div class="wizard-step-actions is-hidden">
+              <button class="button" type="button" id="wizardStepContinue">Ver recomendacion</button>
             </div>
-            <div class="flow-line"></div>
-            <div class="flow-card">
-              <span>Operacion</span>
-              <strong>IA + Integraciones + Seguimiento</strong>
-            </div>
-            <div class="panel-badges">
-              <span>Premium UX</span>
-              <span>Growth System</span>
-              <span>AI Ops</span>
+
+            <div class="wizard-summary">
+              <div class="wizard-selection-list">
+                <div>
+                  <span>Nicho</span>
+                  <strong class="wizard-selection-niche">Pendiente</strong>
+                </div>
+                <div>
+                  <span>Metas</span>
+                  <strong class="wizard-selection-goal">Pendiente</strong>
+                </div>
+              </div>
+
+              <article class="wizard-result-card is-hidden" aria-live="polite">
+                <span class="wizard-result-tag">Diagnóstico listo</span>
+                <h3 class="wizard-result-title">Solución recomendada</h3>
+                <p class="wizard-result-text">Completa el diagnóstico para ver una recomendación personalizada.</p>
+                <div class="wizard-result-meta">
+                  <div>
+                    <span class="wizard-result-meta-label">Paquete sugerido</span>
+                    <strong class="wizard-result-package">Pendiente</strong>
+                  </div>
+                  <div>
+                    <span class="wizard-result-meta-label">Enfoque principal</span>
+                    <strong class="wizard-result-priority">Pendiente</strong>
+                  </div>
+                </div>
+                <ul class="wizard-result-list"></ul>
+                <p class="wizard-result-contact">Si esto se parece a lo que necesitas, baja al formulario y te preparamos una propuesta clara para tu negocio.</p>
+                <div class="wizard-result-actions">
+                  <a class="button" href="#contacto" id="wizardPrimaryCta">Llenar formulario</a>
+                  <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20diagnóstico" target="_blank" rel="noreferrer" id="wizardWhatsAppCta">WhatsApp</a>
+                  <button class="button button-ghost" type="button" id="wizardReset">Empezar de nuevo</button>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -138,18 +204,26 @@
           <p class="eyebrow">Servicios principales</p>
           <h2>Una agencia para construir presencia, automatizar operacion y acelerar ventas.</h2>
         </div>
-        <div class="cards-grid">
+        <div class="app-carousel" data-carousel>
+          <div class="app-carousel-topbar">
+            <p class="app-carousel-note">Desliza o usa las flechas para recorrer las opciones a tu ritmo.</p>
+            <div class="app-carousel-controls" data-controls-for="servicesCarousel">
+              <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+              <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+            </div>
+          </div>
+          <div class="cards-grid app-carousel-track" id="servicesCarousel">
           <article class="service-card accent-cyan">
             <h3>Webs que convierten</h3>
-            <p>Landing pages, webs corporativas, ecommerce y embudos con diseno premium, velocidad y estrategia comercial.</p>
+            <p>Landing pages, webs corporativas, ecommerce y embudos con diseño premium, velocidad y estrategia comercial.</p>
           </article>
           <article class="service-card accent-pink">
             <h3>Automatizaciones con IA</h3>
-            <p>Asistentes, flujos de lead nurturing, seguimiento, automatizacion interna, respuestas y operaciones conectadas.</p>
+            <p>Asistentes, flujos de seguimiento, automatización interna, respuestas y operaciones conectadas.</p>
           </article>
           <article class="service-card accent-gold">
             <h3>Publicidad y growth</h3>
-            <p>Campanas, creatividades, copies, testing y optimizacion de conversion para Meta, Google y ecosistemas digitales.</p>
+            <p>Campañas, creatividades, textos y optimización de conversión para Meta, Google y ecosistemas digitales.</p>
           </article>
           <article class="service-card accent-cyan">
             <h3>Redes sociales automatizadas</h3>
@@ -160,37 +234,44 @@
             <p>MVPs, paneles internos, herramientas de clientes y soluciones a medida para monetizar o ganar eficiencia.</p>
           </article>
           <article class="service-card accent-gold">
-            <h3>Direccion creativa integral</h3>
+            <h3>Dirección creativa integral</h3>
             <p>Branding, tono verbal, identidad visual, storytelling y sistema de piezas para comunicar con autoridad.</p>
           </article>
+          </div>
         </div>
       </section>
 
       <section class="section why-section" id="diferencial">
         <div class="section-heading">
-          <p class="eyebrow">Por que Eros Digital Team</p>
+          <p class="eyebrow">Por qué Eros Digital Team</p>
           <h2>No vendemos piezas sueltas. Diseñamos sistemas digitales con criterio creativo y enfoque comercial.</h2>
         </div>
-        <div class="why-grid">
+        <div class="app-carousel-inline-bar">
+          <div class="app-carousel-controls" data-controls-for="whyCarousel">
+            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+          </div>
+        </div>
+        <div class="why-grid app-carousel-track" id="whyCarousel" data-carousel data-sequence="pulse" data-sequence-speed="1700">
           <article class="why-card">
             <span>01</span>
-            <h3>Vision integral</h3>
-            <p>Marca, web, anuncios, automatizacion y seguimiento bajo una misma direccion para evitar caos entre proveedores.</p>
+            <h3>Visión integral</h3>
+            <p>Marca, web, anuncios, automatización y seguimiento bajo una misma dirección para evitar caos entre proveedores.</p>
           </article>
           <article class="why-card">
             <span>02</span>
-            <h3>Estetica con objetivo</h3>
-            <p>La imagen importa, pero siempre al servicio de conversion, posicionamiento y claridad de oferta.</p>
+            <h3>Estética con objetivo</h3>
+            <p>La imagen importa, pero siempre al servicio de conversión, posicionamiento y claridad de oferta.</p>
           </article>
           <article class="why-card">
             <span>03</span>
-            <h3>Automatizacion util</h3>
+            <h3>Automatización útil</h3>
             <p>No automatizamos por moda. Automatizamos donde de verdad ahorra tiempo, mejora respuesta o aumenta ventas.</p>
           </article>
           <article class="why-card">
             <span>04</span>
             <h3>Escalable desde el inicio</h3>
-            <p>La base de la marca y del sitio queda lista para crecer a CRM, campañas, paneles y operaciones mas complejas.</p>
+            <p>La base de la marca y del sitio queda lista para crecer a CRM, campañas, paneles y operaciones más complejas.</p>
           </article>
         </div>
       </section>
@@ -198,27 +279,33 @@
       <section class="section split-section" id="proceso">
         <div>
           <p class="eyebrow">Proceso</p>
-          <h2>Menos improvisacion. Mas sistema.</h2>
+          <h2>Menos improvisación. Más sistema.</h2>
+          <div class="app-carousel-inline-bar app-carousel-inline-bar-start">
+            <div class="app-carousel-controls" data-controls-for="processCarousel">
+              <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+              <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+            </div>
+          </div>
         </div>
-        <div class="process-list">
+        <div class="process-list app-carousel-track" id="processCarousel" data-carousel data-sequence="reveal" data-sequence-speed="1900">
           <article>
             <span>01</span>
-            <h3>Diagnostico</h3>
-            <p>Analizamos negocio, oferta, cuellos de botella y oportunidades reales de automatizacion y crecimiento.</p>
+            <h3>Diagnóstico</h3>
+            <p>Analizamos negocio, oferta, cuellos de botella y oportunidades reales de automatización y crecimiento.</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Diseno del sistema</h3>
-            <p>Definimos identidad, arquitectura del sitio, stack tecnologico, funnel y procesos conectados.</p>
+            <h3>Diseño del sistema</h3>
+            <p>Definimos identidad, arquitectura del sitio, stack tecnológico, funnel y procesos conectados.</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Ejecucion</h3>
-            <p>Construimos activos visuales, desarrollo, integraciones, automatizaciones y secuencias de conversion.</p>
+            <h3>Ejecución</h3>
+            <p>Construimos activos visuales, desarrollo, integraciones, automatizaciones y secuencias de conversión.</p>
           </article>
           <article>
             <span>04</span>
-            <h3>Optimizacion</h3>
+            <h3>Optimización</h3>
             <p>Medimos, refinamos, iteramos anuncios, mensajes y automatizaciones para mantener resultados sostenibles.</p>
           </article>
         </div>
@@ -227,16 +314,22 @@
       <section class="section results-section" id="resultados">
         <div class="section-heading">
           <p class="eyebrow">Resultados que vendemos</p>
-          <h2>No se trata solo de verse bien. Se trata de captar mejor, responder mas rapido y convertir con menos friccion.</h2>
+          <h2>No se trata solo de verse bien. Se trata de captar mejor, responder más rápido y convertir con menos fricción.</h2>
         </div>
-        <div class="results-grid">
+        <div class="app-carousel-inline-bar">
+          <div class="app-carousel-controls" data-controls-for="resultsCarousel">
+            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+          </div>
+        </div>
+        <div class="results-grid app-carousel-track" id="resultsCarousel" data-carousel>
           <article class="result-card">
-            <span class="result-kicker">Captacion</span>
-            <strong>Mas leads calificados</strong>
-            <p>Landing pages con copy comercial, anuncios conectados y formularios pensados para elevar conversion.</p>
+            <span class="result-kicker">Captación</span>
+            <strong>Más leads calificados</strong>
+            <p>Landing pages con texto comercial, anuncios conectados y formularios pensados para elevar conversión.</p>
           </article>
           <article class="result-card">
-            <span class="result-kicker">Operacion</span>
+            <span class="result-kicker">Operación</span>
             <strong>Menos trabajo manual</strong>
             <p>Automatizaciones de seguimiento, CRM, respuestas, agenda e integraciones para ahorrar tiempo operativo.</p>
           </article>
@@ -253,7 +346,7 @@
           </div>
           <div>
             <strong>Contenido + IA</strong>
-            <span>Escala de ejecucion sin perder criterio</span>
+            <span>Escala de ejecución sin perder criterio</span>
           </div>
           <div>
             <strong>Marca + Conversion</strong>
@@ -274,7 +367,7 @@
           <span>CRM pipelines</span>
           <span>Dashboards</span>
           <span>Contenido short-form</span>
-          <span>Automatizacion de prospectos</span>
+          <span>Automatización de prospectos</span>
           <span>SEO on-page</span>
           <span>Brand systems</span>
           <span>Produccion audiovisual</span>
@@ -285,38 +378,44 @@
 
       <section class="section cases-section" id="casos">
         <div class="section-heading">
-          <p class="eyebrow">Casos tipo</p>
-          <h2>Escenarios reales de implementacion para vender sin inventar resultados falsos.</h2>
+          <p class="eyebrow">Casos por vertical</p>
+          <h2>Ejemplos de cómo se traduce la estrategia en sistemas concretos según el tipo de negocio.</h2>
         </div>
-        <div class="cases-grid">
+        <div class="app-carousel-inline-bar">
+          <div class="app-carousel-controls" data-controls-for="casesCarousel">
+            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+          </div>
+        </div>
+        <div class="cases-grid app-carousel-track" id="casesCarousel" data-carousel>
           <article class="case-card">
-            <span class="case-tag">Caso tipo 01</span>
-            <h3>Marca de servicios premium</h3>
-            <p>Rediseño web, sistema visual, anuncios y automatizacion de seguimiento para convertir visitas en reuniones.</p>
+            <span class="case-tag">Restaurantes</span>
+            <h3>Pedidos directos y recompra</h3>
+            <p>Menú digital, automatización por WhatsApp y campañas locales para depender menos de terceros y mover más pedidos propios.</p>
             <ul>
-              <li>Landing de conversion</li>
-              <li>Formulario conectado a CRM</li>
-              <li>Secuencia automatizada de contacto</li>
+              <li>Menú o landing de pedidos</li>
+              <li>Reactivación de clientes por promos</li>
+              <li>Seguimiento automático para reservas o pedidos</li>
             </ul>
           </article>
           <article class="case-card">
-            <span class="case-tag">Caso tipo 02</span>
-            <h3>Negocio local que quiere escalar</h3>
-            <p>Contenido, pauta, automatizacion de mensajes y flujo comercial para responder mas rapido y vender mejor.</p>
+            <span class="case-tag">Clínicas</span>
+            <h3>Captación y agenda con sistema</h3>
+            <p>Web con autoridad, captación cualificada y seguimiento automatizado para consultas, valoraciones o primera cita.</p>
             <ul>
-              <li>Creatividades y anuncios</li>
-              <li>Automatizacion de WhatsApp o email</li>
-              <li>Panel de seguimiento de leads</li>
+              <li>Formulario o prediagnóstico</li>
+              <li>Agenda o contacto automatizado</li>
+              <li>Secuencia de seguimiento para no perder pacientes</li>
             </ul>
           </article>
           <article class="case-card">
-            <span class="case-tag">Caso tipo 03</span>
-            <h3>Operacion interna con friccion</h3>
-            <p>Integraciones, IA y paneles internos para reducir carga manual y dar visibilidad al proceso completo.</p>
+            <span class="case-tag">Ecommerce</span>
+            <h3>Conversión y retención</h3>
+            <p>Estructura comercial, automatizaciones y remarketing para vender mejor, recuperar carritos y subir recompra.</p>
             <ul>
-              <li>Mapeo de procesos</li>
-              <li>Integracion entre herramientas</li>
-              <li>Automatizaciones operativas</li>
+              <li>Landing o pagina de producto optimizada</li>
+              <li>Automatizaciones post-compra</li>
+              <li>Campañas de recompra y remarketing</li>
             </ul>
           </article>
         </div>
@@ -350,9 +449,15 @@
       <section class="section packages-section" id="paquetes">
         <div class="section-heading">
           <p class="eyebrow">Modelos de oferta</p>
-          <h2>Paquetes claros para vender rapido y escalar despues con soluciones a medida.</h2>
+          <h2>Paquetes claros para vender rápido y escalar después con soluciones a medida.</h2>
         </div>
-        <div class="packages-grid">
+        <div class="app-carousel-inline-bar">
+          <div class="app-carousel-controls" data-controls-for="packagesCarousel">
+            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+          </div>
+        </div>
+        <div class="packages-grid app-carousel-track" id="packagesCarousel" data-carousel>
           <article class="package-card package-card-featured">
             <span class="package-tag">Entrada</span>
             <h3>Presencia premium</h3>
@@ -370,7 +475,7 @@
             <ul>
               <li>Landing + anuncios</li>
               <li>CRM y automatizaciones</li>
-              <li>Optimizacion de conversion</li>
+              <li>Optimización de conversión</li>
             </ul>
           </article>
           <article class="package-card">
@@ -395,18 +500,18 @@
           <div class="launch-timeline">
             <article>
               <span>Semana 1</span>
-              <h3>Direccion y estructura</h3>
+              <h3>Dirección y estructura</h3>
               <p>Oferta, narrativa, visual base, arquitectura del sitio y mapa del sistema comercial.</p>
             </article>
             <article>
               <span>Semana 2</span>
-              <h3>Construccion</h3>
-              <p>Diseño de home, copies, integraciones base, automatizacion inicial y activos visuales.</p>
+              <h3>Construcción</h3>
+              <p>Diseño de home, textos, integraciones base, automatización inicial y activos visuales.</p>
             </article>
             <article>
               <span>Semana 3</span>
-              <h3>Salida y optimizacion</h3>
-              <p>Revision final, despliegue, QA, primeras mejoras y preparacion del siguiente sprint.</p>
+              <h3>Salida y optimización</h3>
+              <p>Revisión final, despliegue, QA, primeras mejoras y preparación del siguiente sprint.</p>
             </article>
           </div>
           <div class="launch-card">
@@ -438,21 +543,23 @@
             </ul>
             <div class="contact-actions">
               <a class="button" href="mailto:erosdigitalteam@gmail.com">erosdigitalteam@gmail.com</a>
+              <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20automatizaciones%20y%20web" target="_blank" rel="noreferrer">WhatsApp</a>
               <a class="button button-ghost" href="https://erosdigitalteam.com/" target="_blank" rel="noreferrer">Abrir dominio</a>
             </div>
           </div>
 
-          <form class="contact-form" action="https://formsubmit.co/erosdigitalteam@gmail.com" method="POST">
+          <form class="contact-form" action="https://formsubmit.co/erosdigitalteam@gmail.com" method="POST" accept-charset="UTF-8">
             <input type="hidden" name="_subject" value="Nuevo lead desde Eros Digital Team">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://erosdigitalteam.com/">
+            <input type="hidden" name="_next" value="https://erosdigitalteam.com/?sent=1#contacto" id="formNextField">
+            <input type="hidden" name="_replyto" value="" id="formReplyToField">
             <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off">
 
             <div class="form-heading">
               <p class="eyebrow">Formulario</p>
               <h3>Cuéntanos qué necesitas</h3>
-              <p>Este formulario esta preparado para sitio estatico. Cuando el correo comercial quede confirmado, puede quedar operativo sin backend propio.</p>
+              <p>Este formulario está preparado para sitio estático. Cuando el correo comercial quede confirmado, puede quedar operativo sin backend propio.</p>
             </div>
 
             <label>
@@ -470,11 +577,11 @@
             <label>
               <span>Servicio principal</span>
               <select name="servicio" required>
-                <option value="">Selecciona una opcion</option>
+                <option value="">Selecciona una opción</option>
                 <option value="web">Web o landing</option>
                 <option value="growth">Publicidad y growth</option>
-                <option value="automation">Automatizacion con IA</option>
-                <option value="branding">Branding y direccion creativa</option>
+                <option value="automation">Automatización con IA</option>
+                <option value="branding">Branding y dirección creativa</option>
                 <option value="apps">Apps o herramientas internas</option>
               </select>
             </label>
@@ -484,7 +591,13 @@
             </label>
 
             <button class="button" type="submit">Enviar briefing</button>
+            <button class="button button-ghost" type="button" id="formActivationTrigger">Activar recepcion de formularios</button>
             <small class="form-note">Si prefieres, también puedes escribir directo a erosdigitalteam@gmail.com.</small>
+            <div class="form-success-card is-hidden" aria-live="polite">
+              <strong>Mensaje enviado</strong>
+              <span>Recibimos tu solicitud. Te contactaremos pronto para revisar tu caso.</span>
+            </div>
+            <p class="form-status" aria-live="polite"></p>
           </form>
         </div>
       </section>
@@ -503,14 +616,17 @@
         <img class="footer-logo" src="assets/images/branding/solo_logo-removebg-preview.png" alt="Eros Digital Team logo">
         <div>
         <strong>Eros Digital Team</strong>
-        <span>Webs, automatizaciones IA, growth y direccion creativa.</span>
+        <span>Webs, automatizaciones IA, growth y dirección creativa.</span>
         </div>
       </div>
       <div class="footer-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#casos">Casos</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" data-footer-nav="true">Inicio</a>
+        <a href="#servicios" data-footer-nav="true">Servicios</a>
+        <a href="#casos" data-footer-nav="true">Casos</a>
+        <a href="#contacto" data-footer-nav="true">Contacto</a>
+        <a href="terms.html">Términos</a>
+        <a href="privacy.html">Privacidad</a>
+        <a href="data-deletion.html">Eliminación de datos</a>
       </div>
     </footer>
   </div>

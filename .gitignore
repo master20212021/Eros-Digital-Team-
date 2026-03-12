@@ -17,3 +17,5 @@ out/
 *.bak
 
 coverage/
+.env
+.env.local
