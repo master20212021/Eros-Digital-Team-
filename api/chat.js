@@ -211,6 +211,53 @@ const NICHE_TONE_GUIDES = {
   },
 };
 
+const NICHE_COPY_HINTS = {
+  restaurant: {
+    es: ['pedidos directos', 'reservas rapidas', 'que no se enfrie el cliente'],
+    en: ['direct orders', 'fast bookings', 'so the lead does not go cold'],
+  },
+  tax: {
+    es: ['dar confianza', 'ordenar citas', 'dar seguimiento sin complicarlo'],
+    en: ['build trust', 'organize appointments', 'follow up without making it complicated'],
+  },
+  retail: {
+    es: ['mover promos', 'hacer que vuelvan', 'responder rapido'],
+    en: ['move promos', 'bring customers back', 'reply quickly'],
+  },
+  beauty: {
+    es: ['llenar agenda', 'agendar facil', 'que te escriban de una'],
+    en: ['fill the calendar', 'make booking easy', 'get people to message you right away'],
+  },
+  clinic: {
+    es: ['dar confianza', 'cuidar el seguimiento', 'hacer facil agendar'],
+    en: ['build trust', 'handle follow-up well', 'make booking easy'],
+  },
+  ecommerce: {
+    es: ['vender mas', 'recuperar interesados', 'hacer seguimiento sin friccion'],
+    en: ['sell more', 'bring interested people back', 'follow up without friction'],
+  },
+  'real-estate': {
+    es: ['mover leads', 'agendar visitas', 'dar seguimiento claro'],
+    en: ['move leads', 'book visits', 'keep follow-up clear'],
+  },
+  education: {
+    es: ['captar interesados', 'mover inscripciones', 'hacer seguimiento claro'],
+    en: ['capture leads', 'move enrollments', 'keep follow-up clear'],
+  },
+  professional: {
+    es: ['conseguir consultas', 'ordenar propuestas', 'dar seguimiento serio'],
+    en: ['get more consultations', 'organize proposals', 'keep follow-up solid'],
+  },
+  'local-service': {
+    es: ['mas llamadas', 'mas mensajes', 'mas reservas'],
+    en: ['more calls', 'more messages', 'more bookings'],
+  },
+  other: {
+    es: ['explicarlo claro', 'ir al punto', 'hacer facil el siguiente paso'],
+    en: ['keep it clear', 'get to the point', 'make the next step easy'],
+  },
+};
+
 const INTENT_STYLE_GUIDES = {
   low: {
     es: 'Modo orientacion: responde tranquilo, ayuda a entender, no presiones demasiado y cierra con una invitacion suave o una sola pregunta corta.',
@@ -236,6 +283,19 @@ const INTENT_PATTERNS = {
     /i want|i need|interested|looking for|help|automation|website|landing|clients|sales|ads/i,
   ],
 };
+
+const NICHE_PATTERNS = [
+  { key: 'restaurant', patterns: [/restaurante|restaurant|comida|food|menu|menú|delivery|reserva/i] },
+  { key: 'tax', patterns: [/tax|taxes|impuestos|contable|accounting|bookkeeping|fiscal/i] },
+  { key: 'retail', patterns: [/retail|tienda|store|shop|catalogo|catálogo|productos/i] },
+  { key: 'beauty', patterns: [/barber|barberia|barbería|salon|salón|spa|belleza|beauty/i] },
+  { key: 'clinic', patterns: [/clinica|clínica|clinic|doctor|medico|médico|salud|health|dental/i] },
+  { key: 'ecommerce', patterns: [/ecommerce|e-commerce|tienda online|online store|shopify|carrito/i] },
+  { key: 'real-estate', patterns: [/real estate|inmobiliaria|property|propiedad|realtor|bienes raices/i] },
+  { key: 'education', patterns: [/academia|academy|curso|course|training|formacion|formación|clases/i] },
+  { key: 'professional', patterns: [/agencia|agency|despacho|firm|consultoria|consultoría|lawyer|abogado/i] },
+  { key: 'local-service', patterns: [/servicio local|local service|reservas|booking|plumber|electrician|roofing|cleaning/i] },
+];
 
 const KNOWLEDGE = {
   services: [
@@ -278,11 +338,37 @@ const getPlaybook = (language, context = {}) => {
   };
 };
 
+const detectNiche = (message, context = {}) => {
+  if (context.nicheKey && PLAYBOOKS[context.nicheKey]) {
+    return context.nicheKey;
+  }
+
+  if (context.niche && PLAYBOOKS[context.niche]) {
+    return context.niche;
+  }
+
+  const source = [
+    message,
+    context.niche || '',
+    ...(Array.isArray(context.goals) ? context.goals : []),
+    ...(Array.isArray(context.tickets) ? context.tickets : []),
+  ].join(' ');
+
+  const match = NICHE_PATTERNS.find((entry) => entry.patterns.some((pattern) => pattern.test(source)));
+  return match?.key || 'other';
+};
+
 const getNicheToneGuide = (language, context = {}) => {
   const locale = language === 'en' ? 'en' : 'es';
-  const key = context.niche && NICHE_TONE_GUIDES[context.niche] ? context.niche : 'other';
+  const key = detectNiche(context.lastMessage || '', context);
 
   return NICHE_TONE_GUIDES[key][locale];
+};
+
+const getNicheCopyHints = (language, context = {}) => {
+  const locale = language === 'en' ? 'en' : 'es';
+  const key = detectNiche(context.lastMessage || '', context);
+  return NICHE_COPY_HINTS[key][locale].join(', ');
 };
 
 const getIntentStyleGuide = (language, intent) => {
@@ -347,13 +433,15 @@ const buildCtaOptions = (language, intent, playbook) => {
 
 const buildSystemPrompt = (language, context = {}) => {
   const isEnglish = language === 'en';
-  const playbook = getPlaybook(language, context);
+  const detectedNiche = detectNiche(context.lastMessage || '', context);
+  const playbook = getPlaybook(language, { ...context, niche: detectedNiche });
   const intent = detectIntent(context.lastMessage || '', context);
   const replyLanguage = isEnglish ? 'English' : 'Spanish';
-  const nicheTone = getNicheToneGuide(language, context);
+  const nicheTone = getNicheToneGuide(language, { ...context, niche: detectedNiche });
+  const nicheCopyHints = getNicheCopyHints(language, { ...context, niche: detectedNiche });
   const intentStyle = getIntentStyleGuide(language, intent);
   const contextLines = [
-    context.niche ? `${isEnglish ? 'Detected niche' : 'Nicho detectado'}: ${context.niche}` : '',
+    `${isEnglish ? 'Detected niche' : 'Nicho detectado'}: ${detectedNiche}`,
     context.goals?.length ? `${isEnglish ? 'Detected goals' : 'Metas detectadas'}: ${context.goals.join(', ')}` : '',
     context.tickets?.length ? `${isEnglish ? 'Selected tickets' : 'Tickets seleccionados'}: ${context.tickets.join(', ')}` : '',
     `${isEnglish ? 'Recommended commercial focus' : 'Enfoque comercial sugerido'}: ${playbook.service}`,
@@ -361,6 +449,7 @@ const buildSystemPrompt = (language, context = {}) => {
     `${isEnglish ? 'Likely commercial angle' : 'Angulo comercial probable'}: ${playbook.angle}`,
     `${isEnglish ? 'Detected purchase intent' : 'Intencion de compra detectada'}: ${intent}`,
     `${isEnglish ? 'Niche voice guide' : 'Guia de voz por nicho'}: ${nicheTone}`,
+    `${isEnglish ? 'Useful niche phrases' : 'Frases utiles para ese nicho'}: ${nicheCopyHints}`,
     `${isEnglish ? 'Intent response style' : 'Estilo segun intencion'}: ${intentStyle}`,
   ].filter(Boolean).join('\n');
 
@@ -422,7 +511,8 @@ export default async function handler(req, res) {
   const language = payload.language === 'en' ? 'en' : 'es';
   const message = typeof payload.message === 'string' ? payload.message.trim() : '';
   const intent = detectIntent(message, payload.context);
-  const playbook = getPlaybook(language, payload.context);
+  const detectedNiche = detectNiche(message, payload.context);
+  const playbook = getPlaybook(language, { ...payload.context, niche: detectedNiche });
 
   if (!message) {
     return res.status(400).json({ error: 'Message is required' });
@@ -465,6 +555,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       intent,
       playbook,
+      detectedNiche,
       ctaOptions: buildCtaOptions(language, intent, playbook),
       reply: reply || (language === 'en'
         ? 'I can help you choose the best next step. Tell me your business type and what you want to improve first.'

@@ -1002,6 +1002,54 @@ const chatState = {
   messages: [],
   leadPending: false,
   suggestedLead: false,
+  detectedNiche: 'other',
+};
+
+const CHAT_QUICK_ACTIONS = {
+  other: {
+    es: ['Quiero una pagina', 'Quiero vender mas', 'Necesito ayuda con mensajes', 'Quiero hablar con alguien'],
+    en: ['I want a website', 'I want more sales', 'I need help with messages', 'I want to talk to someone'],
+  },
+  restaurant: {
+    es: ['Quiero mas pedidos', 'Quiero reservas por WhatsApp', 'Quiero una carta o pagina', 'Quiero hablar ya'],
+    en: ['I want more orders', 'I want bookings on WhatsApp', 'I need a menu or website', 'I want to talk now'],
+  },
+  tax: {
+    es: ['Quiero mas citas', 'Necesito una pagina clara', 'Quiero seguimiento automatico', 'Quiero hablar ya'],
+    en: ['I want more appointments', 'I need a clear website', 'I want automated follow-up', 'I want to talk now'],
+  },
+  retail: {
+    es: ['Quiero mover promos', 'Quiero mas clientes', 'Necesito ayuda con mensajes', 'Quiero hablar ya'],
+    en: ['I want to push promos', 'I want more customers', 'I need help with messages', 'I want to talk now'],
+  },
+  beauty: {
+    es: ['Quiero llenar agenda', 'Quiero citas por WhatsApp', 'Necesito una pagina simple', 'Quiero hablar ya'],
+    en: ['I want to fill my calendar', 'I want bookings on WhatsApp', 'I need a simple website', 'I want to talk now'],
+  },
+  clinic: {
+    es: ['Quiero mas pacientes', 'Quiero agendar facil', 'Necesito una pagina de confianza', 'Quiero hablar ya'],
+    en: ['I want more patients', 'I want easy booking', 'I need a trust-focused website', 'I want to talk now'],
+  },
+  ecommerce: {
+    es: ['Quiero vender mas', 'Quiero recuperar clientes', 'Necesito automatizar mensajes', 'Quiero hablar ya'],
+    en: ['I want more sales', 'I want to recover customers', 'I need message automation', 'I want to talk now'],
+  },
+  'real-estate': {
+    es: ['Quiero mas leads', 'Quiero agendar visitas', 'Necesito seguimiento', 'Quiero hablar ya'],
+    en: ['I want more leads', 'I want to book visits', 'I need follow-up', 'I want to talk now'],
+  },
+  education: {
+    es: ['Quiero mas inscritos', 'Necesito seguimiento', 'Quiero una pagina clara', 'Quiero hablar ya'],
+    en: ['I want more enrollments', 'I need follow-up', 'I want a clear website', 'I want to talk now'],
+  },
+  professional: {
+    es: ['Quiero mas consultas', 'Necesito una pagina clara', 'Quiero mejor seguimiento', 'Quiero hablar ya'],
+    en: ['I want more consultations', 'I need a clear website', 'I want better follow-up', 'I want to talk now'],
+  },
+  'local-service': {
+    es: ['Quiero mas llamadas', 'Quiero mas reservas', 'Necesito una pagina simple', 'Quiero hablar ya'],
+    en: ['I want more calls', 'I want more bookings', 'I need a simple website', 'I want to talk now'],
+  },
 };
 
 const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
@@ -1484,7 +1532,7 @@ const renderChatQuickActions = (copy) => {
   }
 
   elements.chatQuickActions.innerHTML = '';
-  copy.chat.quickActions.forEach((label) => {
+  getChatQuickActions().forEach((label) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.textContent = label;
@@ -1520,11 +1568,18 @@ const setChatOpen = (isOpen) => {
 const getChatContext = (copy) => ({
   language: currentLanguage,
   niche: getOptionById(copy, 'niche', wizardState.niche)?.title || '',
+  nicheKey: wizardState.niche || chatState.detectedNiche,
   goals: wizardState.goals
     .map((goalId) => getOptionById(copy, 'goals', goalId)?.title)
     .filter(Boolean),
   tickets: getSelectedTicketLabels(copy),
 });
+
+const getChatQuickActions = () => {
+  const locale = currentLanguage === 'en' ? 'en' : 'es';
+  const nicheKey = wizardState.niche || chatState.detectedNiche || 'other';
+  return CHAT_QUICK_ACTIONS[nicheKey]?.[locale] || CHAT_QUICK_ACTIONS.other[locale];
+};
 
 async function sendChatMessage(rawMessage, copy = translations[currentLanguage]) {
   const message = rawMessage.trim();
@@ -1563,6 +1618,11 @@ async function sendChatMessage(rawMessage, copy = translations[currentLanguage])
       ? payload.reply.trim()
       : copy.chat.error;
     const actions = buildChatActions(payload);
+
+    if (typeof payload.detectedNiche === 'string' && payload.detectedNiche) {
+      chatState.detectedNiche = payload.detectedNiche;
+      renderChatQuickActions(copy);
+    }
 
     chatState.messages.pop();
     appendChatMessage(payload.mode === 'unavailable' ? 'system' : 'assistant', reply, { actions });
@@ -1955,8 +2015,10 @@ const renderWizard = (copy) => {
       button.addEventListener('click', () => {
         if (step.key === 'niche') {
           wizardState.niche = option.id;
+          chatState.detectedNiche = option.id;
           wizardState.goals = [];
           wizardState.step = 1;
+          renderChatQuickActions(copy);
           renderWizard(copy);
           return;
         }
@@ -2270,6 +2332,7 @@ elements.wizardReset?.addEventListener('click', () => {
   wizardState.niche = null;
   wizardState.goals = [];
   wizardState.step = 0;
+  chatState.detectedNiche = 'other';
   applyLanguage(currentLanguage);
 });
 
