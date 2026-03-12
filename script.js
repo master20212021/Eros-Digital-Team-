@@ -948,8 +948,6 @@ const elements = {
   mobileNavLinks: [...document.querySelectorAll('.mobile-nav a:not(.button)')],
   bottomNavLinks: [...document.querySelectorAll('[data-bottom-nav]')],
   floatingWhatsApp: document.querySelector('.floating-whatsapp'),
-  mobileDomainLink: document.querySelector('.mobile-nav .button'),
-  domainLink: document.querySelector('.topbar > .button.button-ghost'),
   langSwitch: document.querySelector('.topbar .lang-switch'),
   mobileLangSwitch: document.querySelector('.mobile-lang-switch'),
   heroEyebrow: document.querySelector('.hero .hero-copy .eyebrow'),
@@ -1648,9 +1646,6 @@ const applyLanguage = (language) => {
   elements.bottomNavLinks.forEach((link, index) => {
     link.querySelector('span').textContent = bottomLabels[index];
   });
-  elements.domainLink.textContent = copy.nav.domain;
-  elements.mobileDomainLink.textContent = copy.nav.mobileDomain;
-
   elements.heroEyebrow.textContent = copy.hero.eyebrow;
   elements.heroTitle.textContent = copy.hero.title;
   elements.heroText.textContent = copy.hero.text;
@@ -1739,7 +1734,6 @@ const applyLanguage = (language) => {
       ? 'Hi Eros Digital Team, I want to talk about automation and web services.'
       : 'Hola Eros Digital Team, quiero hablar sobre automatizaciones y web.'
   ));
-  elements.contactButtons[2].textContent = copy.contact.openDomain;
 
   elements.form.setAttribute('action', 'https://formsubmit.co/erosdigitalteam@gmail.com');
   elements.formHeadingEyebrow.textContent = copy.contact.formEyebrow;
