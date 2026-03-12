@@ -35,6 +35,32 @@ python -m http.server 5600
 Luego abrir:
 - `http://localhost:5600`
 
+## Chat IA 24/7 fase 1
+- El frontend del chat ya esta integrado en la web.
+- El backend seguro vive en `netlify/functions/chat.js`.
+- El endpoint publico previsto es `/api/chat`, que Netlify redirige a la funcion serverless.
+- La API de OpenAI no puede exponerse en GitHub Pages. Para activar el chat real hace falta desplegar esta version en Netlify o en otra plataforma con funciones serverless.
+
+### Variables necesarias
+- `OPENAI_API_KEY`
+- `OPENAI_MODEL` opcional. Valor recomendado inicial: `gpt-4.1-mini`
+
+### Flujo de la fase 1
+- Responde dudas comerciales 24/7
+- Orienta sobre webs, automatizacion, branding, growth y herramientas internas
+- Usa el contexto del diagnostico y los tickets seleccionados cuando existan
+- Empuja a WhatsApp o formulario cuando detecta intencion alta
+- Mantiene respuestas cortas y controladas
+
+### Desarrollo local recomendado
+Para probar frontend + funcion serverless juntos:
+
+```powershell
+netlify dev
+```
+
+Si solo abres `index.html` o sirves el sitio con `python -m http.server`, la interfaz del chat se vera, pero el endpoint no estara activo.
+
 ## Diagnostico guiado actual
 - El wizard funciona 100% en frontend con respuestas predefinidas por nicho, objetivo y cuello de botella.
 - Cada paso solo muestra la siguiente decision y al final entrega una ruta concreta con CTA a formulario y WhatsApp.
@@ -54,3 +80,4 @@ Luego abrir:
 - Workflow de GitHub Pages agregado para despliegue automatico desde `main`
 - Experiencia tipo app con diagnostico guiado, carruseles y rutas predefinidas por segmento preparada
 - Capa legal minima agregada para privacidad, terminos y eliminacion de datos
+- Fase 1 del asistente comercial IA implementada en frontend + Netlify Functions, pendiente de activacion con `OPENAI_API_KEY`

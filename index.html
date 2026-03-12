@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260312-2">
+  <link rel="stylesheet" href="styles.css?v=20260312-3">
 </head>
 <body>
   <div class="site-shell">
@@ -106,6 +106,39 @@
       </svg>
       <span>WhatsApp</span>
     </a>
+
+    <div class="chat-widget" id="chatWidget">
+      <button class="chat-launcher" type="button" id="chatLauncher" aria-expanded="false" aria-controls="chatPanel">
+        <span class="chat-launcher-dot" aria-hidden="true"></span>
+        <span id="chatLauncherLabel">Asistente 24/7</span>
+      </button>
+
+      <section class="chat-panel is-hidden" id="chatPanel" aria-live="polite" aria-label="Asistente 24/7">
+        <div class="chat-panel-header">
+          <div class="chat-panel-heading">
+            <strong id="chatTitle">Asistente 24/7</strong>
+            <span id="chatStatus">Responde dudas, recomienda y deriva a humano.</span>
+          </div>
+          <button class="chat-close" type="button" id="chatClose" aria-label="Cerrar chat">×</button>
+        </div>
+
+        <div class="chat-quick-actions" id="chatQuickActions"></div>
+        <div class="chat-messages" id="chatMessages"></div>
+
+        <form class="chat-form" id="chatForm">
+          <label class="chat-form-label" for="chatInput" id="chatInputLabel">Escribe tu mensaje</label>
+          <div class="chat-form-row">
+            <input class="chat-input" type="text" id="chatInput" maxlength="600" placeholder="Escribe tu duda o lo que quieres resolver.">
+            <button class="button" type="submit" id="chatSubmit">Enviar</button>
+          </div>
+        </form>
+
+        <div class="chat-links">
+          <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20proyecto" target="_blank" rel="noreferrer" id="chatWhatsAppLink">WhatsApp</a>
+          <a class="button button-ghost" href="#contacto" id="chatFormLink">Formulario</a>
+        </div>
+      </section>
+    </div>
 
     <main>
       <section class="hero" id="inicio">
@@ -638,6 +671,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=20260312-2"></script>
+  <script src="script.js?v=20260312-3"></script>
 </body>
 </html>

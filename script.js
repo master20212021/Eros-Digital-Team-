@@ -445,6 +445,22 @@ const translations = {
       },
       subject: 'Nuevo lead desde Eros Digital Team',
     },
+    chat: {
+      launcher: 'Asistente 24/7',
+      title: 'Asistente 24/7',
+      status: 'Responde dudas, recomienda y deriva a humano.',
+      inputLabel: 'Escribe tu mensaje',
+      placeholder: 'Escribe tu duda o lo que quieres resolver.',
+      submit: 'Enviar',
+      whatsapp: 'WhatsApp',
+      form: 'Formulario',
+      closeAria: 'Cerrar chat',
+      welcome: 'Hola. Soy el asistente comercial de Eros Digital Team. Puedo orientarte sobre webs, automatizacion, IA, branding y growth.',
+      thinking: 'Pensando...',
+      error: 'El asistente no esta disponible ahora. Puedes seguir por WhatsApp o el formulario.',
+      unavailable: 'El chat requiere backend seguro con OpenAI activo. La interfaz ya esta lista; falta activar el endpoint del servidor.',
+      quickActions: ['Quiero una web', 'Necesito automatizar', '¿Que paquete me conviene?', 'Quiero hablar con alguien'],
+    },
     cta: {
       title: '¿Quieres una propuesta clara para tu negocio?',
       text: 'Podemos ayudarte a definir la mejor forma de empezar.',
@@ -906,6 +922,22 @@ const translations = {
       },
       subject: 'New lead from Eros Digital Team',
     },
+    chat: {
+      launcher: '24/7 Assistant',
+      title: '24/7 Assistant',
+      status: 'Answers questions, recommends the next step, and hands off to a human.',
+      inputLabel: 'Write your message',
+      placeholder: 'Write your question or what you want to solve.',
+      submit: 'Send',
+      whatsapp: 'WhatsApp',
+      form: 'Form',
+      closeAria: 'Close chat',
+      welcome: 'Hi. I am the Eros Digital Team sales assistant. I can guide you on websites, automation, AI, branding, and growth.',
+      thinking: 'Thinking...',
+      error: 'The assistant is unavailable right now. You can continue through WhatsApp or the form.',
+      unavailable: 'The chat needs a secure backend with OpenAI enabled. The interface is ready; the server endpoint still needs activation.',
+      quickActions: ['I want a website', 'I need automation', 'Which package fits me?', 'I want to talk to someone'],
+    },
     cta: {
       title: 'Want a clear proposal for your business?',
       text: 'We can help you define the best way to start.',
@@ -940,6 +972,14 @@ const ticketServiceMap = {
   10: 'growth',
   11: 'apps',
 };
+
+const chatState = {
+  open: false,
+  pending: false,
+  messages: [],
+};
+
+const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
 
 const elements = {
   brandHome: document.querySelector('.brand'),
@@ -1013,6 +1053,21 @@ const elements = {
   quickTicketField: document.getElementById('quickTicketsField'),
   formStatus: document.querySelector('.form-status'),
   formSuccessCard: document.querySelector('.form-success-card'),
+  chatWidget: document.getElementById('chatWidget'),
+  chatLauncher: document.getElementById('chatLauncher'),
+  chatLauncherLabel: document.getElementById('chatLauncherLabel'),
+  chatPanel: document.getElementById('chatPanel'),
+  chatTitle: document.getElementById('chatTitle'),
+  chatStatus: document.getElementById('chatStatus'),
+  chatClose: document.getElementById('chatClose'),
+  chatQuickActions: document.getElementById('chatQuickActions'),
+  chatMessages: document.getElementById('chatMessages'),
+  chatForm: document.getElementById('chatForm'),
+  chatInputLabel: document.getElementById('chatInputLabel'),
+  chatInput: document.getElementById('chatInput'),
+  chatSubmit: document.getElementById('chatSubmit'),
+  chatWhatsAppLink: document.getElementById('chatWhatsAppLink'),
+  chatFormLink: document.getElementById('chatFormLink'),
   ctaTitle: document.querySelector('.cta-ribbon strong'),
   ctaText: document.querySelector('.cta-ribbon span'),
   ctaButton: document.querySelector('.cta-ribbon .button'),
@@ -1255,6 +1310,128 @@ const renderQuickTicketCloud = (copy) => {
 
   syncSelectedTickets(copy);
 };
+
+const appendChatMessage = (role, text) => {
+  chatState.messages.push({ role, text });
+};
+
+const renderChatMessages = () => {
+  if (!elements.chatMessages) {
+    return;
+  }
+
+  elements.chatMessages.innerHTML = '';
+  chatState.messages.forEach((message) => {
+    const item = document.createElement('article');
+    item.className = `chat-message ${message.role}`;
+
+    const label = document.createElement('small');
+    label.textContent = message.role === 'user'
+      ? (isEnglishCopy() ? 'You' : 'Tu')
+      : message.role === 'assistant'
+        ? 'EDT'
+        : (isEnglishCopy() ? 'Notice' : 'Aviso');
+
+    const body = document.createElement('div');
+    body.textContent = message.text;
+
+    item.append(label, body);
+    elements.chatMessages.append(item);
+  });
+
+  elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+};
+
+const ensureChatWelcome = (copy) => {
+  if (!chatState.messages.length) {
+    appendChatMessage('assistant', copy.chat.welcome);
+    renderChatMessages();
+  }
+};
+
+const renderChatQuickActions = (copy) => {
+  if (!elements.chatQuickActions) {
+    return;
+  }
+
+  elements.chatQuickActions.innerHTML = '';
+  copy.chat.quickActions.forEach((label) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    button.addEventListener('click', () => {
+      sendChatMessage(label, copy);
+    });
+    elements.chatQuickActions.append(button);
+  });
+};
+
+const setChatOpen = (isOpen) => {
+  chatState.open = isOpen;
+  elements.chatPanel?.classList.toggle('is-hidden', !isOpen);
+  elements.chatLauncher?.setAttribute('aria-expanded', String(isOpen));
+  if (isOpen) {
+    ensureChatWelcome(translations[currentLanguage]);
+    elements.chatInput?.focus();
+  }
+};
+
+const getChatContext = (copy) => ({
+  language: currentLanguage,
+  niche: getOptionById(copy, 'niche', wizardState.niche)?.title || '',
+  goals: wizardState.goals
+    .map((goalId) => getOptionById(copy, 'goals', goalId)?.title)
+    .filter(Boolean),
+  tickets: getSelectedTicketLabels(copy),
+});
+
+async function sendChatMessage(rawMessage, copy = translations[currentLanguage]) {
+  const message = rawMessage.trim();
+  if (!message || chatState.pending) {
+    return;
+  }
+
+  chatState.pending = true;
+  appendChatMessage('user', message);
+  appendChatMessage('assistant', copy.chat.thinking);
+  renderChatMessages();
+
+  try {
+    const response = await fetch(chatEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message,
+        language: currentLanguage,
+        history: chatState.messages
+          .filter((item) => item.role === 'user' || item.role === 'assistant')
+          .slice(-8, -1),
+        context: getChatContext(copy),
+      }),
+    });
+
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok || !contentType.includes('application/json')) {
+      throw new Error('chat_unavailable');
+    }
+
+    const payload = await response.json();
+    const reply = typeof payload.reply === 'string' && payload.reply.trim()
+      ? payload.reply.trim()
+      : copy.chat.error;
+
+    chatState.messages.pop();
+    appendChatMessage(payload.mode === 'unavailable' ? 'system' : 'assistant', reply);
+  } catch (error) {
+    chatState.messages.pop();
+    appendChatMessage('system', copy.chat.unavailable);
+  } finally {
+    chatState.pending = false;
+    renderChatMessages();
+  }
+}
 
 const getRouteKeys = () => (wizardState.goals.length ? wizardState.goals : ['website']);
 
@@ -1761,6 +1938,25 @@ const applyLanguage = (language) => {
       : 'Hola Eros Digital Team, quiero hablar sobre mi proyecto.'
   ));
   elements.floatingWhatsApp?.setAttribute('aria-label', language === 'en' ? 'Open WhatsApp' : 'Abrir WhatsApp');
+  elements.chatLauncherLabel.textContent = copy.chat.launcher;
+  elements.chatTitle.textContent = copy.chat.title;
+  elements.chatStatus.textContent = copy.chat.status;
+  elements.chatInputLabel.textContent = copy.chat.inputLabel;
+  elements.chatInput.placeholder = copy.chat.placeholder;
+  elements.chatSubmit.textContent = copy.chat.submit;
+  elements.chatWhatsAppLink.textContent = copy.chat.whatsapp;
+  elements.chatFormLink.textContent = copy.chat.form;
+  elements.chatClose.setAttribute('aria-label', copy.chat.closeAria);
+  elements.chatWhatsAppLink.setAttribute('href', buildWhatsAppUrl(
+    language === 'en'
+      ? 'Hi Eros Digital Team, I want to talk with the 24/7 assistant about my project.'
+      : 'Hola Eros Digital Team, quiero hablar con el asistente 24/7 sobre mi proyecto.'
+  ));
+  renderChatQuickActions(copy);
+  if (chatState.messages.length === 1 && chatState.messages[0].role === 'assistant') {
+    chatState.messages[0].text = copy.chat.welcome;
+    renderChatMessages();
+  }
   setFormSuccessCardVisibility(!elements.formSuccessCard?.classList.contains('is-hidden'), language);
   syncFormConfiguration();
   syncFormFeedback();
@@ -1796,6 +1992,32 @@ elements.bottomNavLinks.forEach((link) => {
   link.addEventListener('click', () => {
     closeMenu();
   });
+});
+
+elements.chatLauncher?.addEventListener('click', () => {
+  setChatOpen(!chatState.open);
+});
+
+elements.chatClose?.addEventListener('click', () => {
+  setChatOpen(false);
+});
+
+elements.chatFormLink?.addEventListener('click', () => {
+  setChatOpen(false);
+});
+
+elements.chatForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const copy = translations[currentLanguage];
+  if (!(elements.chatInput instanceof HTMLInputElement)) {
+    return;
+  }
+  const message = elements.chatInput.value.trim();
+  if (!message) {
+    return;
+  }
+  elements.chatInput.value = '';
+  sendChatMessage(message, copy);
 });
 
 elements.stackChips.forEach((button) => {
