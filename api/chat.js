@@ -78,58 +78,33 @@ const buildMessages = ({ message, history = [], language, context }) => {
   ];
 };
 
-exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-      },
-    };
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    return res.status(204).end();
   }
 
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Method not allowed' }),
-    };
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  let payload;
-  try {
-    payload = JSON.parse(event.body || '{}');
-  } catch {
-    return {
-      statusCode: 400,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Invalid JSON body' }),
-    };
-  }
-
+  const payload = typeof req.body === 'object' && req.body !== null ? req.body : {};
   const language = payload.language === 'en' ? 'en' : 'es';
   const message = typeof payload.message === 'string' ? payload.message.trim() : '';
+
   if (!message) {
-    return {
-      statusCode: 400,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Message is required' }),
-    };
+    return res.status(400).json({ error: 'Message is required' });
   }
 
   if (!process.env.OPENAI_API_KEY) {
-    return {
-      statusCode: 503,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        mode: 'unavailable',
-        reply: language === 'en'
-          ? 'The assistant is ready in code, but the secure backend still needs the OpenAI key. Use WhatsApp or the form for now.'
-          : 'El asistente ya esta listo en codigo, pero el backend seguro todavia necesita la clave de OpenAI. Por ahora usa WhatsApp o el formulario.',
-      }),
-    };
+    return res.status(503).json({
+      mode: 'unavailable',
+      reply: language === 'en'
+        ? 'The assistant is ready in code, but the secure backend still needs the OpenAI key. Use WhatsApp or the form for now.'
+        : 'El asistente ya esta listo en codigo, pero el backend seguro todavia necesita la clave de OpenAI. Por ahora usa WhatsApp o el formulario.',
+    });
   }
 
   try {
@@ -148,36 +123,24 @@ exports.handler = async (event) => {
 
     if (!response.ok) {
       const errorText = await response.text();
-      return {
-        statusCode: 502,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: 'OpenAI request failed',
-          detail: errorText.slice(0, 800),
-        }),
-      };
+      return res.status(502).json({
+        error: 'OpenAI request failed',
+        detail: errorText.slice(0, 800),
+      });
     }
 
     const data = await response.json();
     const reply = data?.choices?.[0]?.message?.content?.trim();
 
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        reply: reply || (language === 'en'
-          ? 'I can help you choose the best next step. Tell me your business type and what you want to improve first.'
-          : 'Puedo ayudarte a elegir el mejor siguiente paso. Dime tu tipo de negocio y que quieres mejorar primero.'),
-      }),
-    };
+    return res.status(200).json({
+      reply: reply || (language === 'en'
+        ? 'I can help you choose the best next step. Tell me your business type and what you want to improve first.'
+        : 'Puedo ayudarte a elegir el mejor siguiente paso. Dime tu tipo de negocio y que quieres mejorar primero.'),
+    });
   } catch (error) {
-    return {
-      statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        error: 'Unexpected server error',
-        detail: error instanceof Error ? error.message : 'Unknown error',
-      }),
-    };
+    return res.status(500).json({
+      error: 'Unexpected server error',
+      detail: error instanceof Error ? error.message : 'Unknown error',
+    });
   }
-};
+}

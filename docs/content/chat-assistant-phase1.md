@@ -10,7 +10,7 @@ Implementar un asistente comercial 24/7 con IA que:
 ## Arquitectura
 - frontend: widget integrado en `index.html`
 - runtime: estado, UI y llamadas en `script.js`
-- backend seguro: `netlify/functions/chat.js`
+- backend seguro: `api/chat.js`
 - ruta publica: `/api/chat`
 
 ## Lo que si hace esta fase
@@ -27,7 +27,7 @@ Implementar un asistente comercial 24/7 con IA que:
 - no usa RAG documental avanzado
 
 ## Activacion
-1. Desplegar en Netlify.
+1. Desplegar en Vercel.
 2. Configurar `OPENAI_API_KEY`.
 3. Opcional: ajustar `OPENAI_MODEL`.
 4. Probar `/api/chat` desde la web desplegada.
