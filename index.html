@@ -133,6 +133,20 @@
           </div>
         </form>
 
+        <div class="chat-lead-panel" id="chatLeadPanel">
+          <div class="chat-lead-copy">
+            <strong id="chatLeadTitle">Deja tus datos</strong>
+            <p id="chatLeadText">Si quieres, te contactamos con una recomendacion clara basada en esta conversacion.</p>
+          </div>
+          <form class="chat-lead-form" id="chatLeadForm">
+            <input class="chat-input" type="text" id="chatLeadName" maxlength="80" placeholder="Tu nombre" required>
+            <input class="chat-input" type="email" id="chatLeadEmail" maxlength="120" placeholder="tu@empresa.com" required>
+            <input class="chat-input" type="text" id="chatLeadCompany" maxlength="120" placeholder="Empresa (opcional)">
+            <button class="button" type="submit" id="chatLeadSubmit">Quiero que me contacten</button>
+          </form>
+          <p class="chat-lead-status" id="chatLeadStatus" aria-live="polite"></p>
+        </div>
+
         <div class="chat-links">
           <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20proyecto" target="_blank" rel="noreferrer" id="chatWhatsAppLink">WhatsApp</a>
           <a class="button button-ghost" href="#contacto" id="chatFormLink">Formulario</a>

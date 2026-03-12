@@ -460,6 +460,17 @@ const translations = {
       error: 'El asistente no esta disponible ahora. Puedes seguir por WhatsApp o el formulario.',
       unavailable: 'El chat requiere backend seguro con OpenAI activo. La interfaz ya esta lista; falta activar el endpoint del servidor.',
       quickActions: ['Quiero una web', 'Necesito automatizar', '¿Que paquete me conviene?', 'Quiero hablar con alguien'],
+      lead: {
+        title: 'Deja tus datos',
+        text: 'Si quieres, te contactamos con una recomendacion clara basada en esta conversacion.',
+        name: 'Tu nombre',
+        email: 'tu@empresa.com',
+        company: 'Empresa (opcional)',
+        submit: 'Quiero que me contacten',
+        sending: 'Enviando datos...',
+        success: 'Listo. Recibimos tus datos y te contactaremos pronto.',
+        error: 'No pudimos enviar tus datos ahora. Intenta otra vez o sigue por WhatsApp.',
+      },
     },
     cta: {
       title: '¿Quieres una propuesta clara para tu negocio?',
@@ -937,6 +948,17 @@ const translations = {
       error: 'The assistant is unavailable right now. You can continue through WhatsApp or the form.',
       unavailable: 'The chat needs a secure backend with OpenAI enabled. The interface is ready; the server endpoint still needs activation.',
       quickActions: ['I want a website', 'I need automation', 'Which package fits me?', 'I want to talk to someone'],
+      lead: {
+        title: 'Leave your details',
+        text: 'If you want, we can contact you with a clear recommendation based on this conversation.',
+        name: 'Your name',
+        email: 'you@company.com',
+        company: 'Company (optional)',
+        submit: 'Contact me',
+        sending: 'Sending details...',
+        success: 'Done. We received your details and will contact you soon.',
+        error: 'We could not send your details right now. Try again or continue through WhatsApp.',
+      },
     },
     cta: {
       title: 'Want a clear proposal for your business?',
@@ -977,9 +999,11 @@ const chatState = {
   open: false,
   pending: false,
   messages: [],
+  leadPending: false,
 };
 
 const chatEndpoint = window.EDT_CHAT_ENDPOINT || '/api/chat';
+const chatLeadEndpoint = window.EDT_CHAT_LEAD_ENDPOINT || '/api/chat-lead';
 
 const elements = {
   brandHome: document.querySelector('.brand'),
@@ -1066,6 +1090,14 @@ const elements = {
   chatInputLabel: document.getElementById('chatInputLabel'),
   chatInput: document.getElementById('chatInput'),
   chatSubmit: document.getElementById('chatSubmit'),
+  chatLeadTitle: document.getElementById('chatLeadTitle'),
+  chatLeadText: document.getElementById('chatLeadText'),
+  chatLeadForm: document.getElementById('chatLeadForm'),
+  chatLeadName: document.getElementById('chatLeadName'),
+  chatLeadEmail: document.getElementById('chatLeadEmail'),
+  chatLeadCompany: document.getElementById('chatLeadCompany'),
+  chatLeadSubmit: document.getElementById('chatLeadSubmit'),
+  chatLeadStatus: document.getElementById('chatLeadStatus'),
   chatWhatsAppLink: document.getElementById('chatWhatsAppLink'),
   chatFormLink: document.getElementById('chatFormLink'),
   ctaTitle: document.querySelector('.cta-ribbon strong'),
@@ -1366,6 +1398,18 @@ const renderChatQuickActions = (copy) => {
   });
 };
 
+const setChatLeadStatus = (kind, message) => {
+  if (!elements.chatLeadStatus) {
+    return;
+  }
+
+  elements.chatLeadStatus.classList.remove('is-success', 'is-error');
+  if (kind) {
+    elements.chatLeadStatus.classList.add(`is-${kind}`);
+  }
+  elements.chatLeadStatus.textContent = message;
+};
+
 const setChatOpen = (isOpen) => {
   chatState.open = isOpen;
   elements.chatPanel?.classList.toggle('is-hidden', !isOpen);
@@ -1430,6 +1474,56 @@ async function sendChatMessage(rawMessage, copy = translations[currentLanguage])
   } finally {
     chatState.pending = false;
     renderChatMessages();
+  }
+}
+
+async function submitChatLead(copy = translations[currentLanguage]) {
+  if (chatState.leadPending) {
+    return;
+  }
+
+  const name = elements.chatLeadName?.value.trim() || '';
+  const email = elements.chatLeadEmail?.value.trim() || '';
+  const company = elements.chatLeadCompany?.value.trim() || '';
+
+  if (!name || !email) {
+    setChatLeadStatus('error', copy.chat.lead.error);
+    return;
+  }
+
+  chatState.leadPending = true;
+  elements.chatLeadSubmit?.setAttribute('disabled', 'true');
+  setChatLeadStatus('', copy.chat.lead.sending);
+
+  try {
+    const response = await fetch(chatLeadEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        language: currentLanguage,
+        name,
+        email,
+        company,
+        history: chatState.messages,
+        context: getChatContext(copy),
+      }),
+    });
+
+    const payload = await response.json();
+    if (!response.ok || !payload.ok) {
+      throw new Error('lead_submit_failed');
+    }
+
+    setChatLeadStatus('success', copy.chat.lead.success);
+    appendChatMessage('system', copy.chat.lead.success);
+    renderChatMessages();
+  } catch (error) {
+    setChatLeadStatus('error', copy.chat.lead.error);
+  } finally {
+    chatState.leadPending = false;
+    elements.chatLeadSubmit?.removeAttribute('disabled');
   }
 }
 
@@ -1944,6 +2038,12 @@ const applyLanguage = (language) => {
   elements.chatInputLabel.textContent = copy.chat.inputLabel;
   elements.chatInput.placeholder = copy.chat.placeholder;
   elements.chatSubmit.textContent = copy.chat.submit;
+  elements.chatLeadTitle.textContent = copy.chat.lead.title;
+  elements.chatLeadText.textContent = copy.chat.lead.text;
+  elements.chatLeadName.placeholder = copy.chat.lead.name;
+  elements.chatLeadEmail.placeholder = copy.chat.lead.email;
+  elements.chatLeadCompany.placeholder = copy.chat.lead.company;
+  elements.chatLeadSubmit.textContent = copy.chat.lead.submit;
   elements.chatWhatsAppLink.textContent = copy.chat.whatsapp;
   elements.chatFormLink.textContent = copy.chat.form;
   elements.chatClose.setAttribute('aria-label', copy.chat.closeAria);
@@ -2018,6 +2118,11 @@ elements.chatForm?.addEventListener('submit', (event) => {
   }
   elements.chatInput.value = '';
   sendChatMessage(message, copy);
+});
+
+elements.chatLeadForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  submitChatLead(translations[currentLanguage]);
 });
 
 elements.stackChips.forEach((button) => {

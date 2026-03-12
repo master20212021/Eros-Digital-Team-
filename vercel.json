@@ -1,6 +1,22 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.erosdigitalteam.com"
+        }
+      ],
+      "destination": "https://erosdigitalteam.com/:path*",
+      "permanent": true
+    }
+  ],
   "functions": {
     "api/chat.js": {
+      "maxDuration": 10
+    },
+    "api/chat-lead.js": {
       "maxDuration": 10
     }
   }

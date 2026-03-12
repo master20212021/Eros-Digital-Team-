@@ -28,6 +28,8 @@ const KNOWLEDGE = {
     'No prometer integraciones o tiempos si no estan claros',
     'Responder corto y directo, 2 a 4 frases maximo',
     'Cuando haya intencion alta, empujar a WhatsApp o formulario',
+    'No responder como soporte tecnico general; responder como asesor comercial estrategico',
+    'Cuando falte contexto, hacer solo una pregunta corta y util',
   ],
 };
 
@@ -61,7 +63,7 @@ ${isEnglish ? 'Contact options' : 'Opciones de contacto'}:
 - Website: ${CONTACT.website}
 
 ${contextLines ? `${isEnglish ? 'Current lead context' : 'Contexto actual del lead'}:\n${contextLines}\n` : ''}
-${isEnglish ? 'If the user asks about pricing, explain that the exact proposal depends on scope and recommend WhatsApp or the form. If the user wants to hire, ask for business type, main goal, and preferred contact. Keep the answer in the same language as the user.' : 'Si el usuario pregunta por precios, explica que la propuesta exacta depende del alcance y recomiendale WhatsApp o el formulario. Si el usuario quiere contratar, pide tipo de negocio, meta principal y contacto preferido. Mantén la respuesta en el mismo idioma del usuario.'}`;
+${isEnglish ? 'Reply like a sharp sales strategist. First answer directly. Then suggest the most relevant service or package. Close with one concrete next step. If the user asks about pricing, explain that the exact proposal depends on scope and recommend WhatsApp or the form. If the user shows buying intent, ask only one short qualifying question or tell them to leave their details in the chat. Keep the answer in the same language as the user.' : 'Responde como un asesor comercial estrategico y directo. Primero responde de forma clara. Luego sugiere el servicio o paquete mas relevante. Cierra con un siguiente paso concreto. Si el usuario pregunta por precios, explica que la propuesta exacta depende del alcance y recomiendale WhatsApp o el formulario. Si el usuario muestra intencion de compra, haz solo una pregunta corta de calificacion o dile que deje sus datos en el chat. Mantén la respuesta en el mismo idioma del usuario.'}`;
 };
 
 const buildMessages = ({ message, history = [], language, context }) => {
