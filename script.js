@@ -1961,6 +1961,7 @@ const initInteractiveCarousels = () => {
     const controls = track.id ? document.querySelector(`.app-carousel-controls[data-controls-for="${track.id}"]`) : null;
     let currentIndex = 0;
     track.tabIndex = 0;
+    const isProcessCarousel = track.id === 'processCarousel';
 
     const setCurrentCard = (index) => {
       currentIndex = (index + cards.length) % cards.length;
@@ -1976,16 +1977,23 @@ const initInteractiveCarousels = () => {
     const scrollToCard = (index) => {
       setCurrentCard(index);
       const maxScrollLeft = Math.max(0, track.scrollWidth - track.clientWidth);
-      const targetLeft = Math.min(cards[currentIndex].offsetLeft, maxScrollLeft);
+      const targetCard = cards[currentIndex];
+      const centeredLeft = targetCard.offsetLeft - ((track.clientWidth - targetCard.clientWidth) / 2);
+      const targetLeft = Math.max(0, Math.min(centeredLeft, maxScrollLeft));
       isNavigating = true;
       if (navTimeout) {
         clearTimeout(navTimeout);
       }
-      navTimeout = setTimeout(() => { isNavigating = false; }, 500);
+      navTimeout = setTimeout(() => {
+        isNavigating = false;
+      }, 500);
       track.scrollTo({ left: targetLeft, behavior: 'smooth' });
     };
 
     let scrollFrame = null;
+    let isPointerDragging = false;
+    let dragStartX = 0;
+    let dragStartScrollLeft = 0;
 
     const syncCurrentCardFromScroll = () => {
       if (isNavigating || cards.length < 2) {
@@ -2019,6 +2027,54 @@ const initInteractiveCarousels = () => {
       });
     });
 
+    if (!isProcessCarousel) {
+      track.addEventListener('pointerdown', (event) => {
+        if (track.scrollWidth <= track.clientWidth) {
+          return;
+        }
+
+        if (event.pointerType === 'mouse' && event.button !== 0) {
+          return;
+        }
+
+        isPointerDragging = true;
+        dragStartX = event.clientX;
+        dragStartScrollLeft = track.scrollLeft;
+        isNavigating = false;
+        if (navTimeout) {
+          clearTimeout(navTimeout);
+          navTimeout = null;
+        }
+
+        track.classList.add('is-dragging');
+        track.setPointerCapture?.(event.pointerId);
+      });
+
+      track.addEventListener('pointermove', (event) => {
+        if (!isPointerDragging) {
+          return;
+        }
+
+        const deltaX = event.clientX - dragStartX;
+        track.scrollLeft = dragStartScrollLeft - deltaX;
+      });
+
+      const stopPointerDrag = (event) => {
+        if (!isPointerDragging) {
+          return;
+        }
+
+        isPointerDragging = false;
+        track.classList.remove('is-dragging');
+        track.releasePointerCapture?.(event.pointerId);
+        syncCurrentCardFromScroll();
+      };
+
+      track.addEventListener('pointerup', stopPointerDrag);
+      track.addEventListener('pointercancel', stopPointerDrag);
+      track.addEventListener('pointerleave', stopPointerDrag);
+    }
+
     track.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') {
         event.preventDefault();
@@ -2037,7 +2093,7 @@ const initInteractiveCarousels = () => {
       }
 
       scrollFrame = window.requestAnimationFrame(() => {
-        if (!isNavigating && window.innerWidth <= 960) {
+        if (!isNavigating && (!isProcessCarousel || window.innerWidth <= 960)) {
           syncCurrentCardFromScroll();
         }
         scrollFrame = null;

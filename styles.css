@@ -990,11 +990,12 @@ h3 {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x pinch-zoom;
+  cursor: grab;
 }
 
 .app-carousel-track > * {
-  flex: 0 0 min(360px, calc(100% - 8px));
-  max-width: 100%;
+  flex: 0 0 min(520px, calc(52% - 10px));
+  max-width: min(520px, calc(52% - 10px));
   opacity: 0.68;
   transform: scale(0.97);
   filter: saturate(0.9);
@@ -1009,7 +1010,8 @@ h3 {
 
 .app-carousel-track.why-grid > *,
 .app-carousel-track.process-list > * {
-  flex-basis: min(320px, calc(100% - 8px));
+  flex-basis: min(440px, calc(52% - 10px));
+  max-width: min(440px, calc(52% - 10px));
 }
 
 #processCarousel > * {
@@ -1043,11 +1045,17 @@ h3 {
 .app-carousel-track.cases-grid > *,
 .app-carousel-track.packages-grid > *,
 .app-carousel-track.testimonials-grid > * {
-  flex-basis: min(420px, calc(100% - 8px));
+  flex-basis: min(560px, calc(54% - 10px));
+  max-width: min(560px, calc(54% - 10px));
 }
 
 .app-carousel .app-carousel-track {
   margin-top: 0;
+}
+
+.app-carousel-track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 
 .app-carousel-track::-webkit-scrollbar {
@@ -2386,6 +2394,7 @@ h3 {
     width: 100%;
     padding-right: 2px;
     scroll-snap-type: x mandatory;
+    cursor: auto;
   }
 
   .app-carousel-topbar,
