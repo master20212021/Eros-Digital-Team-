@@ -45,11 +45,11 @@ const translations = {
     hero: {
       eyebrow: 'Páginas, ayuda automática y ventas más claras.',
       title: 'Haz que tu negocio se vea claro, premium y listo para vender.',
-      text: 'Ordenamos tu presencia digital, tus respuestas y tu embudo para que se vea serio y convierta mejor en web, Instagram y WhatsApp.',
-      primary: 'Empezar diagnostico',
+      text: 'Ordenamos tu presencia digital, tus respuestas y tu embudo para que la marca se vea seria y convierta mejor en web, Instagram y WhatsApp.',
+      primary: 'Empezar diagnóstico',
       secondary: 'Hablar con nosotros',
       brandTagline: 'Soluciones para negocios',
-      stats: ['Atención automática', 'Imagen y ventas', 'Orden y seguimiento'],
+      stats: ['Proyectos entregados', 'Primera entrega activa', 'Para tu propuesta'],
     },
     wizard: {
       eyebrow: 'Diagnóstico guiado',
@@ -88,6 +88,7 @@ const translations = {
           options: [
             { id: 'restaurant', title: 'Restaurante o comida', text: 'Pedidos y reservas.' },
             { id: 'tax', title: 'Taxes, fiscal o contable', text: 'Clientes y citas.' },
+            { id: 'retail', title: 'Tienda o retail', text: 'Catálogo y recompra.' },
             { id: 'beauty', title: 'Peluquería, barbería o spa', text: 'Reservas y recurrencia.' },
             { id: 'clinic', title: 'Clínica o salud', text: 'Pacientes y agenda.' },
             { id: 'ecommerce', title: 'Ecommerce', text: 'Ventas y seguimiento.' },
@@ -103,11 +104,11 @@ const translations = {
           label: 'Paso 2',
           question: '¿Qué te gustaría lograr primero? Puedes elegir varias.',
           options: [
-            { id: 'leads', title: 'Conseguir mas clientes', text: 'Mas oportunidades.' },
+            { id: 'leads', title: 'Conseguir más clientes', text: 'Más oportunidades.' },
             { id: 'automation', title: 'Automatizar atención', text: 'Menos trabajo manual.' },
-            { id: 'retention', title: 'Hacer que vuelvan', text: 'Mas recompra.' },
+            { id: 'retention', title: 'Hacer que vuelvan', text: 'Más recompra.' },
             { id: 'operations', title: 'Ordenar la operación', text: 'Menos caos interno.' },
-            { id: 'website', title: 'Tener mejor presencia digital', text: 'Imagen mas fuerte.' },
+            { id: 'website', title: 'Tener mejor presencia digital', text: 'Imagen más fuerte.' },
           ],
         },
       ],
@@ -122,11 +123,11 @@ const translations = {
         },
         retention: {
           title: 'Sistema para que tus clientes vuelvan',
-          bullets: ['Lista de clientes bien ordenada', 'Mensajes para volver a activar clientes por WhatsApp o correo', 'Ofertas y recordatorios segun el tipo de cliente'],
+          bullets: ['Lista de clientes bien ordenada', 'Mensajes para volver a activar clientes por WhatsApp o correo', 'Ofertas y recordatorios según el tipo de cliente'],
         },
         operations: {
           title: 'Sistema para ordenar el trabajo del negocio',
-          bullets: ['Revision del paso a paso de venta o atencion', 'Conexion entre canales, lista de clientes y reportes', 'Ayudas automaticas internas para reducir carga manual'],
+          bullets: ['Revisión del paso a paso de venta o atención', 'Conexión entre canales, lista de clientes y reportes', 'Ayudas automáticas internas para reducir carga manual'],
         },
         website: {
           title: 'Página clara para dar confianza y vender mejor',
@@ -137,33 +138,33 @@ const translations = {
         restaurant: {
           leads: {
             title: 'Sistema de pedidos directos para restaurante',
-            bullets: ['Landing o menu digital orientado a conversion', 'Campañas locales para mover pedidos o reservas', 'CRM ligero con seguimiento para promociones y recompra'],
+            bullets: ['Landing o menú digital orientado a conversión', 'Campañas locales para mover pedidos o reservas', 'CRM ligero con seguimiento para promociones y recompra'],
           },
           automation: {
-            title: 'Sistema de atencion automatizada por WhatsApp',
-            bullets: ['Respuestas automaticas para menu, horarios y reservas', 'Filtro de pedidos o consultas antes de pasar a humano', 'Confirmaciones y seguimiento sin perder conversaciones'],
+            title: 'Sistema de atención automatizada por WhatsApp',
+            bullets: ['Respuestas automáticas para menú, horarios y reservas', 'Filtro de pedidos o consultas antes de pasar a humano', 'Confirmaciones y seguimiento sin perder conversaciones'],
           },
           retention: {
             title: 'Sistema de recompra para clientes de comida',
-            bullets: ['Base de clientes segmentada por consumo o frecuencia', 'Campañas de reactivacion para dias flojos y fines de semana', 'Promociones automatizadas para subir recurrencia y ticket'],
+            bullets: ['Base de clientes segmentada por consumo o frecuencia', 'Campañas de reactivación para días flojos y fines de semana', 'Promociones automatizadas para subir recurrencia y ticket'],
           },
           operations: {
             title: 'Sistema operativo para pedidos y seguimiento',
-            bullets: ['Flujo conectado entre pedidos, equipo y seguimiento', 'Integraciones simples con hojas, CRM o panel interno', 'Menos carga manual y mas control sobre demanda'],
+            bullets: ['Flujo conectado entre pedidos, equipo y seguimiento', 'Integraciones simples con hojas, CRM o panel interno', 'Menos carga manual y más control sobre demanda'],
           },
           website: {
-            title: 'Web premium para vender comida sin friccion',
+            title: 'Web premium para vender comida sin fricción',
             bullets: ['Menu claro, CTA visibles y estructura para pedidos', 'Visuales premium para elevar confianza y deseo', 'Base lista para SEO local, reservas o delivery propio'],
           },
         },
         tax: {
           leads: {
-            title: 'Sistema de captacion para taxes y asesoria fiscal',
+            title: 'Sistema de captación para taxes y asesoría fiscal',
             bullets: ['Landing clara por servicio fiscal o contable', 'Campañas para declaraciones, citas o consultas', 'Seguimiento automatizado para no perder interesados en temporada'],
           },
           automation: {
-            title: 'Sistema de atencion y prefiltrado para asesoria',
-            bullets: ['Formulario o WhatsApp para clasificar consultas', 'Recordatorios de documentos y citas', 'Seguimiento automatico para cerrar clientes potenciales'],
+            title: 'Sistema de atención y prefiltrado para asesoría',
+            bullets: ['Formulario o WhatsApp para clasificar consultas', 'Recordatorios de documentos y citas', 'Seguimiento automático para cerrar clientes potenciales'],
           },
           retention: {
             title: 'Sistema de renovacion y recurrencia fiscal',
@@ -171,7 +172,7 @@ const translations = {
           },
           operations: {
             title: 'Sistema operativo para despacho fiscal',
-            bullets: ['Flujo de leads, citas y documentacion mas ordenado', 'Integraciones entre formularios, CRM y hojas de trabajo', 'Menos tareas repetidas y mejor control del pipeline'],
+            bullets: ['Flujo de leads, citas y documentación más ordenado', 'Integraciones entre formularios, CRM y hojas de trabajo', 'Menos tareas repetidas y mejor control del pipeline'],
           },
           website: {
             title: 'Web profesional para captar clientes fiscales',
@@ -180,16 +181,16 @@ const translations = {
         },
         retail: {
           leads: {
-            title: 'Sistema de captacion para tienda o retail',
+            title: 'Sistema de captación para tienda o retail',
             bullets: ['Promociones y catálogos con CTA claros', 'Campañas para atraer tráfico al punto de venta o WhatsApp', 'Seguimiento de interesados y clientes frecuentes'],
           },
           automation: {
-            title: 'Sistema de atencion automatizada para retail',
-            bullets: ['Respuestas para stock, horarios y productos', 'Filtro rapido por tipo de consulta o compra', 'Seguimiento de conversaciones sin carga manual'],
+            title: 'Sistema de atención automatizada para retail',
+            bullets: ['Respuestas para stock, horarios y productos', 'Filtro rápido por tipo de consulta o compra', 'Seguimiento de conversaciones sin carga manual'],
           },
           retention: {
             title: 'Sistema de recompra para tienda',
-            bullets: ['Campanas para clientes frecuentes y promociones', 'Recordatorios y reactivacion por WhatsApp o email', 'Segmentacion por tipo de compra o recurrencia'],
+            bullets: ['Campañas para clientes frecuentes y promociones', 'Recordatorios y reactivación por WhatsApp o email', 'Segmentación por tipo de compra o recurrencia'],
           },
           operations: {
             title: 'Sistema operativo para retail en crecimiento',
@@ -202,12 +203,12 @@ const translations = {
         },
         beauty: {
           leads: {
-            title: 'Sistema de reservas y captacion para belleza',
+            title: 'Sistema de reservas y captación para belleza',
             bullets: ['Landing o perfil con CTA directo a reserva', 'Campañas para citas, promos o nuevos servicios', 'Seguimiento para convertir interés en agenda'],
           },
           automation: {
-            title: 'Sistema de atencion automatizada para peluqueria o spa',
-            bullets: ['Respuestas para horarios, precios y disponibilidad', 'Recordatorios automaticos de cita', 'Seguimiento para cerrar reservas sin perder conversaciones'],
+            title: 'Sistema de atención automatizada para peluquería o spa',
+            bullets: ['Respuestas para horarios, precios y disponibilidad', 'Recordatorios automáticos de cita', 'Seguimiento para cerrar reservas sin perder conversaciones'],
           },
           retention: {
             title: 'Sistema de recurrencia para belleza y spa',
@@ -218,40 +219,40 @@ const translations = {
             bullets: ['Orden entre reservas, equipo y seguimiento', 'Integraciones simples para agenda y base de clientes', 'Menos carga manual y menos huecos sin llenar'],
           },
           website: {
-            title: 'Web premium para peluqueria, barberia o spa',
+            title: 'Web premium para peluquería, barbería o spa',
             bullets: ['Visual fuerte con CTA claros a reserva', 'Confianza para vender paquetes o servicios', 'Base lista para WhatsApp, formularios y promociones'],
           },
         },
         clinic: {
           leads: {
-            title: 'Sistema para atraer pacientes con mas confianza',
-            bullets: ['Pagina pensada para dar confianza y generar consultas', 'Campañas para tratamientos, consultas o primera visita', 'Seguimiento automatico para no perder personas interesadas'],
+            title: 'Sistema para atraer pacientes con más confianza',
+            bullets: ['Página pensada para dar confianza y generar consultas', 'Campañas para tratamientos, consultas o primera visita', 'Seguimiento automático para no perder personas interesadas'],
           },
           automation: {
             title: 'Sistema de agenda y respuestas automatizadas',
-            bullets: ['Precalificacion de consultas antes de agendar', 'Respuestas automaticas para disponibilidad y servicios', 'Recordatorios y seguimiento para reducir fuga de citas'],
+            bullets: ['Precalificación de consultas antes de agendar', 'Respuestas automáticas para disponibilidad y servicios', 'Recordatorios y seguimiento para reducir fuga de citas'],
           },
           retention: {
             title: 'Sistema de seguimiento y recurrencia para pacientes',
-            bullets: ['Recordatorios de control o continuidad', 'Campañas segmentadas por tratamiento o interes', 'Base ordenada para trabajar recurrencia con criterio'],
+            bullets: ['Recordatorios de control o continuidad', 'Campañas segmentadas por tratamiento o interés', 'Base ordenada para trabajar recurrencia con criterio'],
           },
           operations: {
             title: 'Sistema interno para agenda y seguimiento',
-            bullets: ['Proceso claro entre llegada de pacientes, agenda y atencion', 'Conexion entre formularios, lista de clientes y reportes', 'Mas visibilidad del proceso sin depender de tanto manejo manual'],
+            bullets: ['Proceso claro entre llegada de pacientes, agenda y atención', 'Conexión entre formularios, lista de clientes y reportes', 'Más visibilidad del proceso sin depender de tanto manejo manual'],
           },
           website: {
-            title: 'Pagina profesional para salud y confianza',
+            title: 'Página profesional para salud y confianza',
             bullets: ['Mensaje claro, buena imagen y enfoque medico', 'Botones y formularios pensados para captar pacientes', 'Base lista para aparecer mejor en Google y hacer campañas'],
           },
         },
         'real-estate': {
           leads: {
             title: 'Sistema para atraer interesados en inmuebles',
-            bullets: ['Pagina por propiedad, zona o tipo de cliente', 'Llegada de consultas conectada a tu lista de clientes', 'Seguimiento inicial para no perder interesados listos para avanzar'],
+            bullets: ['Página por propiedad, zona o tipo de cliente', 'Llegada de consultas conectada a tu lista de clientes', 'Seguimiento inicial para no perder interesados listos para avanzar'],
           },
           automation: {
-            title: 'Sistema automatizado de atencion para inmobiliaria',
-            bullets: ['Respuestas rapidas para propiedades, ubicacion y rango', 'Filtro de interesados antes de pasar al asesor', 'Seguimiento automatico para visitas y consultas'],
+            title: 'Sistema automatizado de atención para inmobiliaria',
+            bullets: ['Respuestas rápidas para propiedades, ubicación y rango', 'Filtro de interesados antes de pasar al asesor', 'Seguimiento automático para visitas y consultas'],
           },
           retention: {
             title: 'Sistema de seguimiento para interesados y referidos',
@@ -259,72 +260,72 @@ const translations = {
           },
           operations: {
             title: 'Sistema para ordenar visitas y cierres',
-            bullets: ['Paso a paso claro entre interesado, visita y cierre', 'Conexion entre formularios, lista de clientes y equipo', 'Menos fugas y mas control del proceso'],
+            bullets: ['Paso a paso claro entre interesado, visita y cierre', 'Conexión entre formularios, lista de clientes y equipo', 'Menos fugas y más control del proceso'],
           },
           website: {
-            title: 'Pagina inmobiliaria clara para atraer mas consultas',
+            title: 'Página inmobiliaria clara para atraer más consultas',
             bullets: ['Mensaje claro por zona, propiedad o servicio', 'Botones y formularios para captar consultas reales', 'Base lista para campañas y seguimiento'],
           },
         },
         'local-service': {
           leads: {
             title: 'Sistema para atraer clientes a tu negocio local',
-            bullets: ['Pagina pensada para llamadas, WhatsApp o reservas', 'Campañas locales y presencia en Google para que te encuentren mas', 'Seguimiento inicial para cerrar mas rapido'],
+            bullets: ['Página pensada para llamadas, WhatsApp o reservas', 'Campañas locales y presencia en Google para que te encuentren más', 'Seguimiento inicial para cerrar más rápido'],
           },
           automation: {
             title: 'Sistema de respuestas y reservas automatizadas',
-            bullets: ['WhatsApp o formularios con respuestas guiadas', 'Calificacion basica antes de contacto humano', 'Seguimiento para reservas, cotizaciones o visitas'],
+            bullets: ['WhatsApp o formularios con respuestas guiadas', 'Calificación básica antes de contacto humano', 'Seguimiento para reservas, cotizaciones o visitas'],
           },
           retention: {
-            title: 'Sistema de recompra y reactivacion local',
+            title: 'Sistema de recompra y reactivación local',
             bullets: ['Base de clientes ordenada por frecuencia o servicio', 'Campañas para reactivar clientes antiguos', 'Promociones y recordatorios para aumentar recurrencia'],
           },
           operations: {
             title: 'Sistema para ordenar un negocio local en crecimiento',
-            bullets: ['Proceso mas claro entre lead, agenda y servicio', 'Integraciones simples para reducir tareas manuales', 'Mas control de demanda, agenda y seguimiento'],
+            bullets: ['Proceso más claro entre lead, agenda y servicio', 'Integraciones simples para reducir tareas manuales', 'Más control de demanda, agenda y seguimiento'],
           },
           website: {
-            title: 'Pagina clara para un servicio local que quiere vender mas',
-            bullets: ['Propuesta clara y botones visibles desde el inicio', 'Diseño orientado a confianza y accion rapida', 'Base lista para aparecer mejor en Google, hacer anuncios y tomar reservas'],
+            title: 'Página clara para un servicio local que quiere vender más',
+            bullets: ['Propuesta clara y botones visibles desde el inicio', 'Diseño orientado a confianza y acción rápida', 'Base lista para aparecer mejor en Google, hacer anuncios y tomar reservas'],
           },
         },
         ecommerce: {
           leads: {
-            title: 'Sistema para vender mas en ecommerce',
-            bullets: ['Pagina o fichas de producto pensadas para vender mejor', 'Publicidad y recordatorios para traer de vuelta a quien ya mostro interes', 'Seguimiento para recuperar personas con intencion de compra'],
+            title: 'Sistema para vender más en ecommerce',
+            bullets: ['Página o fichas de producto pensadas para vender mejor', 'Publicidad y recordatorios para traer de vuelta a quien ya mostró interés', 'Seguimiento para recuperar personas con intención de compra'],
           },
           automation: {
-            title: 'Sistema automatizado de atencion y post-compra',
-            bullets: ['Respuestas automaticas para estado de pedido y dudas', 'Secuencias para carrito, seguimiento y soporte', 'Menos tickets manuales y mejor experiencia de compra'],
+            title: 'Sistema automatizado de atención y post-compra',
+            bullets: ['Respuestas automáticas para estado de pedido y dudas', 'Secuencias para carrito, seguimiento y soporte', 'Menos tickets manuales y mejor experiencia de compra'],
           },
           retention: {
             title: 'Sistema para aumentar la recompra en ecommerce',
-            bullets: ['Mensajes automaticos para recompra y compra adicional', 'Campañas segun como compra cada cliente', 'Recuperacion de clientes dormidos con ofertas utiles'],
+            bullets: ['Mensajes automáticos para recompra y compra adicional', 'Campañas según cómo compra cada cliente', 'Recuperación de clientes dormidos con ofertas útiles'],
           },
           operations: {
             title: 'Sistema para ordenar un ecommerce en crecimiento',
-            bullets: ['Conexion entre pedidos, publicidad y reportes', 'Paneles o pasos de trabajo para reducir tareas repetidas', 'Mas claridad del negocio sin revisar todo a mano'],
+            bullets: ['Conexión entre pedidos, publicidad y reportes', 'Paneles o pasos de trabajo para reducir tareas repetidas', 'Más claridad del negocio sin revisar todo a mano'],
           },
           website: {
-            title: 'Tienda online mas clara para vender mejor',
-            bullets: ['Producto, oferta y botones mas claros', 'Visuales y estructura para que menos gente abandone la compra', 'Base lista para campañas, medicion y crecimiento'],
+            title: 'Tienda online más clara para vender mejor',
+            bullets: ['Producto, oferta y botones más claros', 'Visuales y estructura para que menos gente abandone la compra', 'Base lista para campañas, medición y crecimiento'],
           },
         },
       },
       routeContext: {
         restaurant: 'En un negocio de comida, normalmente conviene trabajar pedidos, reservas y recompra con más orden.',
-        tax: 'En taxes o asesoria fiscal, suele hacer falta captar mejor, organizar citas y dar seguimiento sin perder clientes.',
+        tax: 'En taxes o asesoría fiscal, suele hacer falta captar mejor, organizar citas y dar seguimiento sin perder clientes.',
         retail: 'En retail o tienda, normalmente el dinero está en mover promociones, responder rápido y hacer que la gente regrese.',
-        beauty: 'En belleza, barberia o spa, lo importante es llenar agenda y mantener la frecuencia de los clientes.',
-        clinic: 'En salud, pesa mucho la confianza, la captacion bien filtrada y el seguimiento de agenda.',
+        beauty: 'En belleza, barbería o spa, lo importante es llenar agenda y mantener la frecuencia de los clientes.',
+        clinic: 'En salud, pesa mucho la confianza, la captación bien filtrada y el seguimiento de agenda.',
         ecommerce: 'En ecommerce, normalmente toca mejorar conversion, seguimiento y recompra.',
         'real-estate': 'En inmobiliaria, suele hacer falta calificar mejor y trabajar seguimiento sin dejar leads tirados.',
-        education: 'En academias o formacion, normalmente conviene captar interesados, filtrarlos y llevarlos al cierre.',
+        education: 'En academias o formación, normalmente conviene captar interesados, filtrarlos y llevarlos al cierre.',
         professional: 'En servicios profesionales, funciona mejor cuando consultas, propuestas y seguimiento están bien ordenados.',
         'local-service': 'En servicios locales, lo que más mueve el negocio suele ser responder rápido y cerrar mejor.',
         other: 'En este tipo de negocio, la mejor ruta depende de lo que quieras mover primero.',
       },
-      briefLabel: 'Diagnostico realizado',
+      briefLabel: 'Diagnóstico realizado',
     },
     services: {
       eyebrow: 'Servicios principales',
@@ -332,7 +333,7 @@ const translations = {
       cards: [
         ['Páginas para vender mejor', 'Creamos páginas claras, rápidas y bien pensadas para que la gente entienda tu negocio y te contacte.'],
         ['Respuestas automáticas', 'Te ayudamos a responder mensajes, ordenar consultas y ahorrar tiempo en tareas repetidas.'],
-        ['Publicidad para atraer clientes', 'Hacemos campañas y piezas para que lleguen mas personas interesadas en tu negocio.'],
+        ['Publicidad para atraer clientes', 'Hacemos campañas y piezas para que lleguen más personas interesadas en tu negocio.'],
         ['Contenido y redes sociales', 'Te ayudamos a mantener tus redes activas con contenido más ordenado y constante.'],
         ['Herramientas para tu negocio', 'Creamos soluciones útiles para organizar mejor el trabajo o atender mejor a tus clientes.'],
         ['Imagen y comunicación', 'Te ayudamos a que tu marca se vea más seria, más clara y más confiable.'],
@@ -374,10 +375,10 @@ const translations = {
       proofAria: 'Beneficios clave',
     },
     stack: {
-      eyebrow: 'Otras cosas que tambien hacemos',
-      title: 'Si tu negocio lo necesita, tambien podemos ayudarte con esto.',
+      eyebrow: 'Otras cosas que también hacemos',
+      title: 'Si tu negocio lo necesita, también podemos ayudarte con esto.',
       helper: 'Toca una o varias opciones y las agregamos al formulario como tickets.',
-      chips: ['Paginas de venta', 'Chat para atender clientes', 'Correos para seguimiento', 'Orden de clientes y mensajes', 'Reportes simples', 'Videos cortos', 'Seguimiento automatico', 'Mejor presencia en Google', 'Imagen de marca', 'Produccion de video', 'Campanas para recordar tu negocio', 'Conexion entre herramientas'],
+      chips: ['Páginas de venta', 'Chat para atender clientes', 'Correos para seguimiento', 'Orden de clientes y mensajes', 'Reportes simples', 'Videos cortos', 'Seguimiento automático', 'Mejor presencia en Google', 'Imagen de marca', 'Producción de video', 'Campañas para recordar tu negocio', 'Conexión entre herramientas'],
     },
     cases: {
       eyebrow: 'Casos por vertical',
@@ -392,10 +393,10 @@ const translations = {
       eyebrow: 'Preguntas frecuentes',
       title: 'Respuestas claras antes de empezar.',
       items: [
-        ['¿Que hacen exactamente por mi negocio?', 'Te ayudamos a atraer mas clientes, responder mas rapido, verte mas profesional y organizar mejor tu negocio con paginas, automatizaciones, anuncios y procesos mas claros.'],
-        ['¿Esto sirve si no entiendo nada de tecnologia?', 'Si. Nosotros aterrizamos todo de forma simple para que sepas que se va a hacer, por que se hace y como te puede ayudar a vender o trabajar mejor.'],
-        ['¿Como se si esto me conviene?', 'Primero revisamos tu caso, tu tipo de negocio y lo que quieres lograr. Con eso te recomendamos una ruta clara, sin meterte cosas que no necesitas.'],
-        ['¿Que pasa despues de llenar el formulario?', 'Te contactamos, revisamos lo que necesitas y te proponemos la opcion que mejor encaja con tu negocio, tu momento y tu presupuesto.'],
+        ['¿Qué hacen exactamente por mi negocio?', 'Te ayudamos a atraer más clientes, responder más rápido, verte más profesional y organizar mejor tu negocio con páginas, automatizaciones, anuncios y procesos más claros.'],
+        ['¿Esto sirve si no entiendo nada de tecnología?', 'Sí. Nosotros aterrizamos todo de forma simple para que sepas qué se va a hacer, por qué se hace y cómo te puede ayudar a vender o trabajar mejor.'],
+        ['¿Cómo sé si esto me conviene?', 'Primero revisamos tu caso, tu tipo de negocio y lo que quieres lograr. Con eso te recomendamos una ruta clara, sin meterte cosas que no necesitas.'],
+        ['¿Qué pasa después de llenar el formulario?', 'Te contactamos, revisamos lo que necesitas y te proponemos la opción que mejor encaja con tu negocio, tu momento y tu presupuesto.'],
       ],
     },
     packages: {
@@ -409,34 +410,34 @@ const translations = {
     },
     launch: {
       eyebrow: 'Primer avance',
-      title: 'Asi se ve una primera etapa cuando quieres moverte rapido y con una idea clara.',
+      title: 'Así se ve una primera etapa cuando quieres moverte rápido y con una idea clara.',
       cards: [
-        ['Semana 1', 'Orden y enfoque', 'Aterrizamos la oferta, lo que se va a comunicar y la ruta mas conveniente para empezar.'],
-        ['Semana 2', 'Armado', 'Creamos la pagina, los textos, las piezas y las automatizaciones basicas si hacen falta.'],
-        ['Semana 3', 'Salida y ajustes', 'Revisamos detalles, dejamos todo mejor presentado y afinamos lo mas importante.'],
+        ['Semana 1', 'Orden y enfoque', 'Aterrizamos la oferta, lo que se va a comunicar y la ruta más conveniente para empezar.'],
+        ['Semana 2', 'Armado', 'Creamos la página, los textos, las piezas y las automatizaciones básicas si hacen falta.'],
+        ['Semana 3', 'Salida y ajustes', 'Revisamos detalles, dejamos todo mejor presentado y afinamos lo más importante.'],
       ],
       includesEyebrow: 'Puede incluir',
-      includes: ['Texto principal de la oferta', 'Diseno de inicio y secciones clave', 'Formulario de contacto', 'Base para aparecer mejor en buscadores', 'Preparacion para publicar'],
+      includes: ['Texto principal de la oferta', 'Diseño de inicio y secciones clave', 'Formulario de contacto', 'Base para aparecer mejor en buscadores', 'Preparación para publicar'],
     },
     contact: {
       eyebrow: 'Siguiente paso',
-      title: 'Cuéntanos tu caso y te decimos por donde conviene empezar.',
-      text: 'Si ya viste la ruta que mas te conviene, llena el formulario y te contactamos con una propuesta clara, sin vueltas y pensada para tu negocio.',
+      title: 'Cuéntanos tu caso y te decimos por dónde conviene empezar.',
+      text: 'Si ya viste la ruta que más te conviene, llena el formulario y te contactamos con una propuesta clara, sin vueltas y pensada para tu negocio.',
       pointsAria: 'Siguientes entregables',
       points: ['Entender bien tu negocio', 'Recomendar una ruta clara', 'Proponerte la mejor opcion para empezar'],
       email: 'erosdigitalteam@gmail.com',
       whatsapp: 'WhatsApp',
       openDomain: 'Abrir dominio',
       formEyebrow: 'Formulario',
-      formTitle: 'Cuentanos que necesitas',
-      formText: 'Puedes enviar una solicitud rapida con tickets o agregar contexto extra si ya sabes lo que quieres resolver.',
+      formTitle: 'Cuéntanos qué necesitas',
+      formText: 'Puedes enviar una solicitud rápida con tickets o agregar contexto extra si ya sabes lo que quieres resolver.',
       labels: ['Nombre', 'Email', 'Empresa', 'Servicio principal (opcional)', 'Proyecto o detalle (opcional)'],
-      placeholders: ['Ej. Maria Lopez', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opcion', 'Opcional: agrega contexto extra si quieres.'],
-      options: ['Pagina o landing', 'Publicidad para atraer clientes', 'Respuestas automaticas', 'Imagen y comunicacion', 'Herramienta o solucion interna'],
+      placeholders: ['Ej. Maria Lopez', 'tu@empresa.com', 'Nombre de tu negocio', 'Selecciona una opción', 'Opcional: agrega contexto extra si quieres.'],
+      options: ['Página o landing', 'Publicidad para atraer clientes', 'Respuestas automáticas', 'Imagen y comunicación', 'Herramienta o solución interna'],
       submit: 'Enviar briefing',
-      note: 'Puedes enviar solo nombre, email y tickets seleccionados. Si quieres, agrega mas contexto.',
+      note: 'Puedes enviar solo nombre, email y tickets seleccionados. Si quieres, agrega más contexto.',
       quickRequest: {
-        title: 'Solicitud rapida',
+        title: 'Solicitud rápida',
         text: 'Selecciona lo que necesitas y lo adjuntamos como tickets a tu solicitud.',
         empty: 'Sin tickets seleccionados.',
         selected: 'Tickets elegidos',
@@ -454,19 +455,19 @@ const translations = {
       whatsapp: 'WhatsApp',
       form: 'Formulario',
       closeAria: 'Cerrar chat',
-      welcome: 'Hola. Soy el asistente comercial de Eros Digital Team. Puedo orientarte sobre webs, automatizacion, IA, branding y growth.',
+      welcome: 'Hola. Soy el asistente comercial de Eros Digital Team. Puedo orientarte sobre webs, automatización, IA, branding y growth.',
       thinking: 'Pensando...',
-      error: 'El asistente no esta disponible ahora. Puedes seguir por WhatsApp o el formulario.',
-      unavailable: 'El chat requiere backend seguro con OpenAI activo. La interfaz ya esta lista; falta activar el endpoint del servidor.',
-      quickActions: ['Quiero una web', 'Necesito automatizar', '¿Que paquete me conviene?', 'Quiero hablar con alguien'],
+      error: 'El asistente no está disponible ahora. Puedes seguir por WhatsApp o el formulario.',
+      unavailable: 'El chat requiere backend seguro con OpenAI activo. La interfaz ya está lista; falta activar el endpoint del servidor.',
+      quickActions: ['Quiero una web', 'Necesito automatizar', '¿Qué paquete me conviene?', 'Quiero hablar con alguien'],
       lead: {
         title: 'Deja tus datos',
-        text: 'Si quieres, te contactamos con una recomendacion clara basada en esta conversacion.',
+        text: 'Si quieres, te contactamos con una recomendación clara basada en esta conversación.',
         name: 'Tu nombre',
         email: 'tu@empresa.com',
         company: 'Empresa (opcional)',
         submit: 'Quiero que me contacten',
-        prompt: 'Si ya te interesa avanzar, deja tu nombre y correo y te escribimos claro y rapido.',
+        prompt: 'Si ya te interesa avanzar, deja tu nombre y correo y te escribimos claro y rápido.',
         sending: 'Enviando datos...',
         success: 'Listo. Recibimos tus datos y te contactaremos pronto.',
         error: 'No pudimos enviar tus datos ahora. Intenta otra vez o sigue por WhatsApp.',
@@ -478,7 +479,7 @@ const translations = {
       button: 'Pedir propuesta',
     },
     footer: {
-      text: 'Paginas, respuestas automaticas, publicidad e imagen para negocios.',
+      text: 'Páginas, respuestas automáticas, publicidad e imagen para negocios.',
       links: ['Inicio', 'Servicios', 'Casos', 'Contacto'],
     },
   },
@@ -516,7 +517,7 @@ const translations = {
       primary: 'Start diagnosis',
       secondary: 'Talk to us',
       brandTagline: 'Business solutions',
-      stats: ['Automatic replies', 'Better image and sales', 'Order and follow-up'],
+      stats: ['Projects delivered', 'To first launch', 'For your proposal'],
     },
     wizard: {
       eyebrow: 'Guided diagnosis',
@@ -1007,94 +1008,94 @@ const chatState = {
 
 const CHAT_QUICK_ACTIONS = {
   other: {
-    es: ['Quiero una pagina', 'Quiero vender mas', 'Necesito ayuda con mensajes', 'Quiero hablar con alguien'],
+    es: ['Quiero una página', 'Quiero vender más', 'Necesito ayuda con mensajes', 'Quiero hablar con alguien'],
     en: ['I want a website', 'I want more sales', 'I need help with messages', 'I want to talk to someone'],
   },
   restaurant: {
-    es: ['Quiero mas pedidos', 'Quiero reservas por WhatsApp', 'Quiero una carta o pagina', 'Quiero hablar ya'],
+    es: ['Quiero más pedidos', 'Quiero reservas por WhatsApp', 'Quiero una carta o página', 'Quiero hablar ya'],
     en: ['I want more orders', 'I want bookings on WhatsApp', 'I need a menu or website', 'I want to talk now'],
   },
   tax: {
-    es: ['Quiero mas citas', 'Necesito una pagina clara', 'Quiero seguimiento automatico', 'Quiero hablar ya'],
+    es: ['Quiero más citas', 'Necesito una página clara', 'Quiero seguimiento automático', 'Quiero hablar ya'],
     en: ['I want more appointments', 'I need a clear website', 'I want automated follow-up', 'I want to talk now'],
   },
   retail: {
-    es: ['Quiero mover promos', 'Quiero mas clientes', 'Necesito ayuda con mensajes', 'Quiero hablar ya'],
+    es: ['Quiero mover promos', 'Quiero más clientes', 'Necesito ayuda con mensajes', 'Quiero hablar ya'],
     en: ['I want to push promos', 'I want more customers', 'I need help with messages', 'I want to talk now'],
   },
   beauty: {
-    es: ['Quiero llenar agenda', 'Quiero citas por WhatsApp', 'Necesito una pagina simple', 'Quiero hablar ya'],
+    es: ['Quiero llenar agenda', 'Quiero citas por WhatsApp', 'Necesito una página simple', 'Quiero hablar ya'],
     en: ['I want to fill my calendar', 'I want bookings on WhatsApp', 'I need a simple website', 'I want to talk now'],
   },
   clinic: {
-    es: ['Quiero mas pacientes', 'Quiero agendar facil', 'Necesito una pagina de confianza', 'Quiero hablar ya'],
+    es: ['Quiero más pacientes', 'Quiero agendar fácil', 'Necesito una página de confianza', 'Quiero hablar ya'],
     en: ['I want more patients', 'I want easy booking', 'I need a trust-focused website', 'I want to talk now'],
   },
   ecommerce: {
-    es: ['Quiero vender mas', 'Quiero recuperar clientes', 'Necesito automatizar mensajes', 'Quiero hablar ya'],
+    es: ['Quiero vender más', 'Quiero recuperar clientes', 'Necesito automatizar mensajes', 'Quiero hablar ya'],
     en: ['I want more sales', 'I want to recover customers', 'I need message automation', 'I want to talk now'],
   },
   'real-estate': {
-    es: ['Quiero mas leads', 'Quiero agendar visitas', 'Necesito seguimiento', 'Quiero hablar ya'],
+    es: ['Quiero más leads', 'Quiero agendar visitas', 'Necesito seguimiento', 'Quiero hablar ya'],
     en: ['I want more leads', 'I want to book visits', 'I need follow-up', 'I want to talk now'],
   },
   education: {
-    es: ['Quiero mas inscritos', 'Necesito seguimiento', 'Quiero una pagina clara', 'Quiero hablar ya'],
+    es: ['Quiero más inscritos', 'Necesito seguimiento', 'Quiero una página clara', 'Quiero hablar ya'],
     en: ['I want more enrollments', 'I need follow-up', 'I want a clear website', 'I want to talk now'],
   },
   professional: {
-    es: ['Quiero mas consultas', 'Necesito una pagina clara', 'Quiero mejor seguimiento', 'Quiero hablar ya'],
+    es: ['Quiero más consultas', 'Necesito una página clara', 'Quiero mejor seguimiento', 'Quiero hablar ya'],
     en: ['I want more consultations', 'I need a clear website', 'I want better follow-up', 'I want to talk now'],
   },
   'local-service': {
-    es: ['Quiero mas llamadas', 'Quiero mas reservas', 'Necesito una pagina simple', 'Quiero hablar ya'],
+    es: ['Quiero más llamadas', 'Quiero más reservas', 'Necesito una página simple', 'Quiero hablar ya'],
     en: ['I want more calls', 'I want more bookings', 'I need a simple website', 'I want to talk now'],
   },
 };
 
 const CHAT_WELCOME_BY_NICHE = {
   other: {
-    es: 'Hola. Estoy aqui para ayudarte con tu pagina, mensajes, anuncios o automatizaciones, sin vueltas.',
+    es: 'Hola. Estoy aquí para ayudarte con tu página, mensajes, anuncios o automatizaciones, sin vueltas.',
     en: 'Hi. I am here to help with your website, messages, ads, or automations in a simple way.',
   },
   restaurant: {
-    es: 'Hola. Si quieres mas pedidos o reservas, te ayudo a ver la ruta mas clara y rapida.',
+    es: 'Hola. Si quieres más pedidos o reservas, te ayudo a ver la ruta más clara y rápida.',
     en: 'Hi. If you want more orders or bookings, I can help you find the clearest and fastest next step.',
   },
   tax: {
-    es: 'Hola. Si quieres una pagina mas clara, mas citas o mejor seguimiento, te guio rapido.',
+    es: 'Hola. Si quieres una página más clara, más citas o mejor seguimiento, te guío rápido.',
     en: 'Hi. If you want a clearer website, more appointments, or better follow-up, I can guide you quickly.',
   },
   retail: {
-    es: 'Hola. Si quieres mover promos, vender mas y responder mejor, te ayudo a verlo rapido.',
+    es: 'Hola. Si quieres mover promos, vender más y responder mejor, te ayudo a verlo rápido.',
     en: 'Hi. If you want to push promos, sell more, and reply better, I can help you sort it out quickly.',
   },
   beauty: {
-    es: 'Hola. Si quieres llenar agenda y que te escriban facil por WhatsApp, te ayudo rapido.',
+    es: 'Hola. Si quieres llenar agenda y que te escriban fácil por WhatsApp, te ayudo rápido.',
     en: 'Hi. If you want to fill your calendar and get more WhatsApp bookings, I can help quickly.',
   },
   clinic: {
-    es: 'Hola. Si quieres dar mas confianza, agendar facil y dar mejor seguimiento, te guio al punto.',
+    es: 'Hola. Si quieres dar más confianza, agendar fácil y dar mejor seguimiento, te guío al punto.',
     en: 'Hi. If you want to build trust, make booking easier, and improve follow-up, I can guide you clearly.',
   },
   ecommerce: {
-    es: 'Hola. Si quieres vender mas y recuperar gente interesada, te digo por donde empezar.',
+    es: 'Hola. Si quieres vender más y recuperar gente interesada, te digo por dónde empezar.',
     en: 'Hi. If you want more sales and better follow-up for interested shoppers, I can show you where to start.',
   },
   'real-estate': {
-    es: 'Hola. Si quieres mas leads, visitas y mejor seguimiento, te ayudo a aterrizarlo rapido.',
+    es: 'Hola. Si quieres más leads, visitas y mejor seguimiento, te ayudo a aterrizarlo rápido.',
     en: 'Hi. If you want more leads, visits, and better follow-up, I can help you map it out quickly.',
   },
   education: {
-    es: 'Hola. Si quieres mas interesados e inscripciones, te ayudo a verlo claro.',
+    es: 'Hola. Si quieres más interesados e inscripciones, te ayudo a verlo claro.',
     en: 'Hi. If you want more leads and enrollments, I can help you see the clearest next step.',
   },
   professional: {
-    es: 'Hola. Si quieres mas consultas y un seguimiento mas ordenado, te ayudo al grano.',
+    es: 'Hola. Si quieres más consultas y un seguimiento más ordenado, te ayudo al grano.',
     en: 'Hi. If you want more consultations and a cleaner follow-up process, I can help directly.',
   },
   'local-service': {
-    es: 'Hola. Si quieres mas llamadas, mensajes o reservas, te ayudo rapido.',
+    es: 'Hola. Si quieres más llamadas, mensajes o reservas, te ayudo rápido.',
     en: 'Hi. If you want more calls, messages, or bookings, I can help quickly.',
   },
 };
@@ -1722,7 +1723,7 @@ const submitChatLeadThroughForm = ({ name, email, company, copy }) => {
     tickets: getSelectedTicketLabels(copy).join(' | '),
     mensaje: isEnglishCopy()
       ? `Lead from AI chat. Goals: ${(getChatContext(copy).goals || []).join(', ') || 'Not provided'}. Tickets: ${(getChatContext(copy).tickets || []).join(', ') || 'Not provided'}. Conversation summary: ${chatState.messages.map((item) => `${item.role}: ${item.text}`).slice(-8).join(' | ')}`
-      : `Lead desde chat IA. Metas: ${(getChatContext(copy).goals || []).join(', ') || 'No indicadas'}. Tickets: ${(getChatContext(copy).tickets || []).join(', ') || 'No indicados'}. Resumen de conversacion: ${chatState.messages.map((item) => `${item.role}: ${item.text}`).slice(-8).join(' | ')}`,
+      : `Lead desde chat IA. Metas: ${(getChatContext(copy).goals || []).join(', ') || 'No indicadas'}. Tickets: ${(getChatContext(copy).tickets || []).join(', ') || 'No indicados'}. Resumen de conversación: ${chatState.messages.map((item) => `${item.role}: ${item.text}`).slice(-8).join(' | ')}` ,
   };
 
   Object.entries(fields).forEach(([nameField, value]) => {
@@ -1785,7 +1786,7 @@ const getPackageName = (copy) => {
   if (goals.length === 1 && goals[0] === 'website') {
     return isEnglishCopy() ? 'Clear presence' : 'Presencia clara';
   }
-  return isEnglishCopy() ? 'More clients and follow-up' : 'Mas clientes y seguimiento';
+  return isEnglishCopy() ? 'More clients and follow-up' : 'Más clientes y seguimiento';
 };
 
 const buildRecommendation = (copy) => {
@@ -1846,7 +1847,7 @@ const fillBriefFromWizard = (copy, recommendation) => {
   const analysisPoints = recommendation.bullets.join(' | ');
   const briefText = isEnglishCopy()
     ? `${copy.wizard.briefLabel}: ${recommendation.title}. ${copy.wizard.selections.niche}: ${niche}. ${copy.wizard.selections.goal}: ${goal}. Diagnosis: ${analysisSummary}. Priorities: ${analysisPoints}.`
-    : `${copy.wizard.briefLabel}: ${recommendation.title}. ${copy.wizard.selections.niche}: ${niche}. ${copy.wizard.selections.goal}: ${goal}. Diagnostico: ${analysisSummary}. Prioridades: ${analysisPoints}.`;
+    : `${copy.wizard.briefLabel}: ${recommendation.title}. ${copy.wizard.selections.niche}: ${niche}. ${copy.wizard.selections.goal}: ${goal}. Diagnóstico: ${analysisSummary}. Prioridades: ${analysisPoints}.`;
 
   textarea.value = briefText;
 
@@ -1869,7 +1870,7 @@ const updateWhatsAppLink = (copy, recommendation) => {
     .join(', ') || copy.wizard.selections.pending;
   const message = isEnglishCopy()
     ? `Hi Eros Digital Team, I completed the diagnosis. Niche: ${niche}. Goals: ${goal}. Recommended route: ${recommendation.title}. I want to talk about the proposal.`
-    : `Hola Eros Digital Team, complete el diagnostico. Nicho: ${niche}. Metas: ${goal}. Ruta: ${recommendation.title}. Quiero hablar sobre la propuesta.`;
+    : `Hola Eros Digital Team, completé el diagnóstico. Nicho: ${niche}. Metas: ${goal}. Ruta: ${recommendation.title}. Quiero hablar sobre la propuesta.`;
   elements.wizardWhatsAppCta.href = buildWhatsAppUrl(message);
 };
 
@@ -1936,7 +1937,7 @@ const setFormSuccessCardVisibility = (isVisible, language = currentLanguage) => 
   if (text) {
     text.textContent = language === 'en'
       ? 'Thank you. We received your information and will review your case to reply with an initial proposal as soon as possible.'
-      : 'Gracias. Recibimos tu informacion y revisaremos tu caso para responderte con una propuesta inicial lo antes posible.';
+      : 'Gracias. Recibimos tu información y revisaremos tu caso para responderte con una propuesta inicial lo antes posible.';
   }
 
   elements.formSuccessCard.classList.toggle('is-hidden', !isVisible);
@@ -1969,17 +1970,25 @@ const initInteractiveCarousels = () => {
       });
     };
 
+    let isNavigating = false;
+    let navTimeout = null;
+
     const scrollToCard = (index) => {
       setCurrentCard(index);
       const maxScrollLeft = Math.max(0, track.scrollWidth - track.clientWidth);
       const targetLeft = Math.min(cards[currentIndex].offsetLeft, maxScrollLeft);
+      isNavigating = true;
+      if (navTimeout) {
+        clearTimeout(navTimeout);
+      }
+      navTimeout = setTimeout(() => { isNavigating = false; }, 500);
       track.scrollTo({ left: targetLeft, behavior: 'smooth' });
     };
 
     let scrollFrame = null;
 
     const syncCurrentCardFromScroll = () => {
-      if (cards.length < 2) {
+      if (isNavigating || cards.length < 2) {
         return;
       }
 
@@ -2028,7 +2037,9 @@ const initInteractiveCarousels = () => {
       }
 
       scrollFrame = window.requestAnimationFrame(() => {
-        syncCurrentCardFromScroll();
+        if (!isNavigating && window.innerWidth <= 960) {
+          syncCurrentCardFromScroll();
+        }
         scrollFrame = null;
       });
     }, { passive: true });
@@ -2435,7 +2446,7 @@ elements.form?.addEventListener('submit', (event) => {
   if (textarea instanceof HTMLTextAreaElement && !textarea.value.trim() && selectedLabels.length) {
     textarea.value = isEnglishCopy()
       ? `Quick request: ${selectedLabels.join(' | ')}.`
-      : `Solicitud rapida: ${selectedLabels.join(' | ')}.`;
+      : `Solicitud rápida: ${selectedLabels.join(' | ')}.`;
   }
 
   const hasMessage = textarea instanceof HTMLTextAreaElement && Boolean(textarea.value.trim());
