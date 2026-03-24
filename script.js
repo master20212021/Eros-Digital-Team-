@@ -1995,22 +1995,29 @@ const initInteractiveCarousels = () => {
     let dragStartX = 0;
     let dragStartScrollLeft = 0;
 
-    const syncCurrentCardFromScroll = () => {
-      if (isNavigating || cards.length < 2) {
-        return;
-      }
-
-      const referencePoint = track.scrollLeft + (track.clientWidth * 0.35);
+    const getClosestCardIndex = () => {
+      const viewportCenter = track.scrollLeft + (track.clientWidth / 2);
       let closestIndex = 0;
       let closestDistance = Number.POSITIVE_INFINITY;
 
       cards.forEach((card, cardIndex) => {
-        const distance = Math.abs(card.offsetLeft - referencePoint);
+        const cardCenter = card.offsetLeft + (card.clientWidth / 2);
+        const distance = Math.abs(cardCenter - viewportCenter);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = cardIndex;
         }
       });
+
+      return closestIndex;
+    };
+
+    const syncCurrentCardFromScroll = () => {
+      if (isNavigating || cards.length < 2) {
+        return;
+      }
+
+      const closestIndex = getClosestCardIndex();
 
       if (closestIndex !== currentIndex) {
         setCurrentCard(closestIndex);
@@ -2018,7 +2025,8 @@ const initInteractiveCarousels = () => {
     };
 
     const stepScroll = (direction = 1) => {
-      scrollToCard(currentIndex + direction);
+      const baseIndex = isProcessCarousel ? currentIndex : getClosestCardIndex();
+      scrollToCard(baseIndex + direction);
     };
 
     controls?.querySelectorAll('.app-carousel-btn').forEach((button) => {
@@ -2067,7 +2075,7 @@ const initInteractiveCarousels = () => {
         isPointerDragging = false;
         track.classList.remove('is-dragging');
         track.releasePointerCapture?.(event.pointerId);
-        syncCurrentCardFromScroll();
+        scrollToCard(getClosestCardIndex());
       };
 
       track.addEventListener('pointerup', stopPointerDrag);
@@ -2093,7 +2101,7 @@ const initInteractiveCarousels = () => {
       }
 
       scrollFrame = window.requestAnimationFrame(() => {
-        if (!isNavigating && (!isProcessCarousel || window.innerWidth <= 960)) {
+        if (!isNavigating) {
           syncCurrentCardFromScroll();
         }
         scrollFrame = null;
