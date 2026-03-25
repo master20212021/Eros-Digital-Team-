@@ -2336,7 +2336,13 @@ h3 {
   .chat-widget,
   .bottom-app-nav,
   .trust-chips,
-  .contact-trust-chips {
+  .contact-trust-chips,
+  #proceso,
+  #resultados,
+  #casos,
+  #faq,
+  #paquetes,
+  .site-footer {
     display: none;
   }
 
@@ -2548,10 +2554,22 @@ h3 {
     gap: 14px;
   }
 
+  .contact-points,
+  .contact-actions .button:first-child,
+  .quick-request-panel,
+  .wizard-result-actions .button-secondary,
+  .wizard-result-actions .button-ghost {
+    display: none;
+  }
+
   .contact-form > label:nth-of-type(3),
   .contact-form > label:nth-of-type(4),
   .form-note {
     display: none;
+  }
+
+  .contact-form textarea {
+    min-height: 112px;
   }
 
   .cta-ribbon {
@@ -2710,35 +2728,18 @@ h3 {
   .section-heading p:not(.eyebrow),
   .contact-card p:nth-of-type(2),
   .service-card p,
-  .process-list p,
   .case-card p,
   .package-card p {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  .signal-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 18px;
-  }
-
-  .signal-grid li {
-    padding: 12px 10px;
-    border-radius: 16px;
-  }
-
-  .signal-grid strong {
-    font-size: 1.1rem;
-  }
-
-  .signal-grid span {
-    margin-top: 4px;
-    font-size: 0.74rem;
-    line-height: 1.3;
+  .signal-grid,
+  .mobile-nav .lang-switch,
+  .mobile-nav .button.button-secondary {
+    display: none;
   }
 
   .wizard-shell {
@@ -2825,15 +2826,10 @@ h3 {
   .wizard-result-contact,
   .hero-text,
   .service-card p,
-  .why-card p,
-  .process-list p,
-  .result-card p,
-  .case-card p,
-  .faq-item p,
   .contact-card p,
   .form-heading p:last-child {
-    font-size: 0.86rem;
-    line-height: 1.5;
+    font-size: 0.82rem;
+    line-height: 1.42;
   }
 
   /* Ocultar descripciones secundarias en cards en mobile: */
@@ -2952,6 +2948,15 @@ h3 {
 
   .contact-form {
     gap: 12px;
+  }
+
+  .contact-card h2,
+  .form-heading h3 {
+    max-width: 12ch;
+  }
+
+  .contact-actions .button {
+    min-height: 46px;
   }
 
   .quick-request-panel {

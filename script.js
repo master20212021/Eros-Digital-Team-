@@ -1236,7 +1236,45 @@ const elements = {
 };
 
 let currentLanguage = 'es';
+let wasMobileViewport = window.innerWidth <= 960;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const applyMobileFocusedCopy = (language) => {
+  if (window.innerWidth > 960) {
+    return;
+  }
+
+  if (language === 'en') {
+    elements.heroEyebrow.textContent = 'Web, AI, sales.';
+    elements.heroTitle.textContent = 'Look clear. Sell better.';
+    elements.heroText.textContent = 'We help you capture, reply, and close faster.';
+    elements.heroButtons[0].textContent = 'Start';
+    elements.wizardTitle.textContent = 'Choose your business and we show you the best first step.';
+    elements.wizardIntro.textContent = '2 quick steps. Clear recommendation.';
+    elements.serviceHeading.textContent = 'What you need to attract, automate, and sell.';
+    elements.contactHeading.textContent = 'Tell us your case.';
+    elements.contactText.textContent = 'We reply within 24h.';
+    elements.contactButtons[1].textContent = 'WhatsApp';
+    elements.formHeadingTitle.textContent = 'Request your proposal';
+    elements.formHeadingText.textContent = 'Leave name, email, and goal.';
+    elements.formSubmit.textContent = 'Send';
+    return;
+  }
+
+  elements.heroEyebrow.textContent = 'Web, IA y ventas.';
+  elements.heroTitle.textContent = 'Haz que tu negocio se vea claro y venda mejor.';
+  elements.heroText.textContent = 'Te ayudamos a captar, responder y cerrar mejor.';
+  elements.heroButtons[0].textContent = 'Empezar';
+  elements.wizardTitle.textContent = 'Elige tu negocio y te decimos la mejor forma de empezar.';
+  elements.wizardIntro.textContent = '2 pasos. Recomendación clara.';
+  elements.serviceHeading.textContent = 'Lo clave para captar, automatizar y vender.';
+  elements.contactHeading.textContent = 'Cuéntanos tu caso.';
+  elements.contactText.textContent = 'Respondemos en menos de 24h.';
+  elements.contactButtons[1].textContent = 'WhatsApp';
+  elements.formHeadingTitle.textContent = 'Pide tu propuesta';
+  elements.formHeadingText.textContent = 'Deja nombre, email y objetivo.';
+  elements.formSubmit.textContent = 'Enviar';
+};
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
@@ -1300,6 +1338,12 @@ if (menuToggle && mobileNav) {
   window.addEventListener('resize', () => {
     if (window.innerWidth > 960) {
       closeMenu();
+    }
+
+    const isMobileViewport = window.innerWidth <= 960;
+    if (isMobileViewport !== wasMobileViewport) {
+      wasMobileViewport = isMobileViewport;
+      applyLanguage(currentLanguage);
     }
   });
 }
@@ -2391,6 +2435,8 @@ const applyLanguage = (language) => {
   elements.ctaTitle.textContent = copy.cta.title;
   elements.ctaText.textContent = copy.cta.text;
   elements.ctaButton.textContent = copy.cta.button;
+
+  applyMobileFocusedCopy(language);
 
   elements.footerText.textContent = copy.footer.text;
   elements.footerLinks.forEach((link, index) => {
