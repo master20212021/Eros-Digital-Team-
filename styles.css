@@ -2262,7 +2262,7 @@ h3 {
 
 @media (max-width: 960px) {
   body {
-    padding-bottom: 168px;
+    padding-bottom: 96px;
   }
 
   .site-shell {
@@ -2310,7 +2310,7 @@ h3 {
   }
 
   .topbar > .lang-switch {
-    order: 3;
+    display: none;
   }
 
   .menu-toggle {
@@ -2329,6 +2329,17 @@ h3 {
     padding-bottom: 18px;
   }
 
+  .why-section,
+  .testimonials-section,
+  .stack-section,
+  .launch-section,
+  .chat-widget,
+  .bottom-app-nav,
+  .trust-chips,
+  .contact-trust-chips {
+    display: none;
+  }
+
   .hero-copy,
   .hero-panel {
     max-width: 100%;
@@ -2336,6 +2347,10 @@ h3 {
 
   .hero-copy {
     max-width: none;
+  }
+
+  .hero-actions .button-secondary {
+    display: none;
   }
 
   .hero-copy .eyebrow {
@@ -2469,6 +2484,10 @@ h3 {
     gap: 10px;
   }
 
+  .wizard-selection-list {
+    display: none;
+  }
+
   .signal-grid li,
   .contact-card,
   .contact-form,
@@ -2525,6 +2544,16 @@ h3 {
     align-items: flex-start;
   }
 
+  .contact-layout {
+    gap: 14px;
+  }
+
+  .contact-form > label:nth-of-type(3),
+  .contact-form > label:nth-of-type(4),
+  .form-note {
+    display: none;
+  }
+
   .cta-ribbon {
     flex-direction: column;
     align-items: flex-start;
@@ -2536,7 +2565,7 @@ h3 {
     right: 10px;
     bottom: 10px;
     z-index: 30;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 6px;
     padding: 8px;
@@ -2678,6 +2707,18 @@ h3 {
     margin-top: 18px;
   }
 
+  .section-heading p:not(.eyebrow),
+  .contact-card p:nth-of-type(2),
+  .service-card p,
+  .process-list p,
+  .case-card p,
+  .package-card p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
   .signal-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2759,6 +2800,13 @@ h3 {
 
   .quick-ticket-cloud {
     gap: 8px;
+  }
+
+  .quick-request-copy p,
+  .contact-points li:last-child,
+  .site-footer .footer-brand span,
+  .footer-links a:nth-child(n + 5) {
+    display: none;
   }
 
   .chip-cloud button {
@@ -2904,6 +2952,10 @@ h3 {
 
   .contact-form {
     gap: 12px;
+  }
+
+  .quick-request-panel {
+    gap: 10px;
   }
 
   .contact-form input,
