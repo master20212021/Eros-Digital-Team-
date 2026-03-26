@@ -996,6 +996,7 @@ h3 {
 .app-carousel-track > * {
   flex: 0 0 min(520px, calc(52% - 10px));
   max-width: min(520px, calc(52% - 10px));
+  cursor: pointer;
   opacity: 0.68;
   transform: scale(0.97);
   filter: saturate(0.9);
@@ -1003,6 +1004,7 @@ h3 {
 }
 
 .app-carousel-track > *.is-current {
+  cursor: default;
   opacity: 1;
   transform: scale(1);
   filter: saturate(1);

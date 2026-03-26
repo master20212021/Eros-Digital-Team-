@@ -2036,6 +2036,15 @@ const setFormSuccessCardVisibility = (isVisible, language = currentLanguage) => 
 const initInteractiveCarousels = () => {
   const carouselRoots = [...document.querySelectorAll('[data-carousel]')];
 
+  const safelyScrollTrack = (track, left) => {
+    const targetLeft = Math.max(0, left);
+    try {
+      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    } catch (error) {
+      track.scrollLeft = targetLeft;
+    }
+  };
+
   carouselRoots.forEach((root) => {
     const track = root.classList.contains('app-carousel-track') ? root : root.querySelector('.app-carousel-track');
     if (!track) {
@@ -2077,7 +2086,7 @@ const initInteractiveCarousels = () => {
       navTimeout = setTimeout(() => {
         isNavigating = false;
       }, 500);
-      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      safelyScrollTrack(track, targetLeft);
     };
 
     let scrollFrame = null;
@@ -2122,6 +2131,16 @@ const initInteractiveCarousels = () => {
     controls?.querySelectorAll('.app-carousel-btn').forEach((button) => {
       button.addEventListener('click', () => {
         stepScroll(button.dataset.dir === 'prev' ? -1 : 1);
+      });
+    });
+
+    cards.forEach((card, cardIndex) => {
+      card.addEventListener('click', () => {
+        if (cardIndex === currentIndex || track.classList.contains('is-dragging')) {
+          return;
+        }
+
+        scrollToCard(cardIndex);
       });
     });
 
@@ -2197,6 +2216,12 @@ const initInteractiveCarousels = () => {
         scrollFrame = null;
       });
     }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      window.requestAnimationFrame(() => {
+        scrollToCard(currentIndex);
+      });
+    });
 
     scrollToCard(0);
   });
