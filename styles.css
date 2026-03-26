@@ -2351,7 +2351,6 @@ h3 {
   .launch-section,
   .chat-widget,
   .bottom-app-nav,
-  .trust-chips,
   .contact-trust-chips,
   #proceso,
   #paquetes,
@@ -2371,10 +2370,26 @@ h3 {
 
   .hero-copy {
     max-width: none;
+    padding: 18px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(13, 16, 26, 0.92), rgba(13, 16, 26, 0.76));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: var(--shadow);
   }
 
   .hero-actions .button-secondary {
     display: none;
+  }
+
+  .trust-chips {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .trust-chips li {
+    padding: 7px 10px;
+    font-size: 0.68rem;
   }
 
   .hero-copy .eyebrow {
@@ -2519,6 +2534,29 @@ h3 {
     display: none;
   }
 
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .signal-grid li {
+    padding: 12px 10px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .signal-grid strong {
+    font-size: 1.14rem;
+  }
+
+  .signal-grid span {
+    margin-top: 4px;
+    font-size: 0.72rem;
+    line-height: 1.32;
+  }
+
   .signal-grid li,
   .contact-card,
   .contact-form,
@@ -2607,9 +2645,116 @@ h3 {
     min-height: 112px;
   }
 
+  #contacto .contact-card {
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(12, 16, 28, 0.98), rgba(9, 13, 24, 0.92));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+    overflow: hidden;
+  }
+
+  #contacto .contact-layout {
+    gap: 20px;
+  }
+
+  #contacto .contact-copy {
+    padding-bottom: 0;
+  }
+
+  #contacto .contact-points {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  #contacto .contact-points li {
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  #contacto .contact-form {
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  #contacto .form-heading {
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  #contacto .quick-request-panel {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(166, 200, 255, 0.08);
+    border: 1px solid rgba(166, 200, 255, 0.14);
+  }
+
+  #contacto .submit-button {
+    min-height: 54px;
+    font-size: 0.96rem;
+    letter-spacing: 0.04em;
+  }
+
   #resultados,
   #faq {
     display: block;
+  }
+
+  #resultados {
+    padding-top: 36px;
+  }
+
+  #resultados .section-heading {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  #resultados .results-grid {
+    gap: 14px;
+  }
+
+  #resultados .result-card {
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(14, 19, 31, 0.96), rgba(14, 19, 31, 0.78));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+  }
+
+  #resultados .result-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: rgba(241, 244, 255, 0.7);
+  }
+
+  #resultados .result-card strong {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    line-height: 0.95;
+  }
+
+  #resultados .result-card p {
+    color: rgba(241, 244, 255, 0.82);
+  }
+
+  #resultados .proof-strip {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  #resultados .proof-card {
+    padding: 14px 15px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  #resultados .proof-card strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.98rem;
   }
 
   .cta-ribbon {
@@ -2784,10 +2929,28 @@ h3 {
     overflow: hidden;
   }
 
-  .signal-grid,
   .mobile-nav .lang-switch,
   .mobile-nav .button.button-secondary {
     display: none;
+  }
+
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .signal-grid li {
+    padding: 10px 8px;
+  }
+
+  .signal-grid strong {
+    font-size: 0.98rem;
+  }
+
+  .signal-grid span {
+    font-size: 0.64rem;
   }
 
   .wizard-shell {

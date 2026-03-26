@@ -1252,12 +1252,35 @@ const applyMobileFocusedCopy = (language) => {
     elements.wizardTitle.textContent = 'Answer 2 quick steps and we will show you the smartest place to start.';
     elements.wizardIntro.textContent = 'Short diagnosis. Clear recommendation. Next step.';
     elements.serviceHeading.textContent = 'Core services to improve presence, automation, and sales.';
+    elements.resultsEyebrow.textContent = 'Key gains';
+    elements.resultsHeading.textContent = 'Three improvements your business should feel quickly.';
+    setThreePartCards(elements.resultCards, [
+      ['Acquisition', 'More qualified inquiries', 'Sharper landing pages, CTAs, and campaigns focused on real intent.'],
+      ['Speed', 'Faster response and follow-up', 'Automation and CRM flow that keep opportunities from going cold.'],
+      ['Trust', 'More authority to close', 'A clearer and more premium presence that supports better conversion.'],
+    ]);
+    elements.proofCards.forEach((card, index) => {
+      const proof = [
+        ['Website + follow-up', 'One connected commercial system'],
+        ['Automation + control', 'Less manual work, more clarity'],
+        ['Image + conversion', 'Professional presence that supports sales'],
+      ][index];
+      card.querySelector('strong').textContent = proof[0];
+      card.querySelector('span').textContent = proof[1];
+    });
+    elements.contactEyebrow.textContent = 'Proposal request';
     elements.contactHeading.textContent = 'Tell us about your project and we will reply with a clear proposal.';
-    elements.contactText.textContent = 'You will get an initial recommendation and next step within 24h.';
+    elements.contactText.textContent = 'You will receive an initial recommendation, proposal direction, and next step within 24h.';
+    elements.contactPoints.forEach((item, index) => {
+      item.textContent = ['Case review', 'Recommended route', 'Initial proposal direction'][index];
+    });
     elements.contactButtons[1].textContent = 'WhatsApp';
+    elements.formHeadingEyebrow.textContent = 'Initial brief';
     elements.formHeadingTitle.textContent = 'Request a clear proposal';
-    elements.formHeadingText.textContent = 'Leave your name, email, and main goal.';
-    elements.formSubmit.textContent = 'Send request';
+    elements.formHeadingText.textContent = 'Leave your name, email, and main goal. We will reply with a focused next step.';
+    elements.quickTicketTitle.textContent = 'Project priorities';
+    elements.quickTicketText.textContent = 'Mark what matters most and we will include it in the proposal brief.';
+    elements.formSubmit.textContent = 'Request proposal';
     return;
   }
 
@@ -1268,12 +1291,35 @@ const applyMobileFocusedCopy = (language) => {
   elements.wizardTitle.textContent = 'Responde 2 pasos y te mostramos la mejor forma de empezar.';
   elements.wizardIntro.textContent = 'Diagnóstico corto. Recomendación clara. Siguiente paso.';
   elements.serviceHeading.textContent = 'Servicios clave para mejorar presencia, automatización y ventas.';
+  elements.resultsEyebrow.textContent = 'Indicadores clave';
+  elements.resultsHeading.textContent = 'Tres mejoras que tu negocio debería notar rápido.';
+  setThreePartCards(elements.resultCards, [
+    ['Captación', 'Consultas más calificadas', 'Landing, CTA y campañas pensadas para atraer personas con intención real.'],
+    ['Velocidad', 'Respuesta y seguimiento más rápidos', 'Automatización y CRM para no dejar oportunidades enfriarse.'],
+    ['Confianza', 'Más autoridad para cerrar', 'Una presencia más clara y premium que ayuda a convertir mejor.'],
+  ]);
+  elements.proofCards.forEach((card, index) => {
+    const proof = [
+      ['Web + seguimiento', 'Un sistema comercial conectado'],
+      ['Automatización + control', 'Menos carga manual, más claridad'],
+      ['Imagen + conversión', 'Presencia profesional que ayuda a cerrar'],
+    ][index];
+    card.querySelector('strong').textContent = proof[0];
+    card.querySelector('span').textContent = proof[1];
+  });
+  elements.contactEyebrow.textContent = 'Solicitud de propuesta';
   elements.contactHeading.textContent = 'Cuéntanos tu proyecto y te respondemos con una propuesta clara.';
-  elements.contactText.textContent = 'Recibes una orientación inicial y el siguiente paso en menos de 24h.';
+  elements.contactText.textContent = 'Recibes una recomendación inicial, un alcance orientativo y el siguiente paso en menos de 24h.';
+  elements.contactPoints.forEach((item, index) => {
+    item.textContent = ['Revisión de tu caso', 'Ruta recomendada', 'Enfoque inicial de propuesta'][index];
+  });
   elements.contactButtons[1].textContent = 'WhatsApp';
+  elements.formHeadingEyebrow.textContent = 'Brief inicial';
   elements.formHeadingTitle.textContent = 'Pide una propuesta clara';
-  elements.formHeadingText.textContent = 'Deja tu nombre, email y objetivo principal.';
-  elements.formSubmit.textContent = 'Enviar solicitud';
+  elements.formHeadingText.textContent = 'Deja tu nombre, email y objetivo principal. Te respondemos con un siguiente paso enfocado.';
+  elements.quickTicketTitle.textContent = 'Prioridades del proyecto';
+  elements.quickTicketText.textContent = 'Marca lo más urgente y lo incluimos en el brief de propuesta.';
+  elements.formSubmit.textContent = 'Solicitar propuesta';
 };
 
 const revealObserver = new IntersectionObserver(
