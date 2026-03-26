@@ -1475,6 +1475,22 @@ h3 {
   gap: 10px;
 }
 
+  .contact-trust-chips {
+    display: flex;
+    margin-top: 16px;
+  }
+
+  .contact-points {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .quick-request-panel {
+    display: grid;
+    gap: 10px;
+  }
+
 .package-card li,
 .contact-points li {
   position: relative;
@@ -2338,17 +2354,13 @@ h3 {
   .trust-chips,
   .contact-trust-chips,
   #proceso,
-  #resultados,
-  #faq,
   #paquetes,
   .site-footer {
     display: none;
   }
 
   .mobile-nav a[href="#proceso"],
-  .mobile-nav a[href="#resultados"],
-  .mobile-nav a[href="#stack"],
-  .mobile-nav a[href="#faq"] {
+  .mobile-nav a[href="#stack"] {
     display: none;
   }
 
@@ -2572,15 +2584,14 @@ h3 {
   }
 
   #casos .section-heading,
+  #resultados .section-heading,
+  #faq .section-heading,
   #servicios .section-heading,
   #contacto .form-heading,
   #contacto .contact-card {
     margin-bottom: 8px;
   }
 
-  .contact-points,
-  .contact-actions .button:first-child,
-  .quick-request-panel,
   .wizard-result-actions .button-secondary,
   .wizard-result-actions .button-ghost {
     display: none;
@@ -2594,6 +2605,11 @@ h3 {
 
   .contact-form textarea {
     min-height: 112px;
+  }
+
+  #resultados,
+  #faq {
+    display: block;
   }
 
   .cta-ribbon {
@@ -2968,7 +2984,10 @@ h3 {
   }
 
   #resultados .proof-strip {
-    display: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 14px;
   }
 
   .faq-list {

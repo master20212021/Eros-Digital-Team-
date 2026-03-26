@@ -1245,35 +1245,35 @@ const applyMobileFocusedCopy = (language) => {
   }
 
   if (language === 'en') {
-    elements.heroEyebrow.textContent = 'Web, AI, sales.';
-    elements.heroTitle.textContent = 'Look clear. Sell better.';
-    elements.heroText.textContent = 'We help you capture, reply, and close faster.';
-    elements.heroButtons[0].textContent = 'Start';
-    elements.wizardTitle.textContent = 'Choose your business and we show you the best first step.';
-    elements.wizardIntro.textContent = '2 quick steps. Clear recommendation.';
-    elements.serviceHeading.textContent = 'What you need to attract, automate, and sell.';
-    elements.contactHeading.textContent = 'Tell us your case.';
-    elements.contactText.textContent = 'We reply within 24h.';
+    elements.heroEyebrow.textContent = 'Web, AI, and growth for businesses.';
+    elements.heroTitle.textContent = 'Make your business look professional and convert better.';
+    elements.heroText.textContent = 'We build websites, automation, and commercial systems so you can attract better leads and respond faster.';
+    elements.heroButtons[0].textContent = 'Start diagnosis';
+    elements.wizardTitle.textContent = 'Answer 2 quick steps and we will show you the smartest place to start.';
+    elements.wizardIntro.textContent = 'Short diagnosis. Clear recommendation. Next step.';
+    elements.serviceHeading.textContent = 'Core services to improve presence, automation, and sales.';
+    elements.contactHeading.textContent = 'Tell us about your project and we will reply with a clear proposal.';
+    elements.contactText.textContent = 'You will get an initial recommendation and next step within 24h.';
     elements.contactButtons[1].textContent = 'WhatsApp';
-    elements.formHeadingTitle.textContent = 'Request your proposal';
-    elements.formHeadingText.textContent = 'Leave name, email, and goal.';
-    elements.formSubmit.textContent = 'Send';
+    elements.formHeadingTitle.textContent = 'Request a clear proposal';
+    elements.formHeadingText.textContent = 'Leave your name, email, and main goal.';
+    elements.formSubmit.textContent = 'Send request';
     return;
   }
 
-  elements.heroEyebrow.textContent = 'Web, IA y ventas.';
-  elements.heroTitle.textContent = 'Haz que tu negocio se vea claro y venda mejor.';
-  elements.heroText.textContent = 'Te ayudamos a captar, responder y cerrar mejor.';
-  elements.heroButtons[0].textContent = 'Empezar';
-  elements.wizardTitle.textContent = 'Elige tu negocio y te decimos la mejor forma de empezar.';
-  elements.wizardIntro.textContent = '2 pasos. Recomendación clara.';
-  elements.serviceHeading.textContent = 'Lo clave para captar, automatizar y vender.';
-  elements.contactHeading.textContent = 'Cuéntanos tu caso.';
-  elements.contactText.textContent = 'Respondemos en menos de 24h.';
+  elements.heroEyebrow.textContent = 'Web, IA y growth para negocios.';
+  elements.heroTitle.textContent = 'Haz que tu negocio se vea profesional y convierta mejor.';
+  elements.heroText.textContent = 'Creamos webs, automatizaciones y sistemas comerciales para captar mejor y responder más rápido.';
+  elements.heroButtons[0].textContent = 'Empezar diagnóstico';
+  elements.wizardTitle.textContent = 'Responde 2 pasos y te mostramos la mejor forma de empezar.';
+  elements.wizardIntro.textContent = 'Diagnóstico corto. Recomendación clara. Siguiente paso.';
+  elements.serviceHeading.textContent = 'Servicios clave para mejorar presencia, automatización y ventas.';
+  elements.contactHeading.textContent = 'Cuéntanos tu proyecto y te respondemos con una propuesta clara.';
+  elements.contactText.textContent = 'Recibes una orientación inicial y el siguiente paso en menos de 24h.';
   elements.contactButtons[1].textContent = 'WhatsApp';
-  elements.formHeadingTitle.textContent = 'Pide tu propuesta';
-  elements.formHeadingText.textContent = 'Deja nombre, email y objetivo.';
-  elements.formSubmit.textContent = 'Enviar';
+  elements.formHeadingTitle.textContent = 'Pide una propuesta clara';
+  elements.formHeadingText.textContent = 'Deja tu nombre, email y objetivo principal.';
+  elements.formSubmit.textContent = 'Enviar solicitud';
 };
 
 const revealObserver = new IntersectionObserver(
