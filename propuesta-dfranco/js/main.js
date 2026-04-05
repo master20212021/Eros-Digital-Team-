@@ -273,4 +273,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ============ MOBILE BOTTOM NAV ============
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+  if (mobileNav && mobileNavItems.length) {
+    // Highlight active tab on scroll
+    function updateMobileNav() {
+      var scrollY = window.scrollY + window.innerHeight / 3;
+      var current = 'hero';
+
+      sections.forEach(function(section) {
+        if (section.offsetTop <= scrollY) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      // Map to closest tab
+      var tabMap = { hero: 'hero', about: 'hero', services: 'services', gallery: 'gallery', team: 'team', testimonials: 'team', contact: 'contact' };
+      var activeTab = tabMap[current] || 'hero';
+
+      mobileNavItems.forEach(function(item) {
+        if (item.getAttribute('data-section') === activeTab) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateMobileNav, { passive: true });
+    updateMobileNav();
+
+    // Smooth scroll on tap
+    mobileNavItems.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        var targetId = this.getAttribute('href').substring(1);
+        var target = document.getElementById(targetId);
+        if (target) {
+          var offset = navbar ? navbar.offsetHeight : 0;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
 });

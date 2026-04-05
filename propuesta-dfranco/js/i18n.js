@@ -183,6 +183,13 @@
     "nl.ph": "Enter your email",
     "nl.btn": "Subscribe",
 
+    // Mobile Nav
+    "mnav.home": "Home",
+    "mnav.svc": "Services",
+    "mnav.gal": "Gallery",
+    "mnav.team": "Team",
+    "mnav.ct": "Contact",
+
     // Booking Toast
     "toast.title": "Book your appointment!",
     "toast.sub": "Tap here to schedule",

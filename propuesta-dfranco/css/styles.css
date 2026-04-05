@@ -1541,7 +1541,7 @@ ul {
 /* ============ BOOKING TOAST ============ */
 .booking-toast {
   position: fixed;
-  bottom: 100px;
+  bottom: 140px;
   left: 50%;
   transform: translateX(-50%) translateY(120px);
   z-index: 998;
@@ -1637,6 +1637,71 @@ ul {
   .booking-toast {
     display: none;
   }
+  .mobile-nav {
+    display: none;
+  }
+}
+
+/* ============ MOBILE BOTTOM NAV ============ */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 997;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  background: rgba(44, 32, 36, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(223, 176, 196, 0.15);
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
+  transition: transform 0.3s ease;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 0;
+  flex: 1;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item i {
+  font-size: 1.15rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mobile-nav-item.active {
+  color: var(--rose);
+}
+
+.mobile-nav-item.active i {
+  transform: translateY(-2px);
+}
+
+.mobile-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: var(--rose);
+  border-radius: 2px;
 }
 
 /* ============ RESPONSIVE ============ */
@@ -1878,7 +1943,7 @@ ul {
   }
 
   .footer {
-    padding: 48px 0 24px;
+    padding: 48px 0 80px;
   }
 
   .footer-grid {
@@ -1887,7 +1952,7 @@ ul {
   }
 
   .float-cta {
-    bottom: 20px;
+    bottom: 76px;
     right: 20px;
     width: 50px;
     height: 50px;
