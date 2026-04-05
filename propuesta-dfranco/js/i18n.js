@@ -183,6 +183,10 @@
     "nl.ph": "Enter your email",
     "nl.btn": "Subscribe",
 
+    // Booking Toast
+    "toast.title": "Book your appointment!",
+    "toast.sub": "Tap here to schedule",
+
     // Footer
     "ft.desc": "Full Service Salon & Master Colorist. Elevating beauty in Woodside, Queens since day one.",
     "ft.quick": "Quick Links",

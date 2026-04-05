@@ -201,6 +201,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
   counters.forEach(c => counterObserver.observe(c));
 
+  // ============ BOOKING TOAST (MOBILE) ============
+  const bookingToast = document.getElementById('bookingToast');
+  const bookingLink = document.getElementById('bookingToastLink');
+  const bookingClose = document.getElementById('bookingToastClose');
+
+  if (bookingToast) {
+    let toastDismissed = false;
+    let toastVisible = false;
+    let toastInterval;
+
+    function showToast() {
+      if (toastDismissed || toastVisible) return;
+      toastVisible = true;
+      bookingToast.classList.add('visible');
+      // Auto-hide after 6s
+      setTimeout(function() {
+        hideToast();
+      }, 6000);
+    }
+
+    function hideToast() {
+      bookingToast.classList.remove('visible');
+      toastVisible = false;
+    }
+
+    // Show first time after 8s of browsing
+    setTimeout(function() {
+      showToast();
+      // Then repeat every 25s
+      toastInterval = setInterval(function() {
+        if (!toastDismissed) showToast();
+      }, 25000);
+    }, 8000);
+
+    // Click link → scroll to contact & dismiss permanently
+    if (bookingLink) {
+      bookingLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        toastDismissed = true;
+        hideToast();
+        if (toastInterval) clearInterval(toastInterval);
+        var target = document.getElementById('contact');
+        if (target) {
+          var offset = navbar ? navbar.offsetHeight : 0;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    }
+
+    // X button → dismiss permanently
+    if (bookingClose) {
+      bookingClose.addEventListener('click', function() {
+        toastDismissed = true;
+        hideToast();
+        if (toastInterval) clearInterval(toastInterval);
+      });
+    }
+  }
+
   // ============ PARALLAX ON SCROLL ============
   const parallaxSection = document.querySelector('.parallax-quote');
   if (parallaxSection) {
