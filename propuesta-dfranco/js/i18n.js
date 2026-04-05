@@ -42,7 +42,7 @@
 
     // About
     "about.label": "Our Story",
-    "about.title": "Where Beauty<br>Becomes <em>Art</em>",
+    "about.title": "Where Beauty<br>Becomes Art",
     "about.badge": "Years of<br>Excellence",
     "about.text1": "At D'Franco Hair Salon, we believe everyone deserves to feel extraordinary. Located in the heart of Woodside, Queens, our salon has been a trusted destination for those seeking flawless color, precision cuts, and rejuvenating beauty treatments.",
     "about.text2": "Led by Master Colorist <strong>Henry Franco</strong>, our team of professionals combines artistry with the latest techniques to elevate and accentuate your natural beauty. From subtle highlights to bold transformations, we craft every look with precision and passion.",
@@ -178,8 +178,8 @@
     "ct.fb": "Send Message",
 
     // Newsletter
-    "nl.title": "Stay Beautiful",
-    "nl.sub": "Subscribe for exclusive deals, beauty tips, and salon news",
+    "nl.title": "Your Best Look Awaits",
+    "nl.sub": "Subscribe for exclusive deals, style tips, and salon news",
     "nl.ph": "Enter your email",
     "nl.btn": "Subscribe",
 
