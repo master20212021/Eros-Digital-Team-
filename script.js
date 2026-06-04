@@ -33,6 +33,8 @@ const translations = {
     },
     nav: {
       services: 'Servicios',
+      demos: 'Demos',
+      portfolio: 'Portafolio',
       process: 'Proceso',
       results: 'Resultados',
       cases: 'Casos',
@@ -501,6 +503,8 @@ const translations = {
     },
     nav: {
       services: 'Services',
+      demos: 'Demos',
+      portfolio: 'Portfolio',
       process: 'Process',
       results: 'Results',
       cases: 'Cases',
@@ -2345,7 +2349,7 @@ const applyLanguage = (language) => {
     button.classList.toggle('is-active', button.dataset.lang === language);
   });
 
-  const navLabels = [copy.nav.services, copy.nav.process, copy.nav.results, copy.nav.cases, copy.nav.stack, copy.nav.faq, copy.nav.contact];
+  const navLabels = [copy.nav.services, copy.nav.demos, copy.nav.portfolio, copy.nav.process, copy.nav.results, copy.nav.cases, copy.nav.stack, copy.nav.faq, copy.nav.contact];
   const bottomLabels = language === 'en'
     ? ['Home', 'Diagnosis', 'Services', 'Cases', 'Contact']
     : ['Inicio', 'Diagnóstico', 'Servicios', 'Casos', 'Contacto'];
@@ -2643,10 +2647,69 @@ elements.form?.addEventListener('submit', (event) => {
   setFormStatus('', currentLanguage === 'en' ? 'Sending form...' : 'Enviando formulario...');
 });
 
+const initDemoChat = () => {
+  const chat = document.getElementById('demoWaChat');
+  const typing = document.getElementById('demoTyping');
+  if (!chat) return;
+
+  let triggered = false;
+
+  const showTyping = (show) => {
+    if (typing) typing.classList.toggle('is-visible', show);
+  };
+
+  const triggerAnimation = () => {
+    if (triggered) return;
+    triggered = true;
+    chat.classList.add('is-animating');
+
+    showTyping(true);
+    window.setTimeout(() => showTyping(false), 1200);
+    window.setTimeout(() => showTyping(true), 2400);
+    window.setTimeout(() => showTyping(false), 3400);
+    window.setTimeout(() => showTyping(true), 4400);
+    window.setTimeout(() => showTyping(false), 5000);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        triggerAnimation();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  observer.observe(chat);
+};
+
+const initPortfolioFilter = () => {
+  const grid = document.getElementById('pfGrid');
+  if (!grid) return;
+
+  const btns = document.querySelectorAll('.pfbtn');
+  const cards = [...grid.querySelectorAll('.pf-card')];
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btns.forEach((b) => b.classList.remove('pfbtn-active'));
+      btn.classList.add('pfbtn-active');
+
+      const filter = btn.dataset.pf;
+      cards.forEach((card) => {
+        const show = filter === 'all' || card.dataset.cat === filter;
+        card.classList.toggle('pf-hidden', !show);
+      });
+    });
+  });
+};
+
 window.addEventListener('scroll', syncTopbarState, { passive: true });
 window.addEventListener('scroll', syncBottomNavState, { passive: true });
 applyLanguage(detectInitialLanguage());
 initInteractiveCarousels();
+initDemoChat();
+initPortfolioFilter();
 syncTopbarState();
 syncBottomNavState();
 syncFormConfiguration();
