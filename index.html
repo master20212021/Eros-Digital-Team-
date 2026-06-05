@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260606c">
+  <link rel="stylesheet" href="styles.css?v=20260607a">
   <!-- GSAP Animation Engine -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
@@ -117,110 +117,21 @@
           </ul>
         </div>
 
-        <!-- Lobo Cibernético Mascot -->
-        <div class="wolf-mascot-wrap" aria-hidden="true">
-          <div class="wolf-orbit wolf-orbit-1"></div>
-          <div class="wolf-orbit wolf-orbit-2"></div>
-          <svg class="wolf-mascot" viewBox="0 0 440 480" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="wolfGlow" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="5" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
-                <feGaussianBlur stdDeviation="12" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <linearGradient id="wolfStroke" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#00ceff"/>
-                <stop offset="100%" stop-color="#a855f7"/>
-              </linearGradient>
-              <linearGradient id="wolfFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#00ceff" stop-opacity="0.07"/>
-                <stop offset="100%" stop-color="#a855f7" stop-opacity="0.03"/>
-              </linearGradient>
-            </defs>
-            <!-- Outer hex glow ring -->
-            <polygon points="220,18 372,102 372,270 220,354 68,270 68,102" fill="none" stroke="url(#wolfStroke)" stroke-width="1" opacity="0.14" filter="url(#wolfGlow)"/>
-            <!-- Inner hex -->
-            <polygon points="220,54 336,118 336,244 220,308 104,244 104,118" fill="url(#wolfFill)" stroke="url(#wolfStroke)" stroke-width="0.5" opacity="0.2"/>
-            <!-- LEFT EAR -->
-            <polygon points="124,142 157,60 200,150" fill="rgba(0,16,36,0.92)" stroke="url(#wolfStroke)" stroke-width="2.5" filter="url(#wolfGlow)"/>
-            <polygon points="139,138 158,78 182,142" fill="rgba(0,160,230,0.14)" stroke="#00ceff" stroke-width="1" opacity="0.55"/>
-            <!-- RIGHT EAR -->
-            <polygon points="240,150 283,60 316,142" fill="rgba(0,16,36,0.92)" stroke="url(#wolfStroke)" stroke-width="2.5" filter="url(#wolfGlow)"/>
-            <polygon points="258,142 282,78 301,138" fill="rgba(0,160,230,0.14)" stroke="#00ceff" stroke-width="1" opacity="0.55"/>
-            <!-- HEAD -->
-            <polygon points="83,168 128,110 178,134 220,118 262,134 312,110 357,168 370,278 332,388 220,430 108,388 70,278" fill="rgba(1,7,20,0.94)" stroke="url(#wolfStroke)" stroke-width="2.5" filter="url(#wolfGlow)"/>
-            <!-- Face inner panel -->
-            <polygon points="154,202 220,176 286,202 280,262 220,286 160,262" fill="rgba(0,10,25,0.55)" stroke="rgba(0,200,255,0.14)" stroke-width="1"/>
-            <!-- SNOUT -->
-            <polygon points="184,288 220,270 256,288 248,350 220,366 192,350" fill="rgba(0,7,18,0.96)" stroke="url(#wolfStroke)" stroke-width="2" filter="url(#wolfGlow)"/>
-            <!-- NOSE -->
-            <polygon points="207,332 220,322 233,332 220,344" fill="#00ceff" filter="url(#eyeGlow)" opacity="0.92"/>
-            <!-- LEFT EYE SOCKET -->
-            <ellipse cx="157" cy="226" rx="33" ry="26" fill="rgba(0,4,14,0.98)" stroke="rgba(0,200,255,0.18)" stroke-width="1.5"/>
-            <!-- Left eye glow -->
-            <ellipse cx="157" cy="226" rx="22" ry="17" fill="#00ceff" filter="url(#eyeGlow)" opacity="0.88">
-              <animate attributeName="opacity" values="0.88;1;0.84;1;0.88" dur="3.6s" repeatCount="indefinite"/>
-              <animate attributeName="rx" values="22;23.5;22" dur="3.6s" repeatCount="indefinite"/>
-            </ellipse>
-            <!-- Left pupil -->
-            <ellipse cx="157" cy="226" rx="10" ry="13" fill="#000d1e"/>
-            <ellipse cx="152" cy="220" rx="3.5" ry="2.5" fill="white" opacity="0.45"/>
-            <!-- RIGHT EYE SOCKET -->
-            <ellipse cx="283" cy="226" rx="33" ry="26" fill="rgba(0,4,14,0.98)" stroke="rgba(0,200,255,0.18)" stroke-width="1.5"/>
-            <!-- Right eye glow -->
-            <ellipse cx="283" cy="226" rx="22" ry="17" fill="#00ceff" filter="url(#eyeGlow)" opacity="0.88">
-              <animate attributeName="opacity" values="0.84;1;0.88;1;0.84" dur="3.6s" repeatCount="indefinite" begin="0.5s"/>
-              <animate attributeName="rx" values="22;23.5;22" dur="3.6s" repeatCount="indefinite" begin="0.5s"/>
-            </ellipse>
-            <!-- Right pupil -->
-            <ellipse cx="283" cy="226" rx="10" ry="13" fill="#000d1e"/>
-            <ellipse cx="278" cy="220" rx="3.5" ry="2.5" fill="white" opacity="0.45"/>
-            <!-- BROW LINES -->
-            <line x1="128" y1="196" x2="157" y2="202" stroke="#00ceff" stroke-width="2" opacity="0.6" filter="url(#wolfGlow)"/>
-            <line x1="283" y1="202" x2="312" y2="196" stroke="#00ceff" stroke-width="2" opacity="0.6" filter="url(#wolfGlow)"/>
-            <!-- LEFT TEMPLE CIRCUIT -->
-            <path d="M 126 212 L 108 202 L 93 212 L 86 232" stroke="#00ceff" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4 2" filter="url(#wolfGlow)"/>
-            <circle cx="86" cy="232" r="3.5" fill="#00ceff" opacity="0.85" filter="url(#eyeGlow)"/>
-            <circle cx="93" cy="212" r="2" fill="#00ceff" opacity="0.5"/>
-            <!-- RIGHT TEMPLE CIRCUIT -->
-            <path d="M 314 212 L 332 202 L 347 212 L 354 232" stroke="#00ceff" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4 2" filter="url(#wolfGlow)"/>
-            <circle cx="354" cy="232" r="3.5" fill="#00ceff" opacity="0.85" filter="url(#eyeGlow)"/>
-            <circle cx="347" cy="212" r="2" fill="#00ceff" opacity="0.5"/>
-            <!-- FOREHEAD MARK -->
-            <path d="M 200 156 L 220 138 L 240 156" stroke="url(#wolfStroke)" stroke-width="2.5" fill="none" opacity="0.85" filter="url(#wolfGlow)"/>
-            <circle cx="220" cy="138" r="5" fill="#00ceff" filter="url(#eyeGlow)" opacity="0.95"/>
-            <circle cx="200" cy="156" r="2.5" fill="#a855f7" opacity="0.7"/>
-            <circle cx="240" cy="156" r="2.5" fill="#a855f7" opacity="0.7"/>
-            <!-- CHIN CIRCUITS -->
-            <path d="M 192 360 L 178 377 L 186 396" stroke="#a855f7" stroke-width="1.5" fill="none" opacity="0.5"/>
-            <path d="M 248 360 L 262 377 L 254 396" stroke="#a855f7" stroke-width="1.5" fill="none" opacity="0.5"/>
-            <!-- Corner markers -->
-            <rect x="74" y="164" width="9" height="9" fill="none" stroke="#00ceff" stroke-width="1.5" opacity="0.55" transform="rotate(45 78.5 168.5)"/>
-            <rect x="357" y="164" width="9" height="9" fill="none" stroke="#00ceff" stroke-width="1.5" opacity="0.55" transform="rotate(45 361.5 168.5)"/>
-            <!-- SCAN LINE (animated) -->
-            <line x1="84" y1="200" x2="356" y2="200" stroke="#00ceff" stroke-width="0.8" opacity="0">
-              <animate attributeName="y1" values="140;392;140" dur="5.5s" repeatCount="indefinite"/>
-              <animate attributeName="y2" values="140;392;140" dur="5.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0;0.45;0;0.45;0" dur="5.5s" repeatCount="indefinite"/>
-            </line>
-          </svg>
-        </div>
-      </section>
-
-      <!-- ── Scroll-Driven Video ── -->
-      <section class="scroll-video-section" aria-label="Animación de presentación">
-        <div class="scroll-video-sticky">
-          <video id="scrollVideo" muted playsinline preload="auto" webkit-playsinline>
-            <source src="assets/animacion.mp4" type="video/mp4">
-          </video>
-          <div class="scroll-video-hint" aria-hidden="true">
-            <span>SCROLL</span>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
-              <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <!-- Video como animación principal del hero -->
+        <div class="hero-video-wrap" aria-hidden="true">
+          <div class="hero-video-frame">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              poster="assets/animacion-poster.jpg">
+              <source src="assets/animacion-web.webm" type="video/webm">
+              <source src="assets/animacion-web.mp4" type="video/mp4">
+            </video>
           </div>
         </div>
       </section>
@@ -541,47 +452,6 @@
   <!-- Cursor glow follower -->
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <!-- Wolf Runner — lobo que corre por la pantalla -->
-  <div class="wolf-runner" id="wolfRunner" aria-hidden="true">
-    <div class="wolf-run-trail"></div>
-    <svg class="wolf-run-svg" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="runGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <!-- body -->
-      <ellipse cx="65" cy="52" rx="38" ry="20" fill="#00ceff" opacity="0.88" filter="url(#runGlow)"/>
-      <!-- neck -->
-      <polygon points="93,38 106,30 101,52 88,52" fill="#00ceff" opacity="0.82"/>
-      <!-- head -->
-      <ellipse cx="113" cy="29" rx="18" ry="15" fill="#00ceff" opacity="0.92" filter="url(#runGlow)"/>
-      <!-- snout -->
-      <polygon points="128,25 138,23 138,32 126,32" fill="#00ceff" opacity="0.8"/>
-      <!-- ear 1 -->
-      <polygon points="106,16 113,4 121,16" fill="#00ceff" opacity="0.92"/>
-      <!-- ear 2 -->
-      <polygon points="101,15 109,5 115,15" fill="#00ceff" opacity="0.7"/>
-      <!-- tail -->
-      <path d="M 27 47 C 12 36 6 18 18 12 C 23 9 27 13 23 21" stroke="#00ceff" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.82" filter="url(#runGlow)"/>
-      <!-- eye -->
-      <circle cx="118" cy="26" r="4.5" fill="#001530"/>
-      <circle cx="118" cy="26" r="2.5" fill="white" opacity="0.95"/>
-      <circle cx="117" cy="25" r="1" fill="#00ceff" opacity="0.8"/>
-      <!-- front legs -->
-      <line x1="80" y1="70" x2="70" y2="84" stroke="#00ceff" stroke-width="4" stroke-linecap="round" opacity="0.82"/>
-      <line x1="93" y1="70" x2="109" y2="82" stroke="#00ceff" stroke-width="4" stroke-linecap="round" opacity="0.82"/>
-      <!-- back legs -->
-      <line x1="48" y1="68" x2="35" y2="82" stroke="#00ceff" stroke-width="4" stroke-linecap="round" opacity="0.82"/>
-      <line x1="57" y1="68" x2="69" y2="80" stroke="#00ceff" stroke-width="4" stroke-linecap="round" opacity="0.82"/>
-      <!-- motion dots -->
-      <circle cx="20" cy="60" r="3.5" fill="#00ceff" opacity="0.5"/>
-      <circle cx="10" cy="64" r="2.5" fill="#00ceff" opacity="0.35"/>
-      <circle cx="3" cy="67" r="1.5" fill="#00ceff" opacity="0.2"/>
-    </svg>
-  </div>
-
-  <script src="script.js?v=20260606c"></script>
+  <script src="script.js?v=20260607a"></script>
 </body>
 </html>

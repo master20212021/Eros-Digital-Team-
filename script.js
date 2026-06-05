@@ -2680,15 +2680,14 @@ syncFormConfiguration();
 syncFormFeedback();
 
 /* ═══════════════════════════════════════════════
-   CYBERNETIC WOLF — GSAP Animations
-   Lobo cibernético: scroll reveals + wolf runner + cursor
+   HERO + SCROLL ANIMATIONS — GSAP
    ═══════════════════════════════════════════════ */
-const initWolfAnimations = () => {
+const initHeroAnimations = () => {
   if (typeof gsap === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ── Hero entrance stagger (solo posición, sin ocultar con opacity) ── */
+  /* ── Hero entrance stagger ── */
   const heroCopy = document.querySelectorAll('.hero-copy > *');
   if (heroCopy.length) {
     gsap.from(heroCopy, {
@@ -2697,16 +2696,16 @@ const initWolfAnimations = () => {
     });
   }
 
-  /* Wolf mascot entrance */
-  const wolfWrap = document.querySelector('.wolf-mascot-wrap');
-  if (wolfWrap) {
-    gsap.from(wolfWrap, {
-      x: 80, duration: 1.3, ease: 'power3.out', delay: 0.25,
+  /* Hero video entrance */
+  const heroVideo = document.querySelector('.hero-video-wrap');
+  if (heroVideo) {
+    gsap.from(heroVideo, {
+      x: 60, duration: 1.1, ease: 'power3.out', delay: 0.2,
       clearProps: 'transform'
     });
   }
 
-  /* ── Scroll-triggered service cards (solo slide, sin opacity) ── */
+  /* ── Scroll-triggered service cards ── */
   gsap.utils.toArray('.svc-card').forEach((card, i) => {
     gsap.from(card, {
       y: 40, duration: 0.7, delay: i * 0.09, ease: 'power3.out',
@@ -2742,80 +2741,6 @@ const initWolfAnimations = () => {
     });
   });
 
-
-  /* ═══════════════════════════════════════
-     WOLF RUNNER — crosses the screen
-     ═══════════════════════════════════════ */
-  const wolfRunner = document.getElementById('wolfRunner');
-  if (wolfRunner) {
-    let isRunning = false;
-
-    const runWolf = () => {
-      if (isRunning) return;
-      isRunning = true;
-
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const runY = vh * 0.55 + Math.random() * vh * 0.3;
-      const dur = 2.8 + Math.random() * 1.4;
-
-      /* Set start position — wolf comes from left */
-      gsap.set(wolfRunner, {
-        x: -160,
-        y: runY,
-        opacity: 1,
-        scaleX: 1  /* facing right */
-      });
-
-      const tl = gsap.timeline({
-        onComplete: () => {
-          isRunning = false;
-          /* Schedule next run: 10-22 seconds */
-          setTimeout(runWolf, 10000 + Math.random() * 12000);
-        }
-      });
-
-      tl
-        /* Run across screen */
-        .to(wolfRunner, {
-          x: vw + 160,
-          duration: dur,
-          ease: 'none'
-        })
-        /* Jump in the middle */
-        .to(wolfRunner, {
-          y: runY - 80,
-          duration: dur * 0.18,
-          ease: 'power2.out'
-        }, dur * 0.35)
-        .to(wolfRunner, {
-          y: runY,
-          duration: dur * 0.18,
-          ease: 'bounce.out'
-        }, dur * 0.53)
-        /* Fade out at edge */
-        .to(wolfRunner, { opacity: 0, duration: 0.25 }, `>-0.25`);
-    };
-
-    /* Leg bounce via requestAnimationFrame */
-    let lastX = -160;
-    const bounceLegs = () => {
-      const matrix = new DOMMatrix(getComputedStyle(wolfRunner).transform);
-      const currentX = matrix.m41;
-      if (Math.abs(currentX - lastX) > 0.5) {
-        const t = Date.now() / 80;
-        const svg = wolfRunner.querySelector('.wolf-run-svg');
-        if (svg) svg.style.transform = `translateY(${Math.sin(t) * 5}px)`;
-        lastX = currentX;
-      }
-      requestAnimationFrame(bounceLegs);
-    };
-    bounceLegs();
-
-    /* First run after 4 seconds */
-    setTimeout(runWolf, 4000);
-  }
-
   /* ═══════════════════════════════════════
      CURSOR GLOW FOLLOWER
      ═══════════════════════════════════════ */
@@ -2836,59 +2761,36 @@ const initWolfAnimations = () => {
 };
 
 /* Init on load (GSAP deferred) */
-window.addEventListener('load', initWolfAnimations);
+window.addEventListener('load', initHeroAnimations);
 
 /* ═══════════════════════════════════════════════════════
-   SCROLL-DRIVEN VIDEO
-   El video avanza con scroll hacia abajo y retrocede
-   con scroll hacia arriba — sin autoplay, 100% manual.
+   HERO VIDEO — Asegurar autoplay en navegadores estrictos
    ═══════════════════════════════════════════════════════ */
-const initScrollVideo = () => {
-  const video = document.getElementById('scrollVideo');
-  const section = document.querySelector('.scroll-video-section');
-  if (!video || !section) return;
+const ensureHeroVideoPlays = () => {
+  const video = document.querySelector('.hero-video');
+  if (!video) return;
 
-  /* Ensure video is paused and at frame 0 */
-  video.pause();
-  video.currentTime = 0;
-
-  const onMeta = () => {
-    const duration = video.duration;
-    if (!duration || !isFinite(duration)) return;
-
-    let ticking = false;
-
-    const update = () => {
-      const rect = section.getBoundingClientRect();
-      const scrollable = section.offsetHeight - window.innerHeight;
-      const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
-      video.currentTime = progress * duration;
-      /* Hide scroll hint once user starts interacting */
-      if (progress > 0.02) {
-        section.classList.add('sv-scrolled');
-      } else {
-        section.classList.remove('sv-scrolled');
-      }
-      ticking = false;
-    };
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    /* Initial sync */
-    update();
+  const tryPlay = () => {
+    const p = video.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {
+        /* Si autoplay bloqueado, arrancar al primer gesto del usuario */
+        const onFirstGesture = () => {
+          video.play().catch(() => {});
+          window.removeEventListener('touchstart', onFirstGesture);
+          window.removeEventListener('click', onFirstGesture);
+          window.removeEventListener('scroll', onFirstGesture);
+        };
+        window.addEventListener('touchstart', onFirstGesture, { once: true, passive: true });
+        window.addEventListener('click', onFirstGesture, { once: true });
+        window.addEventListener('scroll', onFirstGesture, { once: true, passive: true });
+      });
+    }
   };
 
-  if (video.readyState >= 1) {
-    onMeta();
-  } else {
-    video.addEventListener('loadedmetadata', onMeta, { once: true });
-  }
+  if (video.readyState >= 2) tryPlay();
+  else video.addEventListener('loadeddata', tryPlay, { once: true });
 };
 
-initScrollVideo();
+ensureHeroVideoPlays();
 
