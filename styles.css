@@ -86,25 +86,25 @@ body.menu-scrolled .topbar {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 68px;
-  height: 68px;
-  border-radius: 20px;
-  background: rgba(91, 143, 255, 0.06);
-  border: 1px solid rgba(91, 143, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
   font-family: "Syncopate", sans-serif;
   font-size: 0.95rem;
-  overflow: hidden;
   flex-shrink: 0;
 }
 
 .brand-logo {
-  width: 60px;
-  height: 60px;
+  width: auto;
+  height: 64px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(91, 143, 255, 0.55)) drop-shadow(0 0 18px rgba(219, 104, 255, 0.35));
+  filter: drop-shadow(0 0 10px rgba(0, 200, 255, 0.55)) drop-shadow(0 0 22px rgba(219, 104, 255, 0.4));
   transition: filter 320ms ease, transform 320ms ease;
+}
+
+.brand-copy strong {
+  display: none;
 }
 
 .brand:hover .brand-logo {
@@ -1674,10 +1674,14 @@ h3 {
 }
 
 .footer-logo {
-  width: 64px;
-  height: 64px;
+  width: auto;
+  height: 104px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(91, 143, 255, 0.45)) drop-shadow(0 0 16px rgba(219, 104, 255, 0.3));
+  filter: drop-shadow(0 0 10px rgba(0, 200, 255, 0.5)) drop-shadow(0 0 22px rgba(219, 104, 255, 0.35));
+}
+
+.footer-brand > div strong {
+  display: none;
 }
 
 .contact-card {
@@ -2896,14 +2900,12 @@ h3 {
   }
 
   .brand-mark {
-    width: 56px;
-    height: 56px;
-    border-radius: 18px;
+    height: 52px;
   }
 
   .brand-logo {
-    width: 48px;
-    height: 48px;
+    width: auto;
+    height: 52px;
   }
 
   .brand-copy strong {
@@ -4106,10 +4108,11 @@ h3 {
 }
 .nav a:hover { color: var(--cyan) !important; }
 .brand-mark {
-  background: rgba(0, 200, 255, 0.06) !important;
-  border: 1px solid rgba(0, 200, 255, 0.22) !important;
-  box-shadow: 0 0 24px rgba(0, 200, 255, 0.18), inset 0 0 18px rgba(91, 143, 255, 0.08) !important;
-  overflow: hidden !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
 }
 
 /* ── Hero 2-column grid ── */
