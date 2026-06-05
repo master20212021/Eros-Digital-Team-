@@ -2678,3 +2678,170 @@ syncTopbarState();
 syncBottomNavState();
 syncFormConfiguration();
 syncFormFeedback();
+
+/* ═══════════════════════════════════════════════
+   CYBERNETIC WOLF — GSAP Animations
+   Lobo cibernético: scroll reveals + wolf runner + cursor
+   ═══════════════════════════════════════════════ */
+const initWolfAnimations = () => {
+  if (typeof gsap === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ── Hero entrance stagger ── */
+  const heroCopy = document.querySelectorAll('.hero-copy > *');
+  if (heroCopy.length) {
+    gsap.fromTo(heroCopy,
+      { y: 48, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, stagger: 0.13, ease: 'power3.out', delay: 0.15 }
+    );
+  }
+
+  /* Wolf mascot entrance */
+  const wolfWrap = document.querySelector('.wolf-mascot-wrap');
+  if (wolfWrap) {
+    gsap.fromTo(wolfWrap,
+      { x: 80, opacity: 0, scale: 0.88 },
+      { x: 0, opacity: 1, scale: 1, duration: 1.3, ease: 'power3.out', delay: 0.3 }
+    );
+  }
+
+  /* ── Scroll-triggered service cards ── */
+  gsap.utils.toArray('.svc-card').forEach((card, i) => {
+    gsap.fromTo(card,
+      { y: 55, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.75, delay: i * 0.1, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  /* ── Scroll-triggered portfolio cards ── */
+  gsap.utils.toArray('.pf-card-client').forEach((card, i) => {
+    gsap.fromTo(card,
+      { x: -35, opacity: 0 },
+      {
+        x: 0, opacity: 1, duration: 0.7, delay: i * 0.14, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  /* ── Section headings ── */
+  gsap.utils.toArray('.section-heading').forEach(el => {
+    gsap.fromTo(el,
+      { y: 30, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  /* ── FAQ items stagger ── */
+  gsap.utils.toArray('.faq-item').forEach((el, i) => {
+    gsap.fromTo(el,
+      { y: 24, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 0.55, delay: i * 0.07, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  /* ═══════════════════════════════════════
+     WOLF RUNNER — crosses the screen
+     ═══════════════════════════════════════ */
+  const wolfRunner = document.getElementById('wolfRunner');
+  if (wolfRunner) {
+    let isRunning = false;
+
+    const runWolf = () => {
+      if (isRunning) return;
+      isRunning = true;
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const runY = vh * 0.55 + Math.random() * vh * 0.3;
+      const dur = 2.8 + Math.random() * 1.4;
+
+      /* Set start position — wolf comes from left */
+      gsap.set(wolfRunner, {
+        x: -160,
+        y: runY,
+        opacity: 1,
+        scaleX: 1  /* facing right */
+      });
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isRunning = false;
+          /* Schedule next run: 10-22 seconds */
+          setTimeout(runWolf, 10000 + Math.random() * 12000);
+        }
+      });
+
+      tl
+        /* Run across screen */
+        .to(wolfRunner, {
+          x: vw + 160,
+          duration: dur,
+          ease: 'none'
+        })
+        /* Jump in the middle */
+        .to(wolfRunner, {
+          y: runY - 80,
+          duration: dur * 0.18,
+          ease: 'power2.out'
+        }, dur * 0.35)
+        .to(wolfRunner, {
+          y: runY,
+          duration: dur * 0.18,
+          ease: 'bounce.out'
+        }, dur * 0.53)
+        /* Fade out at edge */
+        .to(wolfRunner, { opacity: 0, duration: 0.25 }, `>-0.25`);
+    };
+
+    /* Leg bounce via requestAnimationFrame */
+    let lastX = -160;
+    const bounceLegs = () => {
+      const matrix = new DOMMatrix(getComputedStyle(wolfRunner).transform);
+      const currentX = matrix.m41;
+      if (Math.abs(currentX - lastX) > 0.5) {
+        const t = Date.now() / 80;
+        const svg = wolfRunner.querySelector('.wolf-run-svg');
+        if (svg) svg.style.transform = `translateY(${Math.sin(t) * 5}px)`;
+        lastX = currentX;
+      }
+      requestAnimationFrame(bounceLegs);
+    };
+    bounceLegs();
+
+    /* First run after 4 seconds */
+    setTimeout(runWolf, 4000);
+  }
+
+  /* ═══════════════════════════════════════
+     CURSOR GLOW FOLLOWER
+     ═══════════════════════════════════════ */
+  const cursorGlow = document.querySelector('.cursor-glow');
+  if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+    let mx = 0, my = 0, gx = 0, gy = 0;
+
+    window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+    const trackCursor = () => {
+      gx += (mx - gx) * 0.07;
+      gy += (my - gy) * 0.07;
+      cursorGlow.style.transform = `translate(${gx - 210}px, ${gy - 210}px)`;
+      requestAnimationFrame(trackCursor);
+    };
+    trackCursor();
+  }
+};
+
+/* Init on load (GSAP deferred) */
+window.addEventListener('load', initWolfAnimations);
+
