@@ -4087,6 +4087,10 @@ h3 {
 .hero-copy {
   position: relative;
   z-index: 2;
+  /* Safety: always visible regardless of JS reveal state */
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
 }
 
 /* ── Eyebrow neon ── */
