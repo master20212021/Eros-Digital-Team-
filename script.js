@@ -2349,7 +2349,7 @@ const applyLanguage = (language) => {
     button.classList.toggle('is-active', button.dataset.lang === language);
   });
 
-  const navLabels = [copy.nav.services, copy.nav.demos, copy.nav.portfolio, copy.nav.process, copy.nav.results, copy.nav.cases, copy.nav.stack, copy.nav.faq, copy.nav.contact];
+  const navLabels = [copy.nav.services, copy.nav.demos, copy.nav.portfolio, copy.nav.cases, copy.nav.faq, copy.nav.contact];
   const bottomLabels = language === 'en'
     ? ['Home', 'Diagnosis', 'Services', 'Cases', 'Contact']
     : ['Inicio', 'Diagnóstico', 'Servicios', 'Casos', 'Contacto'];

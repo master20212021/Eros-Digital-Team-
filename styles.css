@@ -21,6 +21,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -348,27 +350,20 @@ body.menu-open .menu-toggle span:last-child {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(390px, 450px);
-  gap: 64px;
-  align-items: start;
-  padding: 88px 0 56px;
-}
-
-.hero-copy,
-.hero-panel {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 100px 0 72px;
+  max-width: 680px;
 }
 
 .hero-copy {
-  padding-top: 4px;
-  max-width: 520px;
+  width: 100%;
 }
 
 .hero-copy .eyebrow {
-  max-width: 24ch;
   letter-spacing: 0.14em;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .eyebrow {
@@ -387,9 +382,8 @@ h3 {
 }
 
 h1 {
-  max-width: 7ch;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(2.4rem, 4.2vw, 4rem);
+  font-size: clamp(2.6rem, 5vw, 5rem);
   line-height: 1.0;
   letter-spacing: -0.04em;
   text-wrap: balance;
@@ -399,18 +393,21 @@ h2 {
   font-size: clamp(1.6rem, 2.8vw, 2.6rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 h3 {
   font-size: 1.2rem;
   letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 .hero-text {
-  max-width: 40ch;
-  margin: 22px 0 0;
-  font-size: 0.95rem;
-  line-height: 1.62;
+  max-width: 52ch;
+  margin: 24px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .hero-actions,
@@ -454,6 +451,7 @@ h3 {
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .signal-grid span {
@@ -807,23 +805,8 @@ h3 {
 }
 
 @media (max-width: 1360px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .hero-copy {
-    padding-top: 0;
-  }
-
-  .hero-panel {
-    width: 100%;
-    max-width: 560px;
-  }
-
   h1 {
-    max-width: 8ch;
-    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
   }
 }
 
@@ -911,7 +894,7 @@ h3 {
 }
 
 .section {
-  padding: 56px 0;
+  padding: 80px 0;
 }
 
 .section-heading {
@@ -3262,6 +3245,95 @@ h3 {
 }
 
 /* =============================================
+   SERVICE GRID (clean 4-card minimal)
+   ============================================= */
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.svc-card {
+  padding: 28px 24px;
+  border-radius: var(--radius);
+  background: rgba(13, 16, 26, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition-property: transform, box-shadow, border-color;
+  transition-duration: 240ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(91, 143, 255, 0.2);
+  box-shadow: var(--shadow-elevated);
+}
+
+.svc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+}
+
+.svc-icon svg { width: 22px; height: 22px; }
+
+.svc-wa    { background: rgba(52, 209, 123, 0.12); color: #34d17b; }
+.svc-carousel { background: rgba(219, 104, 255, 0.12); color: #db68ff; }
+.svc-agent { background: rgba(91, 143, 255, 0.12); color: var(--cyan); }
+.svc-ads   { background: rgba(255, 193, 80, 0.12); color: #ffc150; }
+
+.svc-card h3 {
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.svc-card p {
+  margin: 0;
+  font-size: 0.87rem;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+  text-wrap: pretty;
+}
+
+.svc-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--cyan);
+  text-decoration: none;
+  transition-property: opacity, transform;
+  transition-duration: 180ms;
+  transition-timing-function: ease-out;
+  margin-top: 4px;
+  width: fit-content;
+}
+
+.svc-link:hover {
+  opacity: 0.8;
+  transform: translateX(3px);
+}
+
+@media (max-width: 900px) {
+  .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .svc-grid { grid-template-columns: 1fr; }
+}
+
+/* =============================================
    DEMOS SECTION
    ============================================= */
 
@@ -3602,6 +3674,7 @@ h3 {
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--cyan);
+  font-variant-numeric: tabular-nums;
 }
 
 .das-item span { font-size: 0.73rem; color: var(--muted); line-height: 1.35; }
@@ -3629,6 +3702,7 @@ h3 {
   font-weight: 700;
   letter-spacing: -0.04em;
   color: #ffc150;
+  font-variant-numeric: tabular-nums;
 }
 
 .dkpi span { font-size: 0.71rem; color: var(--muted); line-height: 1.35; }

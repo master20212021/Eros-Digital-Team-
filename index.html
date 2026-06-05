@@ -61,10 +61,7 @@
         <a href="#servicios">Servicios</a>
         <a href="#demos">Demos</a>
         <a href="#portafolio">Portafolio</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#resultados">Resultados</a>
         <a href="#casos">Casos</a>
-        <a href="#stack">Stack</a>
         <a href="#faq">FAQ</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -78,36 +75,11 @@
       <a href="#servicios">Servicios</a>
       <a href="#demos">Demos</a>
       <a href="#portafolio">Portafolio</a>
-      <a href="#proceso">Proceso</a>
-      <a href="#resultados">Resultados</a>
       <a href="#casos">Casos</a>
-      <a href="#stack">Stack</a>
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
     </nav>
 
-    <nav class="bottom-app-nav" aria-label="Navegación rápida móvil">
-      <a class="bottom-app-link is-active" href="#inicio" data-bottom-nav>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-        <span>Inicio</span>
-      </a>
-      <a class="bottom-app-link" href="#diagnostico" data-bottom-nav>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <span>Diagnóstico</span>
-      </a>
-      <a class="bottom-app-link" href="#servicios" data-bottom-nav>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
-        <span>Servicios</span>
-      </a>
-      <a class="bottom-app-link" href="#casos" data-bottom-nav>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-        <span>Casos</span>
-      </a>
-      <a class="bottom-app-link" href="#contacto" data-bottom-nav>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <span>Contacto</span>
-      </a>
-    </nav>
 
     <a class="floating-whatsapp" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20proyecto" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp">
       <svg class="floating-whatsapp-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -116,70 +88,18 @@
       <span>WhatsApp</span>
     </a>
 
-    <div class="chat-widget" id="chatWidget">
-      <button class="chat-launcher" type="button" id="chatLauncher" aria-expanded="false" aria-controls="chatPanel">
-        <span class="chat-launcher-dot" aria-hidden="true"></span>
-        <span id="chatLauncherLabel">Asistente 24/7</span>
-      </button>
-
-      <section class="chat-panel is-hidden" id="chatPanel" aria-live="polite" aria-label="Asistente 24/7">
-        <div class="chat-panel-header">
-          <div class="chat-panel-heading">
-            <strong id="chatTitle">Asistente 24/7</strong>
-            <span id="chatStatus">Responde dudas, recomienda y deriva a humano.</span>
-          </div>
-          <button class="chat-close" type="button" id="chatClose" aria-label="Cerrar chat">×</button>
-        </div>
-
-        <div class="chat-quick-actions" id="chatQuickActions"></div>
-        <div class="chat-messages" id="chatMessages"></div>
-
-        <form class="chat-form" id="chatForm">
-          <label class="chat-form-label" for="chatInput" id="chatInputLabel">Escribe tu mensaje</label>
-          <div class="chat-form-row">
-            <input class="chat-input" type="text" id="chatInput" maxlength="600" placeholder="Escribe tu duda o lo que quieres resolver.">
-            <button class="button" type="submit" id="chatSubmit">Enviar</button>
-          </div>
-        </form>
-
-        <div class="chat-lead-panel" id="chatLeadPanel">
-          <div class="chat-lead-copy">
-            <strong id="chatLeadTitle">Deja tus datos</strong>
-            <p id="chatLeadText">Si quieres, te contactamos con una recomendacion clara basada en esta conversacion.</p>
-          </div>
-          <form class="chat-lead-form" id="chatLeadForm">
-            <input class="chat-input" type="text" id="chatLeadName" maxlength="80" placeholder="Tu nombre" required>
-            <input class="chat-input" type="email" id="chatLeadEmail" maxlength="120" placeholder="tu@empresa.com" required>
-            <input class="chat-input" type="text" id="chatLeadCompany" maxlength="120" placeholder="Empresa (opcional)">
-            <button class="button" type="submit" id="chatLeadSubmit">Quiero que me contacten</button>
-          </form>
-          <p class="chat-lead-status" id="chatLeadStatus" aria-live="polite"></p>
-        </div>
-
-        <div class="chat-links">
-          <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20proyecto" target="_blank" rel="noreferrer" id="chatWhatsAppLink">WhatsApp</a>
-          <a class="button button-ghost" href="#contacto" id="chatFormLink">Formulario</a>
-        </div>
-      </section>
-    </div>
-
     <main>
       <section class="hero" id="inicio">
         <div class="hero-copy">
-          <p class="eyebrow">Páginas, ayuda automática y ventas más claras.</p>
-          <h1>Haz que tu negocio se vea claro, premium y listo para vender.</h1>
+          <p class="eyebrow">WhatsApp · Carruseles IA · Agentes · Publicidad</p>
+          <h1>Tu negocio, automatizado.</h1>
           <p class="hero-text">
-            Ordenamos tu presencia digital, tus respuestas y tu embudo para que la marca se vea seria y convierta mejor en web, Instagram y WhatsApp.
+            Construimos los sistemas que hacen crecer tu negocio: bots de WhatsApp, carruseles con IA, agentes inteligentes y campañas que convierten.
           </p>
           <div class="hero-actions">
-            <a class="button" href="#diagnostico">Empezar diagnóstico</a>
+            <a class="button" href="#demos">Ver demos</a>
             <a class="button button-secondary" href="#contacto">Hablar con nosotros</a>
           </div>
-          <ul class="trust-chips" aria-label="Garantías">
-            <li>Propuesta sin costo</li>
-            <li>Respuesta en menos de 24h</li>
-            <li>Sin permanencia inicial</li>
-          </ul>
           <ul class="signal-grid" aria-label="Indicadores principales">
             <li>
               <strong>+40</strong>
@@ -195,113 +115,49 @@
             </li>
           </ul>
         </div>
-        <div class="hero-panel" id="diagnostico">
-          <div class="wizard-shell">
-            <div class="wizard-header">
-              <p class="eyebrow">Diagnóstico guiado</p>
-              <div class="wizard-progress" aria-label="Progreso del diagnóstico">
-                <span class="wizard-progress-current">01</span>
-                <div class="wizard-progress-bar"><span class="wizard-progress-fill"></span></div>
-                <span class="wizard-progress-total">02</span>
-              </div>
-              <h2>Cuéntanos tu nicho y qué quieres lograr para decirte por dónde arrancar.</h2>
-              <p class="wizard-intro">Primero elegimos el tipo de negocio. Luego marcas una o varias metas y te damos una recomendación clara.</p>
-            </div>
-
-            <div class="wizard-step-meta">
-              <span class="wizard-step-label">Paso 1</span>
-              <strong class="wizard-question">¿Qué tipo de negocio tienes?</strong>
-            </div>
-
-            <div class="wizard-options" role="list"></div>
-            <div class="wizard-step-actions is-hidden">
-              <button class="button" type="button" id="wizardStepContinue">Ver recomendación</button>
-            </div>
-
-            <div class="wizard-summary">
-              <div class="wizard-selection-list">
-                <div>
-                  <span>Nicho</span>
-                  <strong class="wizard-selection-niche">Pendiente</strong>
-                </div>
-                <div>
-                  <span>Metas</span>
-                  <strong class="wizard-selection-goal">Pendiente</strong>
-                </div>
-              </div>
-
-              <article class="wizard-result-card is-hidden" aria-live="polite">
-                <span class="wizard-result-tag">Diagnóstico listo</span>
-                <h3 class="wizard-result-title">Solución recomendada</h3>
-                <p class="wizard-result-text">Completa el diagnóstico para ver una recomendación personalizada.</p>
-                <div class="wizard-result-meta">
-                  <div>
-                    <span class="wizard-result-meta-label">Paquete sugerido</span>
-                    <strong class="wizard-result-package">Pendiente</strong>
-                  </div>
-                  <div>
-                    <span class="wizard-result-meta-label">Enfoque principal</span>
-                    <strong class="wizard-result-priority">Pendiente</strong>
-                  </div>
-                </div>
-                <ul class="wizard-result-list"></ul>
-                <p class="wizard-result-contact">Si esto se parece a lo que necesitas, baja al formulario y te preparamos una propuesta clara para tu negocio.</p>
-                <div class="wizard-result-actions">
-                  <a class="button" href="#contacto" id="wizardPrimaryCta">Llenar formulario</a>
-                  <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20mi%20diagnóstico" target="_blank" rel="noreferrer" id="wizardWhatsAppCta">WhatsApp</a>
-                  <button class="button button-ghost" type="button" id="wizardReset">Empezar de nuevo</button>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
       </section>
 
       <section class="section" id="servicios">
         <div class="section-heading">
-          <p class="eyebrow">Servicios principales</p>
-          <h2>Una agencia para construir presencia, automatizar operacion y acelerar ventas.</h2>
+          <p class="eyebrow">Servicios</p>
+          <h2>Cuatro sistemas que hacen crecer tu negocio.</h2>
         </div>
-        <div class="app-carousel" data-carousel>
-          <div class="app-carousel-topbar">
-            <p class="app-carousel-note">Desliza o usa las flechas para recorrer las opciones a tu ritmo.</p>
-            <div class="app-carousel-controls" data-controls-for="servicesCarousel">
-              <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-              <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
+        <div class="svc-grid">
+          <article class="svc-card">
+            <div class="svc-icon svc-wa">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.78 11.78 0 0 0 12.09 0C5.57 0 .26 5.3.26 11.82c0 2.08.54 4.11 1.57 5.91L0 24l6.46-1.69a11.78 11.78 0 0 0 5.63 1.43h.01c6.52 0 11.83-5.3 11.83-11.82 0-3.16-1.23-6.12-3.41-8.44Zm-8.43 18.27h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.21-3.83 1 1.02-3.74-.24-.38a9.82 9.82 0 0 1-1.5-5.24c0-5.42 4.42-9.84 9.86-9.84 2.63 0 5.09 1.02 6.94 2.88a9.77 9.77 0 0 1 2.89 6.95c0 5.42-4.43 9.84-9.78 9.84Z"/></svg>
             </div>
-          </div>
-          <div class="cards-grid app-carousel-track" id="servicesCarousel">
-          <article class="service-card accent-cyan">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <h3>Webs que convierten</h3>
-            <p>Landing pages, webs corporativas, ecommerce y embudos con diseño premium, velocidad y estrategia comercial.</p>
+            <h3>WhatsApp Business</h3>
+            <p>Bot inteligente que atiende, clasifica y agenda consultas 24/7 sin que respondas manualmente.</p>
+            <a class="svc-link" href="#contacto">Cotizar →</a>
           </article>
-          <article class="service-card accent-pink">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
-            <h3>Automatizaciones con IA</h3>
-            <p>Asistentes, flujos de seguimiento, automatización interna, respuestas y operaciones conectadas.</p>
+
+          <article class="svc-card">
+            <div class="svc-icon svc-carousel">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <h3>Carruseles con IA</h3>
+            <p>De una idea a slides de Instagram listos para publicar. Diseño, copy y exportación automatizados.</p>
+            <a class="svc-link" href="https://github.com/Hainrixz/open-carrusel" target="_blank" rel="noreferrer">Ver herramienta →</a>
           </article>
-          <article class="service-card accent-gold">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            <h3>Publicidad y growth</h3>
-            <p>Campañas, creatividades, textos y optimización de conversión para Meta, Google y ecosistemas digitales.</p>
+
+          <article class="svc-card">
+            <div class="svc-icon svc-agent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+            </div>
+            <h3>Agente de IA</h3>
+            <p>Automatiza atención al cliente, seguimiento de leads y operaciones internas. Trabaja mientras tú descansas.</p>
+            <a class="svc-link" href="#contacto">Cotizar →</a>
           </article>
-          <article class="service-card accent-cyan">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            <h3>Redes sociales automatizadas</h3>
-            <p>Calendarios, guiones, piezas visuales, programación y automatizaciones para mantener consistencia y alcance.</p>
+
+          <article class="svc-card">
+            <div class="svc-icon svc-ads">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <h3>Publicidad digital</h3>
+            <p>Campañas en Meta y Google con creatividades, copy y optimización continua para reducir el costo por lead.</p>
+            <a class="svc-link" href="#contacto">Cotizar →</a>
           </article>
-          <article class="service-card accent-pink">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            <h3>Apps y productos digitales</h3>
-            <p>MVPs, paneles internos, herramientas de clientes y soluciones a medida para monetizar o ganar eficiencia.</p>
-          </article>
-          <article class="service-card accent-gold">
-            <svg class="service-card-icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-            <h3>Dirección creativa integral</h3>
-            <p>Branding, tono verbal, identidad visual, storytelling y sistema de piezas para comunicar con autoridad.</p>
-          </article>
-          </div>
         </div>
       </section>
 
@@ -427,40 +283,6 @@
         </div>
       </section>
 
-      <section class="section why-section" id="diferencial">
-        <div class="section-heading">
-          <p class="eyebrow">Por qué Eros Digital Team</p>
-          <h2>No vendemos piezas sueltas. Diseñamos sistemas digitales con criterio creativo y enfoque comercial.</h2>
-        </div>
-        <div class="app-carousel-inline-bar">
-          <div class="app-carousel-controls" data-controls-for="whyCarousel">
-            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
-          </div>
-        </div>
-        <div class="why-grid app-carousel-track" id="whyCarousel" data-carousel data-sequence="pulse" data-sequence-speed="1700">
-          <article class="why-card">
-            <span>01</span>
-            <h3>Visión integral</h3>
-            <p>Marca, web, anuncios, automatización y seguimiento bajo una misma dirección para evitar caos entre proveedores.</p>
-          </article>
-          <article class="why-card">
-            <span>02</span>
-            <h3>Estética con objetivo</h3>
-            <p>La imagen importa, pero siempre al servicio de conversión, posicionamiento y claridad de oferta.</p>
-          </article>
-          <article class="why-card">
-            <span>03</span>
-            <h3>Automatización útil</h3>
-            <p>No automatizamos por moda. Automatizamos donde de verdad ahorra tiempo, mejora respuesta o aumenta ventas.</p>
-          </article>
-          <article class="why-card">
-            <span>04</span>
-            <h3>Escalable desde el inicio</h3>
-            <p>La base de la marca y del sitio queda lista para crecer a CRM, campañas, paneles y operaciones más complejas.</p>
-          </article>
-        </div>
-      </section>
 
       <!-- PORTAFOLIO -->
       <section class="section pf-section" id="portafolio">
@@ -567,145 +389,9 @@
         </div>
       </section>
 
-      <section class="section testimonials-section" id="testimonios">
-        <div class="section-heading">
-          <p class="eyebrow">Lo que dicen los clientes</p>
-          <h2>Negocios reales que ya trabajan con un sistema más claro.</h2>
-        </div>
-        <div class="app-carousel-inline-bar">
-          <div class="app-carousel-controls" data-controls-for="testimonialsCarousel">
-            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
-          </div>
-        </div>
-        <div class="testimonials-grid app-carousel-track" id="testimonialsCarousel" data-carousel>
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-            <p class="testimonial-quote">"Antes respondíamos cada consulta a mano. Ahora el sistema clasifica, responde y agenda. La diferencia en tiempo y en leads convertidos es inmediata."</p>
-            <div class="testimonial-author">
-              <strong>Dr. Marcos V.</strong>
-              <span>Clínica dental — Ciudad de México</span>
-            </div>
-          </article>
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-            <p class="testimonial-quote">"La landing convirtió mejor desde la primera semana. Con los anuncios en Meta el costo por lead bajó a la mitad. Por fin tenemos un sistema que trabaja solo."</p>
-            <div class="testimonial-author">
-              <strong>Valeria S.</strong>
-              <span>Ecommerce de moda — Bogotá</span>
-            </div>
-          </article>
-          <article class="testimonial-card">
-            <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-            <p class="testimonial-quote">"Pasamos de no tener presencia a tener web, redes y reservas automáticas en menos de 4 semanas. Los clientes nos preguntan cómo respondemos tan rápido."</p>
-            <div class="testimonial-author">
-              <strong>Carlos T.</strong>
-              <span>Restaurante — Miami</span>
-            </div>
-          </article>
-        </div>
-      </section>
 
-      <section class="section split-section" id="proceso">
-        <div>
-          <p class="eyebrow">Proceso</p>
-          <h2>Menos improvisación. Más sistema.</h2>
-          <div class="app-carousel-inline-bar app-carousel-inline-bar-start">
-            <div class="app-carousel-controls" data-controls-for="processCarousel">
-              <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-              <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
-            </div>
-          </div>
-        </div>
-        <div class="process-list app-carousel-track" id="processCarousel" data-carousel data-sequence="reveal" data-sequence-speed="1900">
-          <article>
-            <span>01</span>
-            <h3>Diagnóstico</h3>
-            <p>Analizamos negocio, oferta, cuellos de botella y oportunidades reales de automatización y crecimiento.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Diseño del sistema</h3>
-            <p>Definimos identidad, arquitectura del sitio, stack tecnológico, funnel y procesos conectados.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Ejecución</h3>
-            <p>Construimos activos visuales, desarrollo, integraciones, automatizaciones y secuencias de conversión.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Optimización</h3>
-            <p>Medimos, refinamos, iteramos anuncios, mensajes y automatizaciones para mantener resultados sostenibles.</p>
-          </article>
-        </div>
-      </section>
 
-      <section class="section results-section" id="resultados">
-        <div class="section-heading">
-          <p class="eyebrow">Resultados que vendemos</p>
-          <h2>No se trata solo de verse bien. Se trata de captar mejor, responder más rápido y convertir con menos fricción.</h2>
-        </div>
-        <div class="app-carousel-inline-bar">
-          <div class="app-carousel-controls" data-controls-for="resultsCarousel">
-            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
-          </div>
-        </div>
-        <div class="results-grid app-carousel-track" id="resultsCarousel" data-carousel>
-          <article class="result-card">
-            <span class="result-kicker">Captación</span>
-            <strong>Más leads calificados</strong>
-            <p>Landing pages con texto comercial, anuncios conectados y formularios pensados para elevar conversión.</p>
-          </article>
-          <article class="result-card">
-            <span class="result-kicker">Operación</span>
-            <strong>Menos trabajo manual</strong>
-            <p>Automatizaciones de seguimiento, CRM, respuestas, agenda e integraciones para ahorrar tiempo operativo.</p>
-          </article>
-          <article class="result-card">
-            <span class="result-kicker">Marca</span>
-            <strong>Más autoridad digital</strong>
-            <p>Una presencia visual y verbal coherente que posiciona mejor a la empresa y sube el valor percibido.</p>
-          </article>
-        </div>
-        <div class="proof-strip" aria-label="Beneficios clave">
-          <div>
-            <strong>Web + Ads + CRM</strong>
-            <span>Un solo sistema conectado</span>
-          </div>
-          <div>
-            <strong>Contenido + IA</strong>
-            <span>Escala de ejecución sin perder criterio</span>
-          </div>
-          <div>
-            <strong>Marca + Conversión</strong>
-            <span>Estética premium con enfoque comercial</span>
-          </div>
-        </div>
-      </section>
 
-      <section class="section stack-section" id="stack">
-        <div class="section-heading">
-          <p class="eyebrow">Oferta expandida</p>
-          <h2>Lo que también podemos ofrecer para crecer el ticket y ampliar la propuesta de valor.</h2>
-          <p class="chip-cloud-note">Toca una o varias opciones y las agregamos al formulario como tickets.</p>
-        </div>
-        <div class="chip-cloud">
-          <button type="button" data-ticket-index="0">Embudos de ventas</button>
-          <button type="button" data-ticket-index="1">Chatbots y agentes IA</button>
-          <button type="button" data-ticket-index="2">Email marketing</button>
-          <button type="button" data-ticket-index="3">CRM pipelines</button>
-          <button type="button" data-ticket-index="4">Dashboards</button>
-          <button type="button" data-ticket-index="5">Contenido short-form</button>
-          <button type="button" data-ticket-index="6">Automatización de prospectos</button>
-          <button type="button" data-ticket-index="7">SEO on-page</button>
-          <button type="button" data-ticket-index="8">Brand systems</button>
-          <button type="button" data-ticket-index="9">Producción audiovisual</button>
-          <button type="button" data-ticket-index="10">Remarketing</button>
-          <button type="button" data-ticket-index="11">Integraciones API</button>
-        </div>
-      </section>
 
       <section class="section cases-section" id="casos">
         <div class="section-heading">
@@ -781,86 +467,7 @@
         </div>
       </section>
 
-      <section class="section packages-section" id="paquetes">
-        <div class="section-heading">
-          <p class="eyebrow">Modelos de oferta</p>
-          <h2>Paquetes claros para empezar rápido y escalar después con soluciones a medida.</h2>
-        </div>
-        <div class="app-carousel-inline-bar">
-          <div class="app-carousel-controls" data-controls-for="packagesCarousel">
-            <button class="app-carousel-btn" type="button" data-dir="prev" aria-label="Anterior">&larr;</button>
-            <button class="app-carousel-btn" type="button" data-dir="next" aria-label="Siguiente">&rarr;</button>
-          </div>
-        </div>
-        <div class="packages-grid app-carousel-track" id="packagesCarousel" data-carousel>
-          <article class="package-card package-card-featured">
-            <span class="package-tag">Entrada</span>
-            <h3>Presencia premium</h3>
-            <p>Para negocios que necesitan una imagen seria, una web potente y una estructura comercial clara.</p>
-            <ul>
-              <li>Landing o web corporativa</li>
-              <li>Copy base de conversión</li>
-              <li>Sistema visual inicial</li>
-            </ul>
-          </article>
-          <article class="package-card">
-            <span class="package-tag">Crecimiento</span>
-            <h3>Growth engine</h3>
-            <p>Para marcas que quieren captar leads, automatizar seguimiento y conectar marketing con ventas.</p>
-            <ul>
-              <li>Landing + anuncios</li>
-              <li>CRM y automatizaciones</li>
-              <li>Optimización de conversión</li>
-            </ul>
-          </article>
-          <article class="package-card">
-            <span class="package-tag">Escala</span>
-            <h3>AI operations</h3>
-            <p>Para empresas que ya venden y quieren velocidad operativa, integraciones y menos trabajo manual.</p>
-            <ul>
-              <li>Agentes y flujos IA</li>
-              <li>Integraciones entre herramientas</li>
-              <li>Paneles o procesos internos</li>
-            </ul>
-          </article>
-        </div>
-      </section>
 
-      <section class="section launch-section" id="lanzamiento">
-        <div class="section-heading">
-          <p class="eyebrow">Sprint de lanzamiento</p>
-          <h2>Así se ve una primera entrega bien armada cuando un cliente quiere salir rápido y con criterio.</h2>
-        </div>
-        <div class="launch-layout">
-          <div class="launch-timeline">
-            <article>
-              <span>Semana 1</span>
-              <h3>Dirección y estructura</h3>
-              <p>Oferta, narrativa, visual base, arquitectura del sitio y mapa del sistema comercial.</p>
-            </article>
-            <article>
-              <span>Semana 2</span>
-              <h3>Construcción</h3>
-              <p>Diseño de home, textos, integraciones base, automatización inicial y activos visuales.</p>
-            </article>
-            <article>
-              <span>Semana 3</span>
-              <h3>Salida y optimización</h3>
-              <p>Revisión final, despliegue, QA, primeras mejoras y preparación del siguiente sprint.</p>
-            </article>
-          </div>
-          <div class="launch-card">
-            <p class="eyebrow">Incluye</p>
-            <ul>
-              <li>Copy principal y propuesta de valor</li>
-              <li>Diseño de home y secciones clave</li>
-              <li>Formulario o entrada de leads</li>
-              <li>SEO base y metadatos</li>
-              <li>Preparación para dominio y despliegue</li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       <section class="section contact-section" id="contacto">
         <div class="contact-layout">
@@ -951,13 +558,6 @@
       </section>
     </main>
 
-    <section class="cta-ribbon">
-      <div>
-        <strong>¿Quieres una primera propuesta visual y comercial?</strong>
-        <span>Podemos usar esta base para convertirla en una web final de ventas.</span>
-      </div>
-      <a class="button" href="#contacto">Solicitar propuesta</a>
-    </section>
 
     <footer class="site-footer">
       <div class="footer-brand">
