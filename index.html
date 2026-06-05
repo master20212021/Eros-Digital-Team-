@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260607a">
+  <link rel="stylesheet" href="styles.css?v=20260607b">
   <!-- GSAP Animation Engine -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
@@ -342,25 +342,14 @@
         <div class="contact-layout">
           <div class="contact-card">
             <p class="eyebrow">Siguiente paso</p>
-            <h2>Cuéntanos tu proyecto y te respondemos con una propuesta clara en menos de 24h.</h2>
+            <h2>Cuéntanos tu proyecto. Respondemos en menos de 24h.</h2>
             <p>
-              Sin presupuestos abiertos ni reuniones interminables. Revisamos tu caso, te mandamos 
-              una propuesta detallada con alcance, tiempos y precio, y tú decides si arrancamos.
+              Sin presupuestos abiertos ni reuniones largas. Te mandamos una propuesta con alcance, tiempos y precio fijo.
             </p>
-            <ul class="contact-points" aria-label="Lo que incluye el proceso">
-              <li>Diagnóstico de tu situación actual y oportunidades</li>
-              <li>Propuesta detallada con entregables y precio fijo</li>
-              <li>Primer sprint activo en 3 semanas desde el arranque</li>
-            </ul>
             <div class="contact-actions">
               <a class="button" href="mailto:erosdigitalteam@gmail.com">erosdigitalteam@gmail.com</a>
               <a class="button button-secondary" href="https://wa.me/19294033746?text=Hola%20Eros%20Digital%20Team,%20quiero%20hablar%20sobre%20automatizaciones%20y%20web" target="_blank" rel="noreferrer">WhatsApp</a>
             </div>
-            <ul class="trust-chips contact-trust-chips" aria-label="Compromisos">
-              <li>Propuesta detallada sin costo</li>
-              <li>Respuesta en menos de 24h</li>
-              <li>Sin compromiso de permanencia</li>
-            </ul>
           </div>
 
           <form class="contact-form" action="https://formsubmit.co/erosdigitalteam@gmail.com" method="POST" accept-charset="UTF-8">
@@ -375,10 +364,10 @@
             <div class="form-heading">
               <p class="eyebrow">Formulario</p>
               <h3>Cuéntanos qué necesitas</h3>
-              <p>Completa los datos y describe tu proyecto. Te respondemos con una orientación clara dentro de un día hábil.</p>
+              <p>Tres datos clave y te respondemos en menos de 24h con una propuesta concreta.</p>
             </div>
 
-            <div class="quick-request-panel">
+            <div class="quick-request-panel is-hidden" aria-hidden="true" hidden>
               <div class="quick-request-copy">
                 <strong class="quick-request-title">Solicitud rápida</strong>
                 <p class="quick-request-text">Selecciona lo que necesitas y lo adjuntamos como tickets a tu solicitud.</p>
@@ -396,10 +385,6 @@
               <input type="email" name="email" placeholder="tu@empresa.com" required>
             </label>
             <label>
-              <span>Empresa</span>
-              <input type="text" name="empresa" placeholder="Nombre de tu empresa">
-            </label>
-            <label>
               <span>Servicio principal</span>
               <select name="servicio">
                 <option value="">Selecciona una opción</option>
@@ -412,7 +397,7 @@
             </label>
             <label>
               <span>Proyecto</span>
-              <textarea name="mensaje" rows="5" placeholder="Cuéntanos objetivo, problema actual y que quieres automatizar o vender mejor."></textarea>
+              <textarea name="mensaje" rows="4" placeholder="Cuéntanos brevemente qué quieres lograr."></textarea>
             </label>
 
             <button class="button" type="submit">Enviar briefing</button>
@@ -452,6 +437,6 @@
   <!-- Cursor glow follower -->
   <div class="cursor-glow" aria-hidden="true"></div>
 
-  <script src="script.js?v=20260607a"></script>
+  <script src="script.js?v=20260607b"></script>
 </body>
 </html>

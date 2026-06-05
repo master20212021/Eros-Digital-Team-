@@ -88,19 +88,28 @@ body.menu-scrolled .topbar {
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: rgba(91, 143, 255, 0.1);
-  border: 1px solid rgba(91, 143, 255, 0.2);
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: rgba(91, 143, 255, 0.06);
+  border: 1px solid rgba(91, 143, 255, 0.18);
   font-family: "Syncopate", sans-serif;
   font-size: 0.95rem;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .brand-logo {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(91, 143, 255, 0.55)) drop-shadow(0 0 18px rgba(219, 104, 255, 0.35));
+  transition: filter 320ms ease, transform 320ms ease;
+}
+
+.brand:hover .brand-logo {
+  filter: drop-shadow(0 0 12px rgba(91, 143, 255, 0.85)) drop-shadow(0 0 26px rgba(219, 104, 255, 0.55));
+  transform: scale(1.04);
 }
 
 .brand-copy {
@@ -1356,62 +1365,93 @@ h3 {
 }
 
 .cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  grid-template-columns: none;
   gap: 20px;
 }
 
 .case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding: 28px;
   border-radius: var(--radius);
-  background: rgba(13, 16, 26, 0.9);
+  background: rgba(13, 16, 26, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: var(--shadow);
+  transition: var(--card-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.case-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(91, 143, 255, 0.05), transparent 55%);
+  pointer-events: none;
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(91, 143, 255, 0.22);
+  box-shadow: var(--shadow-elevated);
 }
 
 .case-tag {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 7px 12px;
+  display: inline-flex;
+  align-self: flex-start;
+  margin-bottom: 4px;
+  padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(91, 143, 255, 0.07);
-  border: 1px solid rgba(91, 143, 255, 0.16);
-  color: var(--text);
-  font-size: 0.74rem;
+  background: rgba(91, 143, 255, 0.1);
+  border: 1px solid rgba(91, 143, 255, 0.22);
+  color: var(--cyan);
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
+.case-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
 .case-card p {
-  margin: 14px 0 0;
-  line-height: 1.7;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
   color: var(--muted);
 }
 
 .case-card ul {
-  margin: 18px 0 0;
+  margin: 6px 0 0;
   padding: 0;
   list-style: none;
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .case-card li {
   position: relative;
-  padding-left: 18px;
-  color: var(--text);
-  line-height: 1.6;
+  padding-left: 16px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .case-card li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 11px;
-  width: 8px;
-  height: 8px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(91, 143, 255, 0.55);
 }
 
 .packages-section {
@@ -1630,13 +1670,14 @@ h3 {
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .footer-logo {
-  width: 42px;
-  height: 42px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(91, 143, 255, 0.45)) drop-shadow(0 0 16px rgba(219, 104, 255, 0.3));
 }
 
 .contact-card {
@@ -2855,13 +2896,14 @@ h3 {
   }
 
   .brand-mark {
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
   }
 
   .brand-logo {
-    width: 28px;
-    height: 28px;
+    width: 48px;
+    height: 48px;
   }
 
   .brand-copy strong {
@@ -4042,6 +4084,12 @@ h3 {
    NEON THEME v2.1 — Color, layout, video hero
    ═══════════════════════════════════════════════════════ */
 
+/* ── Hide saturated form panel (kept in DOM for translation JS) ── */
+.quick-request-panel.is-hidden,
+.quick-request-panel[hidden] {
+  display: none !important;
+}
+
 /* ── Nav neon ── */
 .topbar {
   border-color: rgba(0, 200, 255, 0.22) !important;
@@ -4058,9 +4106,10 @@ h3 {
 }
 .nav a:hover { color: var(--cyan) !important; }
 .brand-mark {
-  background: rgba(0, 200, 255, 0.08) !important;
+  background: rgba(0, 200, 255, 0.06) !important;
   border: 1px solid rgba(0, 200, 255, 0.22) !important;
-  box-shadow: 0 0 20px rgba(0, 200, 255, 0.15) !important;
+  box-shadow: 0 0 24px rgba(0, 200, 255, 0.18), inset 0 0 18px rgba(91, 143, 255, 0.08) !important;
+  overflow: hidden !important;
 }
 
 /* ── Hero 2-column grid ── */
