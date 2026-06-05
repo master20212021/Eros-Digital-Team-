@@ -1,5 +1,5 @@
 const languageButtons = [...document.querySelectorAll('.lang-btn')];
-const revealItems = document.querySelectorAll('.section, .hero-copy, .hero-panel, .cta-ribbon');
+const revealItems = document.querySelectorAll('.section');
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.getElementById('mobileNav');
 const languageStorageKey = 'edt-language';
@@ -2837,4 +2837,58 @@ const initWolfAnimations = () => {
 
 /* Init on load (GSAP deferred) */
 window.addEventListener('load', initWolfAnimations);
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL-DRIVEN VIDEO
+   El video avanza con scroll hacia abajo y retrocede
+   con scroll hacia arriba — sin autoplay, 100% manual.
+   ═══════════════════════════════════════════════════════ */
+const initScrollVideo = () => {
+  const video = document.getElementById('scrollVideo');
+  const section = document.querySelector('.scroll-video-section');
+  if (!video || !section) return;
+
+  /* Ensure video is paused and at frame 0 */
+  video.pause();
+  video.currentTime = 0;
+
+  const onMeta = () => {
+    const duration = video.duration;
+    if (!duration || !isFinite(duration)) return;
+
+    let ticking = false;
+
+    const update = () => {
+      const rect = section.getBoundingClientRect();
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+      video.currentTime = progress * duration;
+      /* Hide scroll hint once user starts interacting */
+      if (progress > 0.02) {
+        section.classList.add('sv-scrolled');
+      } else {
+        section.classList.remove('sv-scrolled');
+      }
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* Initial sync */
+    update();
+  };
+
+  if (video.readyState >= 1) {
+    onMeta();
+  } else {
+    video.addEventListener('loadedmetadata', onMeta, { once: true });
+  }
+};
+
+initScrollVideo();
 
