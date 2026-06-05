@@ -2688,67 +2688,60 @@ const initWolfAnimations = () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ── Hero entrance stagger ── */
+  /* ── Hero entrance stagger (solo posición, sin ocultar con opacity) ── */
   const heroCopy = document.querySelectorAll('.hero-copy > *');
   if (heroCopy.length) {
-    gsap.fromTo(heroCopy,
-      { y: 48, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.9, stagger: 0.13, ease: 'power3.out', delay: 0.15 }
-    );
+    gsap.from(heroCopy, {
+      y: 36, duration: 0.9, stagger: 0.11, ease: 'power3.out', delay: 0.1,
+      clearProps: 'transform'
+    });
   }
 
   /* Wolf mascot entrance */
   const wolfWrap = document.querySelector('.wolf-mascot-wrap');
   if (wolfWrap) {
-    gsap.fromTo(wolfWrap,
-      { x: 80, opacity: 0, scale: 0.88 },
-      { x: 0, opacity: 1, scale: 1, duration: 1.3, ease: 'power3.out', delay: 0.3 }
-    );
+    gsap.from(wolfWrap, {
+      x: 80, duration: 1.3, ease: 'power3.out', delay: 0.25,
+      clearProps: 'transform'
+    });
   }
 
-  /* ── Scroll-triggered service cards ── */
+  /* ── Scroll-triggered service cards (solo slide, sin opacity) ── */
   gsap.utils.toArray('.svc-card').forEach((card, i) => {
-    gsap.fromTo(card,
-      { y: 55, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.75, delay: i * 0.1, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
-      }
-    );
+    gsap.from(card, {
+      y: 40, duration: 0.7, delay: i * 0.09, ease: 'power3.out',
+      clearProps: 'transform',
+      scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+    });
   });
 
   /* ── Scroll-triggered portfolio cards ── */
   gsap.utils.toArray('.pf-card-client').forEach((card, i) => {
-    gsap.fromTo(card,
-      { x: -35, opacity: 0 },
-      {
-        x: 0, opacity: 1, duration: 0.7, delay: i * 0.14, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
-      }
-    );
+    gsap.from(card, {
+      x: -30, duration: 0.65, delay: i * 0.12, ease: 'power3.out',
+      clearProps: 'transform',
+      scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }
+    });
   });
 
   /* ── Section headings ── */
   gsap.utils.toArray('.section-heading').forEach(el => {
-    gsap.fromTo(el,
-      { y: 30, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-      }
-    );
+    gsap.from(el, {
+      y: 24, duration: 0.65, ease: 'power3.out',
+      clearProps: 'transform',
+      scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+    });
   });
 
-  /* ── FAQ items stagger ── */
+  /* ── FAQ items ── */
   gsap.utils.toArray('.faq-item').forEach((el, i) => {
-    gsap.fromTo(el,
-      { y: 24, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 0.55, delay: i * 0.07, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
-      }
-    );
+    gsap.from(el, {
+      y: 20, duration: 0.5, delay: i * 0.06, ease: 'power2.out',
+      clearProps: 'transform',
+      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' }
+    });
   });
+
 
   /* ═══════════════════════════════════════
      WOLF RUNNER — crosses the screen
