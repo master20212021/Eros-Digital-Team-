@@ -45,12 +45,12 @@ const translations = {
       mobileDomain: 'Ver dominio',
     },
     hero: {
-      eyebrow: 'Páginas, ayuda automática y ventas más claras.',
-      title: 'Haz que tu negocio se vea claro, premium y listo para vender.',
-      text: 'Ordenamos tu presencia digital, tus respuestas y tu embudo para que la marca se vea seria y convierta mejor en web, Instagram y WhatsApp.',
-      primary: 'Empezar diagnóstico',
+      eyebrow: 'WhatsApp · Carruseles IA · Agentes · Publicidad',
+      title: 'Tu negocio, automatizado.',
+      text: 'Construimos los sistemas que hacen crecer tu negocio: bots de WhatsApp, carruseles con IA, agentes inteligentes y campañas que convierten.',
+      primary: 'Ver demos',
       secondary: 'Hablar con nosotros',
-      brandTagline: 'Soluciones para negocios',
+      brandTagline: 'AI Automation Agency',
       stats: ['Proyectos entregados', 'Primera entrega activa', 'Para tu propuesta'],
     },
     wizard: {
@@ -515,12 +515,12 @@ const translations = {
       mobileDomain: 'View domain',
     },
     hero: {
-      eyebrow: 'Pages, automatic help and clearer sales.',
-      title: 'Make your business look premium, clear, and ready to sell.',
-      text: 'We tighten your digital presence, response flow, and funnel so the brand feels serious and converts better across web, Instagram, and WhatsApp.',
-      primary: 'Start diagnosis',
+      eyebrow: 'WhatsApp · AI Carousels · Agents · Advertising',
+      title: 'Your business, automated.',
+      text: 'We build the systems that grow your business: WhatsApp bots, AI carousels, intelligent agents, and campaigns that convert.',
+      primary: 'See demos',
       secondary: 'Talk to us',
-      brandTagline: 'Business solutions',
+      brandTagline: 'AI Automation Agency',
       stats: ['Projects delivered', 'To first launch', 'For your proposal'],
     },
     wizard: {
@@ -1249,15 +1249,15 @@ const applyMobileFocusedCopy = (language) => {
   }
 
   if (language === 'en') {
-    elements.heroEyebrow.textContent = 'Web, AI, and growth for businesses.';
-    elements.heroTitle.textContent = 'Make your business look professional and convert better.';
-    elements.heroText.textContent = 'We build websites, automation, and commercial systems so you can attract better leads and respond faster.';
-    elements.heroButtons[0].textContent = 'Start diagnosis';
-    elements.wizardTitle.textContent = 'Answer 2 quick steps and we will show you the smartest place to start.';
-    elements.wizardIntro.textContent = 'Short diagnosis. Clear recommendation. Next step.';
+    elements.heroEyebrow.textContent = 'WhatsApp · AI Carousels · Agents · Advertising';
+    elements.heroTitle.textContent = 'Your business, automated.';
+    elements.heroText.textContent = 'We build the systems that grow your business: WhatsApp bots, AI carousels, intelligent agents, and campaigns that convert.';
+    elements.heroButtons[0].textContent = 'See demos';
+    if (elements.wizardTitle) elements.wizardTitle.textContent = 'Answer 2 quick steps and we will show you the smartest place to start.';
+    if (elements.wizardIntro) elements.wizardIntro.textContent = 'Short diagnosis. Clear recommendation. Next step.';
     elements.serviceHeading.textContent = 'Core services to improve presence, automation, and sales.';
-    elements.resultsEyebrow.textContent = 'Key gains';
-    elements.resultsHeading.textContent = 'Three improvements your business should feel quickly.';
+    if (elements.resultsEyebrow) elements.resultsEyebrow.textContent = 'Key gains';
+    if (elements.resultsHeading) elements.resultsHeading.textContent = 'Three improvements your business should feel quickly.';
     setThreePartCards(elements.resultCards, [
       ['Acquisition', 'More qualified inquiries', 'Sharper landing pages, CTAs, and campaigns focused on real intent.'],
       ['Speed', 'Faster response and follow-up', 'Automation and CRM flow that keep opportunities from going cold.'],
@@ -1288,15 +1288,15 @@ const applyMobileFocusedCopy = (language) => {
     return;
   }
 
-  elements.heroEyebrow.textContent = 'Web, IA y growth para negocios.';
-  elements.heroTitle.textContent = 'Haz que tu negocio se vea profesional y convierta mejor.';
-  elements.heroText.textContent = 'Creamos webs, automatizaciones y sistemas comerciales para captar mejor y responder más rápido.';
-  elements.heroButtons[0].textContent = 'Empezar diagnóstico';
-  elements.wizardTitle.textContent = 'Responde 2 pasos y te mostramos la mejor forma de empezar.';
-  elements.wizardIntro.textContent = 'Diagnóstico corto. Recomendación clara. Siguiente paso.';
+  elements.heroEyebrow.textContent = 'WhatsApp · Carruseles IA · Agentes · Publicidad';
+  elements.heroTitle.textContent = 'Tu negocio, automatizado.';
+  elements.heroText.textContent = 'Construimos los sistemas que hacen crecer tu negocio: bots de WhatsApp, carruseles con IA, agentes inteligentes y campañas que convierten.';
+  elements.heroButtons[0].textContent = 'Ver demos';
+  if (elements.wizardTitle) elements.wizardTitle.textContent = 'Responde 2 pasos y te mostramos la mejor forma de empezar.';
+  if (elements.wizardIntro) elements.wizardIntro.textContent = 'Diagnóstico corto. Recomendación clara. Siguiente paso.';
   elements.serviceHeading.textContent = 'Servicios clave para mejorar presencia, automatización y ventas.';
-  elements.resultsEyebrow.textContent = 'Indicadores clave';
-  elements.resultsHeading.textContent = 'Tres mejoras que tu negocio debería notar rápido.';
+  if (elements.resultsEyebrow) elements.resultsEyebrow.textContent = 'Indicadores clave';
+  if (elements.resultsHeading) elements.resultsHeading.textContent = 'Tres mejoras que tu negocio debería notar rápido.';
   setThreePartCards(elements.resultCards, [
     ['Captación', 'Consultas más calificadas', 'Landing, CTA y campañas pensadas para atraer personas con intención real.'],
     ['Velocidad', 'Respuesta y seguimiento más rápidos', 'Automatización y CRM para no dejar oportunidades enfriarse.'],
@@ -2232,6 +2232,7 @@ const initInteractiveCarousels = () => {
 };
 
 const renderWizard = (copy) => {
+  if (!elements.wizardResultCard) return;
   const isComplete = Boolean(wizardState.niche && wizardState.goals.length);
   const step = getWizardStep(copy, wizardState.step);
   elements.wizardEyebrow.textContent = copy.wizard.eyebrow;
@@ -2378,27 +2379,27 @@ const applyLanguage = (language) => {
   elements.serviceHeading.textContent = copy.services.title;
   setCardContent(elements.serviceCards, copy.services.cards);
 
-  elements.whyEyebrow.textContent = copy.why.eyebrow;
-  elements.whyHeading.textContent = copy.why.title;
+  if (elements.whyEyebrow) elements.whyEyebrow.textContent = copy.why.eyebrow;
+  if (elements.whyHeading) elements.whyHeading.textContent = copy.why.title;
   setCardContent(elements.whyCards, copy.why.cards, { numberPrefix: true });
 
-  elements.processEyebrow.textContent = copy.process.eyebrow;
-  elements.processHeading.textContent = copy.process.title;
+  if (elements.processEyebrow) elements.processEyebrow.textContent = copy.process.eyebrow;
+  if (elements.processHeading) elements.processHeading.textContent = copy.process.title;
   setCardContent(elements.processCards, copy.process.cards, { numberPrefix: true });
 
-  elements.resultsEyebrow.textContent = copy.results.eyebrow;
-  elements.resultsHeading.textContent = copy.results.title;
+  if (elements.resultsEyebrow) elements.resultsEyebrow.textContent = copy.results.eyebrow;
+  if (elements.resultsHeading) elements.resultsHeading.textContent = copy.results.title;
   setThreePartCards(elements.resultCards, copy.results.cards);
-  elements.proofStrip.setAttribute('aria-label', copy.results.proofAria);
+  if (elements.proofStrip) elements.proofStrip.setAttribute('aria-label', copy.results.proofAria);
   elements.proofCards.forEach((card, index) => {
     const item = copy.results.proof[index];
     card.querySelector('strong').textContent = item[0];
     card.querySelector('span').textContent = item[1];
   });
 
-  elements.stackEyebrow.textContent = copy.stack.eyebrow;
-  elements.stackHeading.textContent = copy.stack.title;
-  elements.stackHelper.textContent = copy.stack.helper;
+  if (elements.stackEyebrow) elements.stackEyebrow.textContent = copy.stack.eyebrow;
+  if (elements.stackHeading) elements.stackHeading.textContent = copy.stack.title;
+  if (elements.stackHelper) elements.stackHelper.textContent = copy.stack.helper;
   elements.stackChips.forEach((chip, index) => {
     chip.textContent = copy.stack.chips[index];
   });
@@ -2418,19 +2419,19 @@ const applyLanguage = (language) => {
     item.querySelector('p').textContent = data[1];
   });
 
-  elements.packageEyebrow.textContent = copy.packages.eyebrow;
-  elements.packageHeading.textContent = copy.packages.title;
+  if (elements.packageEyebrow) elements.packageEyebrow.textContent = copy.packages.eyebrow;
+  if (elements.packageHeading) elements.packageHeading.textContent = copy.packages.title;
   setListCards(elements.packageCards, copy.packages.cards, '.package-tag');
 
-  elements.launchEyebrow.textContent = copy.launch.eyebrow;
-  elements.launchHeading.textContent = copy.launch.title;
+  if (elements.launchEyebrow) elements.launchEyebrow.textContent = copy.launch.eyebrow;
+  if (elements.launchHeading) elements.launchHeading.textContent = copy.launch.title;
   elements.launchCards.forEach((card, index) => {
     const data = copy.launch.cards[index];
     card.querySelector('span').textContent = data[0];
     card.querySelector('h3').textContent = data[1];
     card.querySelector('p').textContent = data[2];
   });
-  elements.launchIncludesEyebrow.textContent = copy.launch.includesEyebrow;
+  if (elements.launchIncludesEyebrow) elements.launchIncludesEyebrow.textContent = copy.launch.includesEyebrow;
   elements.launchIncludesList.forEach((item, index) => {
     item.textContent = copy.launch.includes[index];
   });
@@ -2478,28 +2479,28 @@ const applyLanguage = (language) => {
       : 'Hola Eros Digital Team, quiero hablar sobre mi proyecto.'
   ));
   elements.floatingWhatsApp?.setAttribute('aria-label', language === 'en' ? 'Open WhatsApp' : 'Abrir WhatsApp');
-  elements.chatLauncherLabel.textContent = copy.chat.launcher;
-  elements.chatTitle.textContent = copy.chat.title;
-  elements.chatStatus.textContent = copy.chat.status;
-  elements.chatInputLabel.textContent = copy.chat.inputLabel;
-  elements.chatInput.placeholder = copy.chat.placeholder;
-  elements.chatSubmit.textContent = copy.chat.submit;
-  elements.chatLeadTitle.textContent = copy.chat.lead.title;
-  elements.chatLeadText.textContent = copy.chat.lead.text;
-  elements.chatLeadName.placeholder = copy.chat.lead.name;
-  elements.chatLeadEmail.placeholder = copy.chat.lead.email;
-  elements.chatLeadCompany.placeholder = copy.chat.lead.company;
-  elements.chatLeadSubmit.textContent = copy.chat.lead.submit;
-  elements.chatWhatsAppLink.textContent = copy.chat.whatsapp;
-  elements.chatFormLink.textContent = copy.chat.form;
-  elements.chatClose.setAttribute('aria-label', copy.chat.closeAria);
-  elements.chatWhatsAppLink.setAttribute('href', buildWhatsAppUrl(
+  if (elements.chatLauncherLabel) elements.chatLauncherLabel.textContent = copy.chat.launcher;
+  if (elements.chatTitle) elements.chatTitle.textContent = copy.chat.title;
+  if (elements.chatStatus) elements.chatStatus.textContent = copy.chat.status;
+  if (elements.chatInputLabel) elements.chatInputLabel.textContent = copy.chat.inputLabel;
+  if (elements.chatInput) elements.chatInput.placeholder = copy.chat.placeholder;
+  if (elements.chatSubmit) elements.chatSubmit.textContent = copy.chat.submit;
+  if (elements.chatLeadTitle) elements.chatLeadTitle.textContent = copy.chat.lead.title;
+  if (elements.chatLeadText) elements.chatLeadText.textContent = copy.chat.lead.text;
+  if (elements.chatLeadName) elements.chatLeadName.placeholder = copy.chat.lead.name;
+  if (elements.chatLeadEmail) elements.chatLeadEmail.placeholder = copy.chat.lead.email;
+  if (elements.chatLeadCompany) elements.chatLeadCompany.placeholder = copy.chat.lead.company;
+  if (elements.chatLeadSubmit) elements.chatLeadSubmit.textContent = copy.chat.lead.submit;
+  if (elements.chatWhatsAppLink) elements.chatWhatsAppLink.textContent = copy.chat.whatsapp;
+  if (elements.chatFormLink) elements.chatFormLink.textContent = copy.chat.form;
+  if (elements.chatClose) elements.chatClose.setAttribute('aria-label', copy.chat.closeAria);
+  if (elements.chatWhatsAppLink) elements.chatWhatsAppLink.setAttribute('href', buildWhatsAppUrl(
     language === 'en'
       ? 'Hi Eros Digital Team, I want to talk with the 24/7 assistant about my project.'
       : 'Hola Eros Digital Team, quiero hablar con el asistente 24/7 sobre mi proyecto.'
   ));
-  renderChatQuickActions(copy);
-  if (chatState.messages.length === 1 && chatState.messages[0].role === 'assistant') {
+  if (elements.chatMessages) renderChatQuickActions(copy);
+  if (elements.chatMessages && chatState.messages.length === 1 && chatState.messages[0].role === 'assistant') {
     chatState.messages[0].text = getChatWelcomeMessage();
     renderChatMessages();
   }
@@ -2507,9 +2508,9 @@ const applyLanguage = (language) => {
   syncFormConfiguration();
   syncFormFeedback();
 
-  elements.ctaTitle.textContent = copy.cta.title;
-  elements.ctaText.textContent = copy.cta.text;
-  elements.ctaButton.textContent = copy.cta.button;
+  if (elements.ctaTitle) elements.ctaTitle.textContent = copy.cta.title;
+  if (elements.ctaText) elements.ctaText.textContent = copy.cta.text;
+  if (elements.ctaButton) elements.ctaButton.textContent = copy.cta.button;
 
   applyMobileFocusedCopy(language);
 
