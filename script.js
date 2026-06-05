@@ -2648,42 +2648,6 @@ elements.form?.addEventListener('submit', (event) => {
   setFormStatus('', currentLanguage === 'en' ? 'Sending form...' : 'Enviando formulario...');
 });
 
-const initDemoChat = () => {
-  const chat = document.getElementById('demoWaChat');
-  const typing = document.getElementById('demoTyping');
-  if (!chat) return;
-
-  let triggered = false;
-
-  const showTyping = (show) => {
-    if (typing) typing.classList.toggle('is-visible', show);
-  };
-
-  const triggerAnimation = () => {
-    if (triggered) return;
-    triggered = true;
-    chat.classList.add('is-animating');
-
-    showTyping(true);
-    window.setTimeout(() => showTyping(false), 1200);
-    window.setTimeout(() => showTyping(true), 2400);
-    window.setTimeout(() => showTyping(false), 3400);
-    window.setTimeout(() => showTyping(true), 4400);
-    window.setTimeout(() => showTyping(false), 5000);
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        triggerAnimation();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.35 });
-
-  observer.observe(chat);
-};
-
 const initPortfolioFilter = () => {
   const grid = document.getElementById('pfGrid');
   if (!grid) return;
@@ -2709,7 +2673,6 @@ window.addEventListener('scroll', syncTopbarState, { passive: true });
 window.addEventListener('scroll', syncBottomNavState, { passive: true });
 applyLanguage(detectInitialLanguage());
 initInteractiveCarousels();
-initDemoChat();
 initPortfolioFilter();
 syncTopbarState();
 syncBottomNavState();
