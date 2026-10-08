@@ -149,3 +149,44 @@ Unboxed Item Swap, Showroom Pickup, Supercar Showreel Spin, Influencer Rhythm Re
 - TikTok politica IA 2026: https://www.cinerads.com/blog/tiktok-ai-content-policy
 - Compliance influencers IA 2026: https://auditsocials.com/blog/ai-generated-influencer-content-compliance-disclosure-rules-2026
 - Comparativa FindClout (clausula 18, no verificada): https://findclout.com/blog/findclout-vs-launchpoint
+
+---
+
+## 6. Cuenta nueva via API (actualizacion 2026-10-08)
+
+**Situacion.** La cuenta Higgsfield conectada al MCP de Claude esta bloqueada por pago (0 creditos, plan Free).
+La cuenta nueva se usa por **API** con clave guardada en `C:\Users\Master\eros-saas\CREDENCIALES-NO-SUBIR-NUNCA.env` (PC local).
+
+**API oficial (verificado en SDK oficial `@higgsfield/client` v0.2.6, GitHub higgsfield-ai/higgsfield-js):**
+- Base URL `https://api.higgsfield.ai`. Header `Authorization: Key KEY_ID:KEY_SECRET` (no Bearer). Solo servidor, nunca en navegador.
+- Flujo: submit -> `status_url` (polling) o webhook. Archivos de salida duran minimo 7 dias: descargar a almacenamiento propio.
+- Endpoints relevantes (del SDK y del catalogo open.higgsfield.ai, este ultimo via buscadores):
+  - `higgsfield/ai-influencer` (hoja de personaje, API reference en open.higgsfield.ai)
+  - `higgsfield/genjutsu/motion-transfer/v1.0` y `higgsfield/genjutsu/object-swap/v1.0`
+  - Soul ID: `createSoulId({name, input_images})` + `/v1/text2image/soul` con `custom_reference_id` (consistencia de cara)
+  - `/v1/speak/higgsfield` (lipsync desde imagen + audio WAV)
+  - Hay endpoint de **estimacion de costo** antes de ejecutar (citado en help center; confirmar ruta en docs).
+- Billing: saldo en USD separado de la suscripcion web/MCP. Top-up minimo $5. Solo cobra generaciones exitosas.
+
+**Precios API reportados (catalogo open.higgsfield.ai via buscadores, no pude abrir la pagina; confirmar en vivo):**
+| Modelo | Precio API |
+|---|---|
+| AI Influencer (hoja 2K) | $0.05 por hoja |
+| Genjutsu (ambos modos), lista | $0.318/s 480p, $0.681/s 720p, $1.632/s 1080p |
+| Genjutsu con promo 50% vigente | $0.159 – $0.816 por segundo |
+| Ejemplo: video 10 s 720p | ~$6.81 lista / ~$3.40 con promo |
+
+**Comparacion API vs MCP (lo que se puede afirmar con evidencia):**
+- Plus MCP: $49 por 1.000 creditos = ~$0.049/credito. Personaje por MCP ~1.12 creditos (~$0.055) vs API $0.05: **igual**.
+- Para Genjutsu **no hay dato publico de creditos por video en MCP**, asi que **no se puede afirmar que la API sea mas barata**;
+  el unico modo de saberlo es correr un video de prueba en ambos y comparar. Por API, un video de 10 s 720p cuesta ~$3.40-6.81,
+  que es caro frente a la expectativa de ~$1 por 1.000 vistas: cada video necesita >3.400 vistas solo para pagar su generacion.
+- Ventaja real de la API: sin suscripcion mensual, pagas solo lo que generas, y se automatiza (pipeline propio).
+- Ventaja del MCP: generacion asistida desde el chat, presets Genjutsu de la galeria, publicacion directa a TikTok.
+
+**Bloqueos en este entorno cloud (no es culpa de la clave):**
+- La red del entorno deniega `api.higgsfield.ai`, `open.higgsfield.ai`, `docs.higgsfield.ai`, `higgsfield.ai` y `launchpointhq.com`.
+  Para que Claude pueda llamar la API desde la nube hay que agregarlos en Allowed domains de la configuracion del entorno.
+- La clave no esta en el contenedor (el .env vive en el PC). Hay que cargarla como secreto del entorno con nombre
+  `HIGGSFIELD_API_KEY` (formato `KEY_ID:KEY_SECRET`). Nunca pegarla en el chat.
+- Alternativa: ejecutar el pipeline en el PC local (Node >= 14, `npm install @higgsfield/client`) leyendo el .env local.
